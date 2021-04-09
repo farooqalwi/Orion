@@ -1,0 +1,7 @@
+D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\bin\Debug\Orion.exe.config
+D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\bin\Debug\Orion.exe
+D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\bin\Debug\Orion.pdb
+D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\obj\Debug\Orion.csprojAssemblyReference.cache
+D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\obj\Debug\Orion.csproj.CoreCompileInputs.cache
+D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\obj\Debug\Orion.exe
+D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\obj\Debug\Orion.pdb
