@@ -11,6 +11,8 @@ namespace Orion.Classes.REs
             string input = Console.ReadLine();
             //\w = [a-zA-Z0-9_]
             //\s (space) matches any single whitespace
+            //string s = ""; //empty is allowed
+            //string s = " "; //single and multiple spaces are allowed
             string pattern = "^\"([\\s\\w`~!@#$^&(){}<>^,?;:|\\[\\]]|[+]|[-]|[*]|[/]|[%]|[=]|(\\\\)([b]|[n]|[r]|[t]|[']|[\"]|[.]|[\\\\]))*\"$";
             Regex regex = new Regex(pattern);
             bool result = regex.IsMatch(input);

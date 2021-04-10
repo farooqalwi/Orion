@@ -12,7 +12,7 @@ namespace Orion.Classes.REs
             //\w = [a-zA-Z0-9_]
             //\s(space) matches any single whitespace
             //char c = ''; //empty is not allowed
-            //char c = ' '; //single and multiple spaces are allowed
+            //char c = ' '; //single space is allowed
             string pattern = "^'(([\\s\\w`~!@#$^&(){}<>^,?;:|\\[\\]]|[+]|[-]|[*]|[/]|[%]|[=]){1}|(\\\\)([b]|[n]|[r]|[t]|[']|[\"]|[.]|[\\\\]){1})'$";
             Regex regex = new Regex(pattern);
             bool result = regex.IsMatch(input);
