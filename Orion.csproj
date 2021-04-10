@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\REs\REs_Validation.cs" />
     <Compile Include="Classes\REs\RE_for_char_constant.cs" />
     <Compile Include="Classes\REs\RE_for_email_validation.cs" />
     <Compile Include="Classes\REs\RE_for_float_constant.cs" />
