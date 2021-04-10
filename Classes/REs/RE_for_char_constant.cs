@@ -10,7 +10,10 @@ namespace Orion.Classes.REs
             Console.Write("Enter valid char: ");
             string input = Console.ReadLine();
             //\w = [a-zA-Z0-9_]
-            string pattern = "^'(([\\w`~!@#$^&(){}<>^,?;:|\\[\\]]|[+]|[-]|[*]|[/]|[%]|[=]){1}|(\\\\)([b]|[n]|[r]|[t]|[']|[\"]|[.]|[\\\\]){1})'$";
+            //\s(space) matches any single whitespace
+            //char c = ''; //empty is not alloed
+            //char c = ' '; //single space is alloed
+            string pattern = "^'(([\\s\\w`~!@#$^&(){}<>^,?;:|\\[\\]]|[+]|[-]|[*]|[/]|[%]|[=]){1}|(\\\\)([b]|[n]|[r]|[t]|[']|[\"]|[.]|[\\\\]){1})'$";
             Regex regex = new Regex(pattern);
             bool result = regex.IsMatch(input);
 

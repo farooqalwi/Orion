@@ -9,7 +9,9 @@ namespace Orion.Classes.REs
         {
             Console.Write("Enter valid string: ");
             string input = Console.ReadLine();
-            string pattern = "^$";
+            //\w = [a-zA-Z0-9_]
+            //\s(space) matches any single whitespace
+            string pattern = "^\"([\\s\\w`~!@#$^&(){}<>^,?;:|\\[\\]]|[+]|[-]|[*]|[/]|[%]|[=]|(\\\\)([b]|[n]|[r]|[t]|[']|[\"]|[.]|[\\\\]))*\"$";
             Regex regex = new Regex(pattern);
             bool result = regex.IsMatch(input);
 
