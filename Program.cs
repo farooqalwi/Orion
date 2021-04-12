@@ -1,5 +1,6 @@
-﻿using Orion.Classes.REs;
-using System.Collections.Generic;
+﻿using Orion.Classes.LexicalAnalyzer;
+using Orion.Classes.REs;
+
 
 namespace Orion
 {
@@ -8,10 +9,11 @@ namespace Orion
         static void Main(string[] args)
         {
             //to validate REs
-            new REs_Validation();
+            //new REs_Validation();
 
-            
-
+            System.Console.WriteLine(Lexical_Analyzer.isKW("num"));
+            System.Console.WriteLine(Lexical_Analyzer.isOperator("+"));
+            System.Console.WriteLine(Lexical_Analyzer.isPunctuator("}"));
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Orion.Classes.REs
             string pattern = "^\"([\\s\\w`~!@#$^&(){}<>^,.?;:|\\[\\]]|[+]|[-]|[*]|[/]|[%]|[=]|(\\\\)([b]|[n]|[r]|[t]|[']|[\"]|[.]|[\\\\]))*\"$";
             Regex regex = new Regex(pattern);
             bool result = regex.IsMatch(input);
-
+            
             if (result)
             {
                 Console.WriteLine($"{input} is a valid string.");
