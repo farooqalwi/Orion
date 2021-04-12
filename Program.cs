@@ -1,19 +1,17 @@
 ﻿using Orion.Classes.LexicalAnalyzer;
 using Orion.Classes.REs;
 
-
 namespace Orion
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //to validate REs
-            //new REs_Validation();
+            new REs_Validation();
+            //this is the entry point
+            //Lexical_Analyzer.tokenGenrator();
 
-            System.Console.WriteLine(Lexical_Analyzer.isKW("num"));
-            System.Console.WriteLine(Lexical_Analyzer.isOperator("+"));
-            System.Console.WriteLine(Lexical_Analyzer.isPunctuator("}"));
+            
         }
     }
 }

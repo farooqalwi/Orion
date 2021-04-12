@@ -13,7 +13,7 @@ namespace Orion.Classes.REs
             //\s (space) matches any single whitespace
             //string s = ""; //empty is allowed
             //string s = " "; //single and multiple spaces are allowed
-            string pattern = "^\"([\\s\\w`~!@#$^&(){}<>^,.?;:|\\[\\]]|[+]|[-]|[*]|[/]|[%]|[=]|(\\\\)([b]|[n]|[r]|[t]|[']|[\"]|[.]|[\\\\]))*\"$";
+            string pattern = "^\"([\\s\\w`~!@#$^&(){}<>^,.?;:|\\[\\]]|[+]|[-]|[*]|[/]|[%]|[=]|(\\\\)([b]|[n]|[r]|[t]|[']|[\"]|[.]|[\\\\]))*\"|[null]{0}$";
             Regex regex = new Regex(pattern);
             bool result = regex.IsMatch(input);
             

@@ -100,5 +100,17 @@ namespace Orion.Classes.LexicalAnalyzer
             return result;
         }
 
+        public static string wordBreaker(string words)
+        {
+            string word = "";
+
+            return word;
+        }
+
+        public static void tokenGenrator()
+        {
+            Console.WriteLine("checking");
+        }
+
     }
 }

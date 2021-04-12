@@ -9,7 +9,7 @@ namespace Orion.Classes.REs
         {
             Console.Write("Enter valid float: ");
             string input = Console.ReadLine();
-            string pattern = "^[+-]?[0-9]+[.][0-9]+$";
+            string pattern = "^[+-]?[0-9]*[.][0-9]+$";
             Regex regex = new Regex(pattern);
             bool result = regex.IsMatch(input);
 
