@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Orion.Classes.LexicalAnalyzer
@@ -100,11 +102,33 @@ namespace Orion.Classes.LexicalAnalyzer
             return result;
         }
 
-        public static string wordBreaker(string words)
+        public static string wordBreaker()
         {
-            string word = "";
+            string path = @"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\words_test_file.txt";
+            var words = new List<char>();
 
-            return word;
+            try
+            {
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    while (sr.Peek() >= 0)
+                    {
+                        words.Add((char)sr.Read());
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The process failed: {0}", e.ToString());
+            }
+
+            for (int i = 0; i < words.Count; i++)
+            {
+                Console.WriteLine(words[i]);
+            }
+
+
+            return null;
         }
 
         public static void tokenGenrator()
