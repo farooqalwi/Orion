@@ -111,12 +111,12 @@ namespace Orion.Classes.LexicalAnalyzer
             System.IO.StreamReader file = new System.IO.StreamReader(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\words_test_file.txt");
             while ((line = file.ReadLine()) != null)
             {
-                System.Console.WriteLine(line);
+                System.Console.WriteLine($"Line No {counter + 1} > {line}");
                 counter++;
             }
 
             file.Close();
-            System.Console.WriteLine("There were {0} lines.", counter);
+            System.Console.WriteLine("There are {0} lines.", counter);
 
 
             return null;
