@@ -104,28 +104,19 @@ namespace Orion.Classes.LexicalAnalyzer
 
         public static string wordBreaker()
         {
-            string path = @"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\words_test_file.txt";
-            var words = new List<char>();
+            int counter = 0;
+            string line;
 
-            try
+            // Read the file and display it line by line.  
+            System.IO.StreamReader file = new System.IO.StreamReader(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\words_test_file.txt");
+            while ((line = file.ReadLine()) != null)
             {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    while (sr.Peek() >= 0)
-                    {
-                        words.Add((char)sr.Read());
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("The process failed: {0}", e.ToString());
+                System.Console.WriteLine(line);
+                counter++;
             }
 
-            for (int i = 0; i < words.Count; i++)
-            {
-                Console.WriteLine(words[i]);
-            }
+            file.Close();
+            System.Console.WriteLine("There were {0} lines.", counter);
 
 
             return null;
