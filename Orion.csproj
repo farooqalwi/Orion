@@ -45,12 +45,7 @@
   <ItemGroup>
     <Compile Include="Classes\LexicalAnalyzer\Lexical_Analyzer.cs" />
     <Compile Include="Classes\REs\REs_Validation.cs" />
-    <Compile Include="Classes\REs\RE_for_char_constant.cs" />
     <Compile Include="Classes\REs\RE_for_email_validation.cs" />
-    <Compile Include="Classes\REs\RE_for_float_constant.cs" />
-    <Compile Include="Classes\REs\RE_for_identifier.cs" />
-    <Compile Include="Classes\REs\RE_for_integer_constant.cs" />
-    <Compile Include="Classes\REs\RE_for_string_constant.cs" />
     <Compile Include="Classes\REs\RE_for_url.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
