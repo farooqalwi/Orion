@@ -103,99 +103,78 @@ namespace Orion.Classes.LexicalAnalyzer
             return result;
         }
 
-        public static string wordBreaker()
+        public static void wordBreaker()
         {
-            int counter = 1;
+            int LineNo = 1;
             string line;
-            string[] token = new string[3];  //(classPart, valuePart, lineNo)
             
 
             // Read the file and display it line by line.  
             System.IO.StreamReader file = new System.IO.StreamReader(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\words_test_file.txt");
             while ((line = file.ReadLine()) != null)
             {
-                System.Console.WriteLine($"Line No {counter} > {line}");
+                System.Console.WriteLine($"Line No {LineNo} > {line}");
 
-                string pattern = "( )|(,)|(:)";
-                string[] substrings = Regex.Split(line, pattern);
+                string pattern = "( )|(,)|(:)|(\")";
+                string[] words = Regex.Split(line, pattern);
 
                 //Console.WriteLine(substrings.Length);
 
-                foreach (string match in substrings)
+                for (int i=0; i<words.Length; i++ )
                 {
                     //Console.WriteLine("'{0}'", match);
 
-                    if (isInt(match))
-                    {
-                        token[0] = "int_const";
-                        token[1] = match;
-                        token[2] = counter.ToString();
-                    }
-                    else if (isFloat(match))
-                    {
-                        token[0] = "float_const";
-                        token[1] = match;
-                        token[2] = counter.ToString();
-                    }
-                    else if (isChar(match))
-                    {
-                        token[0] = "char_const";
-                        token[1] = match;
-                        token[2] = counter.ToString();
-                    }
-                    else if (isString(match))
-                    {
-                        token[0] = "str_const";
-                        token[1] = match;
-                        token[2] = counter.ToString();
-                    }
-                    else if (isKW(match))
-                    {
-                        token[0] = "KW";
-                        token[1] = match;
-                        token[2] = counter.ToString();
-                    }
-                    else if (isOperator(match))
-                    {
-                        token[0] = "Oper";
-                        token[1] = match;
-                        token[2] = counter.ToString();
-                    }
-                    else if (isPunctuator(match))
-                    {
-                        token[0] = "Punct";
-                        token[1] = match;
-                        token[2] = counter.ToString();
-                    }
-                    else if (isID(match))
-                    {
-                        token[0] = "ID";
-                        token[1] = match;
-                        token[2] = counter.ToString();
-                    }
-                    else
-                    {
-                        token[0] = "Invalid token";
-                        token[1] = match;
-                        token[2] = counter.ToString();
-                    }
-
-                    Console.WriteLine($"({token[0]}, {token[1]}, {token[2]})");
                 }
 
-                counter++;
+                LineNo++;
             }
 
             file.Close();
-            //System.Console.WriteLine("There are {0} lines.", counter);
+            //System.Console.WriteLine("There are {0} lines.", LineNo);
 
 
-            return null;
         }
 
-        public static void tokenGenrator()
+        public static void tokenizer(string word, int line)
         {
-            Console.WriteLine("checking");
+            //(classPart, valuePart, lineNo)
+
+            if (isInt(word))
+            {
+                Console.WriteLine($"(int_const, {word}, {line})");
+            }
+            else if (isFloat(word))
+            {
+                Console.WriteLine($"(float_const, {word}, {line})");
+            }
+            else if (isChar(word))
+            {
+                Console.WriteLine($"(char_const, {word}, {line})");
+            }
+            else if (isString(word))
+            {
+                Console.WriteLine($"(str_const, {word}, {line})");
+            }
+            else if (isKW(word))
+            {
+                Console.WriteLine($"(KW, {word}, {line})");
+            }
+            else if (isOperator(word))
+            {
+                Console.WriteLine($"(Oper, {word}, {line})");
+            }
+            else if (isPunctuator(word))
+            {
+                Console.WriteLine($"(Punct, {word}, {line})");
+            }
+            else if (isID(word))
+            {
+                Console.WriteLine($"(ID, {word}, {line})");
+            }
+            else
+            {
+                Console.WriteLine($"(Invalid, {word}, {line})");
+            }
         }
 
     }
