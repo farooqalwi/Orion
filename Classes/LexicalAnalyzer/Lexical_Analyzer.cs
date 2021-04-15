@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -105,36 +106,47 @@ namespace Orion.Classes.LexicalAnalyzer
         {
             int LineNo = 1;
             string line;
-            string word;
-
+            string word = "";
+            string sWord = "";
 
             // Read the file line by line.  
             System.IO.StreamReader file = new System.IO.StreamReader(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\words_test_file.txt");
             while ((line = file.ReadLine()) != null)
             {
                 System.Console.WriteLine($"Line No {LineNo} > {line}");
-                List<char> singleChar = new List<char>();
+                
 
                 for (int i = 0; i < line.Length; i++)
                 {
-                    
-                    if (!isOperator(line[i].ToString()) && !isPunctuator(line[i].ToString()))
+                    if (line[i].ToString() == "\"" || sWord.Contains("\""))
                     {
-                        singleChar.Add(line[i]);
+                        sWord += line[i].ToString();
+                        
+                        if (sWord.Count(x => x == '"') == 2)
+                        {
+                            Console.WriteLine(word);
+                            Console.WriteLine(sWord);
+                            word = "";
+                            sWord = "";
+                        }
+
+                        continue;
+                    }
+
+                    if (line[i].ToString() != " " && !isOperator(line[i].ToString()) && !isPunctuator(line[i].ToString()))
+                    {
+                        word += line[i].ToString();
                     }
                     else
                     {
-                        word = string.Join("", singleChar.ToArray());
                         Console.WriteLine(word);
-                        singleChar.Clear();
+                        word = "";
                     }
+                    
                 }
 
-                word = string.Join("", singleChar.ToArray());
                 Console.WriteLine(word);
-                singleChar.Clear();
-
-
+                word = "";
 
                 LineNo++;
             }
@@ -196,7 +208,11 @@ namespace Orion.Classes.LexicalAnalyzer
             }
             else
             {
-                Console.WriteLine($"(Invalid, {word}, {line})");
+                if (word != " ")
+                {
+                    Console.WriteLine($"(Invalid, {word}, {line})");
+                }
+                
             }
         }
 
