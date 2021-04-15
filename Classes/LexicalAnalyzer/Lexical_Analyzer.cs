@@ -1,7 +1,5 @@
-﻿using Orion.Classes.REs;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Orion.Classes.LexicalAnalyzer
@@ -107,32 +105,57 @@ namespace Orion.Classes.LexicalAnalyzer
         {
             int LineNo = 1;
             string line;
-            
+            string word;
 
-            // Read the file and display it line by line.  
+
+            // Read the file line by line.  
             System.IO.StreamReader file = new System.IO.StreamReader(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\words_test_file.txt");
             while ((line = file.ReadLine()) != null)
             {
                 System.Console.WriteLine($"Line No {LineNo} > {line}");
+                List<char> singleChar = new List<char>();
 
-                string pattern = "( )|(,)|(:)|(\")";
-                string[] words = Regex.Split(line, pattern);
-
-                //Console.WriteLine(substrings.Length);
-
-                for (int i=0; i<words.Length; i++ )
+                for (int i = 0; i < line.Length; i++)
                 {
-                    //Console.WriteLine("'{0}'", match);
-
+                    
+                    if (!isOperator(line[i].ToString()) && !isPunctuator(line[i].ToString()))
+                    {
+                        singleChar.Add(line[i]);
+                    }
+                    else
+                    {
+                        word = string.Join("", singleChar.ToArray());
+                        Console.WriteLine(word);
+                        singleChar.Clear();
+                    }
                 }
+
+                word = string.Join("", singleChar.ToArray());
+                Console.WriteLine(word);
+                singleChar.Clear();
+
+
 
                 LineNo++;
             }
 
             file.Close();
-            //System.Console.WriteLine("There are {0} lines.", LineNo);
 
+            
+        }
 
+        public static bool StringToInt(string word)
+        {
+            int num;
+            try
+            {
+                num = Int32.Parse(word);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public static void tokenizer(string word, int line)
