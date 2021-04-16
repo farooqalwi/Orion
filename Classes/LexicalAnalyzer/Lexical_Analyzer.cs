@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Data;
 
 namespace Orion.Classes.LexicalAnalyzer
 {
@@ -105,9 +102,10 @@ namespace Orion.Classes.LexicalAnalyzer
 
         public static void wordBreaker()
         {
-            int LineNo = 1;
-            string line;
-            string word = "";
+            int LineNo = 1;         //it is line no of source file
+            string line;            //from source file
+            bool comStart = false;  //for multi line comments
+            string word = "";       //for general
             string sWord = "";      //for string
             string dWord = "";      //for decimal No
             string dPoint = "";    //decimal point
@@ -121,6 +119,42 @@ namespace Orion.Classes.LexicalAnalyzer
                 //char by char checking
                 for (int i = 0; i < line.Length; i++)
                 {
+                    //this bloack is for single line comment
+                    if (line[i] == '@' && line[i + 1] != '@')
+                    {
+                        break;
+                    }
+
+                    //this bloack is for multi line comments
+                    if ((line[i] == '@' && line[i + 1] == '@') || comStart)
+                    {
+                        if (line[i] == '@' && line[i + 1] == '@')
+                        {
+                            i++;
+                        }
+
+                        //to end comments
+                        try
+                        {
+                            if ((line[i - 1] == '@' && line[i] == '@') && comStart)
+                            {
+                                comStart = false;
+                                continue;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
+
+                        //to start comments
+                        comStart = true;
+                        if (comStart)
+                        {
+                            continue;
+                        }
+                    }
+
                     //this bloack is for string
                     if (line[i].ToString() == "\"" || sWord.Contains("\""))
                     {
@@ -249,12 +283,6 @@ namespace Orion.Classes.LexicalAnalyzer
                         }
                     }
 
-                    //this bloack is for single line comment
-                    if (line[i] == '@')
-                    {
-                        break;
-                    }
-
                     //this bloack is for decimal No
                     if (line[i] == '.' || dPoint == ".")
                     {
@@ -319,9 +347,55 @@ namespace Orion.Classes.LexicalAnalyzer
                         }
                     }
 
-
+                    //for space, punc, oper and other words
                     if (line[i].ToString() != " " && !isOperator(line[i].ToString()) && !isPunctuator(line[i].ToString()))
                     {
+                        //for alphabetic operators. i.e. is, or (length 2)
+                        try
+                        {
+                            if ((line[i] == 'i' && line[i + 1] == 's') || (line[i] == 'o' && line[i + 1] == 'r'))
+                            {
+                                if (word != "")
+                                {
+                                    Console.WriteLine(word);
+                                    word = "";
+                                }
+
+                                Console.WriteLine(line[i].ToString() + line[i + 1].ToString());
+                                i++;
+                                continue;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            word += line[i].ToString();
+                            Console.WriteLine(word);
+                            word = "";
+                            continue;
+                        }
+
+                        //for alphabetic operators. i.e. not, and (length 3)
+                        try
+                        {
+                            if ((line[i] == 'n' && line[i + 1] == 'o' && line[i + 2] == 't') || (line[i] == 'a' && line[i + 1] == 'n' && line[i + 2] == 'd'))
+                            {
+                                if (word != "")
+                                {
+                                    Console.WriteLine(word);
+                                    word = "";
+                                }
+
+                                Console.WriteLine(line[i].ToString() + line[i + 1].ToString() + line[i + 2].ToString());
+                                i += 2;
+                                continue;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            word += line[i].ToString();
+                            continue;
+                        }
+
                         word += line[i].ToString();
                     }
                     else
@@ -332,7 +406,26 @@ namespace Orion.Classes.LexicalAnalyzer
                             word = "";
                         }
 
-                        Console.WriteLine(line[i].ToString());
+                        try
+                        {
+                            if ((line[i] == '+' && line[i + 1] == '+') || (line[i] == '-' && line[i + 1] == '-') || (line[i] == '<' && line[i + 1] == '=') || (line[i] == '>' && line[i + 1] == '=') || (line[i] == '+' && line[i + 1] == '=') || (line[i] == '-' && line[i + 1] == '=') || (line[i] == '*' && line[i + 1] == '=') || (line[i] == '/' && line[i + 1] == '='))
+                            {
+                                Console.WriteLine(line[i].ToString() + line[i + 1].ToString());
+                                i++;
+                                continue;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine(line[i].ToString());
+                            continue;
+                        }
+
+                        if (line[i].ToString() != " ")
+                        {
+                            Console.WriteLine(line[i].ToString());
+                            continue;
+                        }
                     }
 
                 }
@@ -367,19 +460,6 @@ namespace Orion.Classes.LexicalAnalyzer
             file.Close();
         }
 
-        public static bool StringToInt(string word)
-        {
-            int num;
-            try
-            {
-                num = Int32.Parse(word);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
 
         public static void tokenizer(string word, int line)
         {
