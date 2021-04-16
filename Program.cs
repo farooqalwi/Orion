@@ -11,9 +11,11 @@ namespace Orion
 
             Lexical_Analyzer.wordBreaker();
 
-            //string name = "sdfs\"faf\"sfefe";
-            //var count = name.Count(x => x == '"');
-            //System.Console.WriteLine(count == 1);
+            //string name = "class abf\\\"adab";
+            //var count = name.Count(x => x == '\"');
+            //System.Console.WriteLine(count == 2);
+
+            //System.Console.WriteLine(name[9]);
         }
     }
 }

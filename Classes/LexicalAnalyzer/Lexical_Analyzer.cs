@@ -106,8 +106,8 @@ namespace Orion.Classes.LexicalAnalyzer
         {
             int LineNo = 1;
             string line;
-            string word = "";
-            string sWord = "";
+            string word = "";       
+            string sWord = "";     //for string
 
             // Read the file line by line.  
             System.IO.StreamReader file = new System.IO.StreamReader(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\words_test_file.txt");
@@ -121,8 +121,8 @@ namespace Orion.Classes.LexicalAnalyzer
                     if (line[i].ToString() == "\"" || sWord.Contains("\""))
                     {
                         sWord += line[i].ToString();
-                        
-                        if (sWord.Count(x => x == '"') == 2)
+
+                        if (isString(sWord))
                         {
                             Console.WriteLine(word);
                             Console.WriteLine(sWord);
@@ -142,11 +142,20 @@ namespace Orion.Classes.LexicalAnalyzer
                         Console.WriteLine(word);
                         word = "";
                     }
-                    
                 }
 
-                Console.WriteLine(word);
-                word = "";
+                if (word != "")
+                {
+                    Console.WriteLine(word);
+                    word = "";
+                }
+                
+                if (sWord != "")
+                {
+                    Console.WriteLine(sWord);
+                    sWord = "";
+                }
+
 
                 LineNo++;
             }
