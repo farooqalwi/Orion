@@ -118,6 +118,7 @@ namespace Orion.Classes.LexicalAnalyzer
 
                 for (int i = 0; i < line.Length; i++)
                 {
+                    //this bloack is for string
                     if (line[i].ToString() == "\"" || sWord.Contains("\""))
                     {
                         sWord += line[i].ToString();
@@ -131,6 +132,118 @@ namespace Orion.Classes.LexicalAnalyzer
                         }
 
                         continue;
+                    }
+
+                    //this bloack is for character
+                    if (line[i] == '\'')
+                    {
+                        //try to handle index out of bound error
+                        try
+                        {
+                        //for length of 3 char. i.e. 's'
+                        if (line[i+2] == '\'')
+                        {
+                            if (word != "")
+                            {
+                                Console.WriteLine(word);
+                                word = "";
+                            }
+
+                            for (int j = 0; j < 3; j++)
+                            {
+                                word += line[i+j].ToString();
+                            }
+
+                            if (word != "")
+                            {
+                                Console.WriteLine(word);
+                                word = "";
+                            }
+
+                            i += 2;
+                            continue;
+                        }
+                        else if (line[i+1] == '\\' && line[i + 3] == '\'')
+                        {
+                            //for length of 4 char. i.e. '\n'
+
+                            //for only /n, /b, /r, /t chars
+                            if (line[i + 2] == 'n' || line[i + 2] == 'b' || line[i + 2] == 'r' || line[i + 2] == 't')
+                            {
+                                if (word != "")
+                                {
+                                    Console.WriteLine(word);
+                                    word = "";
+                                }
+
+                                for (int j = 0; j < 4; j++)
+                                {
+                                    word += line[i+j].ToString();
+                                }
+
+                                if (word != "")
+                                {
+                                    Console.WriteLine(word);
+                                    word = "";
+                                }
+
+                                i += 3;
+                                continue;
+                            }
+                            else
+                            {
+                                //for other than /n, /b, /r, /t chars
+
+                                if (word != "")
+                                {
+                                    Console.WriteLine(word);
+                                    word = "";
+                                }
+
+                                for (int j = 0; j < 3; j++)
+                                {
+                                    word += line[i+j].ToString();
+                                }
+
+                                if (word != "")
+                                {
+                                    Console.WriteLine(word);
+                                    word = "";
+                                }
+
+                                i += 2;
+                                continue;
+                            }
+                            
+                        }
+                        else
+                        {
+                            //for invalid tocken
+
+                            if (word != "")
+                            {
+                                Console.WriteLine(word);
+                                word = "";
+                            }
+
+                            word += line[i].ToString();
+
+                            continue;
+                        }
+
+                        }
+                        catch (Exception)
+                        {
+                            if (word != "")
+                            {
+                                Console.WriteLine(word);
+                                word = "";
+                            }
+
+                            word += line[i].ToString();
+
+                            continue;
+                        }
                     }
 
                     if (line[i].ToString() != " " && !isOperator(line[i].ToString()) && !isPunctuator(line[i].ToString()))

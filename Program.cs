@@ -11,11 +11,15 @@ namespace Orion
 
             Lexical_Analyzer.wordBreaker();
 
-            //string name = "class abf\\\"adab";
-            //var count = name.Count(x => x == '\"');
-            //System.Console.WriteLine(count == 2);
 
-            //System.Console.WriteLine(name[9]);
+
+            //string name = "class ali'\\n'ahmed'h'sd";
+            //System.Console.WriteLine(name);
+
+            //for (int i = 0; i < name.Length; i++)
+            //{
+            //    System.Console.WriteLine(i + " " + name[i]);
+            //}
         }
     }
 }
