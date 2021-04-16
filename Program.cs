@@ -11,8 +11,6 @@ namespace Orion
 
             Lexical_Analyzer.wordBreaker();
 
-
-
             //string name = "class ali'\\n'ahmed'h'sd";
             //System.Console.WriteLine(name);
 
@@ -20,6 +18,7 @@ namespace Orion
             //{
             //    System.Console.WriteLine(i + " " + name[i]);
             //}
+
         }
     }
 }
