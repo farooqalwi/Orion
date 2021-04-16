@@ -115,7 +115,7 @@ namespace Orion.Classes.LexicalAnalyzer
             {
                 System.Console.WriteLine($"Line No {LineNo} > {line}");
                 
-
+                //char by char checking
                 for (int i = 0; i < line.Length; i++)
                 {
                     //this bloack is for string
@@ -246,6 +246,12 @@ namespace Orion.Classes.LexicalAnalyzer
                         }
                     }
 
+                    //for single line comment
+                    if (line[i] == '@')
+                    {
+                        break;
+                    }
+
                     if (line[i].ToString() != " " && !isOperator(line[i].ToString()) && !isPunctuator(line[i].ToString()))
                     {
                         word += line[i].ToString();
@@ -255,6 +261,7 @@ namespace Orion.Classes.LexicalAnalyzer
                         Console.WriteLine(word);
                         word = "";
                     }
+
                 }
 
                 if (word != "")
