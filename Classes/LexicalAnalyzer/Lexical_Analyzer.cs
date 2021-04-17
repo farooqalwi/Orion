@@ -127,12 +127,23 @@ namespace Orion.Classes.LexicalAnalyzer
 
                         if (isString(sWord))
                         {
-                            tokenizer(word, LineNo);
-                            tokenizer(dPoint, LineNo);
-                            tokenizer(sWord, LineNo);
-                            word = "";
-                            dPoint = "";
-                            sWord = "";
+                            if (word != "")
+                            {
+                                tokenizer(word, LineNo);
+                                word = "";
+                            }
+
+                            if (dPoint == ".")
+                            {
+                                tokenizer(dPoint, LineNo);
+                                dPoint = "";
+                            }
+
+                            if (sWord != "")
+                            {
+                                tokenizer(sWord, LineNo);
+                                sWord = "";
+                            }
                         }
 
                         continue;
