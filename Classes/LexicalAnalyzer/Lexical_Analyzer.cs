@@ -49,6 +49,16 @@ namespace Orion.Classes.LexicalAnalyzer
             return result;
         }
 
+        // to match only " in first and last palce to validate string in word breaker
+        public static bool toMatchString(string word)
+        {
+            string pattern = "^\"([\\s\\w`~!@#$^&(){}<>^,.?;:\\\\|\\[\\]]|[+]|[-]|[*]|[/]|[%]|[=])*\"$";
+            Regex regex = new Regex(pattern);
+            bool result = regex.IsMatch(word);
+
+            return result;
+        }
+
         public static bool isID(string word)
         {
             string pattern = "^[a-zA-Z_][\\w]*$";
@@ -125,7 +135,7 @@ namespace Orion.Classes.LexicalAnalyzer
                     {
                         sWord += line[i].ToString();
 
-                        if (isString(sWord))
+                        if (toMatchString(sWord))
                         {
                             if (word != "")
                             {

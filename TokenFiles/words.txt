@@ -1,8 +1,8 @@
-﻿class abc#b,c
+﻿class abc#b,csSA none dfs
 until(a!!!==54+++=if_else
 String @str="abc+=7f5"+=88
-abc"ab6-7t\"gr-9)76n)98"dfgd
-C=="a\r6+7gt\"tyr"-9)-h
+string abc"ab6-7t\n"gr-9)76n)98"dfgd
+C=="a\r6+7gt\34tyr"-9)-h
 char ch='n'+'\n'-'\\r'+'++'abc'87y
 
 comments start@@

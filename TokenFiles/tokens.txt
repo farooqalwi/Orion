@@ -6,7 +6,9 @@
 (#, , 1) 	 > Punct
 (ID, b, 1)
 (,, , 1) 	 > Punct
-(ID, c, 1)
+(ID, csSA, 1)
+(none, , 1) 	 > KW
+(ID, dfs, 1)
 (until, , 2) 	 > KW
 ((, , 2) 	 > Punct
 (ID, a, 2)
@@ -20,13 +22,21 @@
 (+=, , 2) 	 > Oper
 (ID, if_else, 2)
 (ID, String, 3)
+(string, , 4) 	 > KW
 (ID, abc, 4)
-(str_const, "ab6-7t\"gr-9)76n)98", 4)
-(ID, dfgd, 4)
+(str_const, "ab6-7t\n", 4)
+(ID, gr, 4)
+(-, , 4) 	 > Oper
+(int_const, 9, 4)
+(), , 4) 	 > Punct
+(Invalid, 76n, 4)
+(), , 4) 	 > Punct
+(int_const, 98, 4)
+(Invalid, "dfgd, 4)
 (ID, C, 5)
 (=, , 5) 	 > Oper
 (=, , 5) 	 > Oper
-(str_const, "a\r6+7gt\"tyr", 5)
+(Invalid, "a\r6+7gt\34tyr", 5)
 (-, , 5) 	 > Oper
 (int_const, 9, 5)
 (), , 5) 	 > Punct
