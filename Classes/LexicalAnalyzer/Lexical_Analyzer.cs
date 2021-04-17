@@ -22,7 +22,7 @@ namespace Orion.Classes.LexicalAnalyzer
         public static bool isFloat(string word)
         {
 
-            string pattern = "^[+-]?[0-9]+[.][0-9]+$";
+            string pattern = "^[+-]?[0-9]*[.][0-9]+$";
             Regex regex = new Regex(pattern);
             bool result = regex.IsMatch(word);
 
@@ -110,8 +110,9 @@ namespace Orion.Classes.LexicalAnalyzer
             string dWord = "";      //for decimal No
             string dPoint = "";    //decimal point
 
-            // Read the file line by line.  
-            System.IO.StreamReader file = new System.IO.StreamReader(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\words_test_file.txt");
+            // Read the file line by line
+            System.IO.StreamReader file = new System.IO.StreamReader(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\TokenFiles\input.txt");
+            Console.WriteLine("(classPart, valuePart, lineNo)\n------------------------------------------");
             while ((line = file.ReadLine()) != null)
             {
                 System.Console.WriteLine($"Line No {LineNo} > {line}");
@@ -119,6 +120,136 @@ namespace Orion.Classes.LexicalAnalyzer
                 //char by char checking
                 for (int i = 0; i < line.Length; i++)
                 {
+                    //this bloack is for string
+                    if ((line[i].ToString() == "\"" || sWord.Contains("\"")) && !comStart)
+                    {
+                        sWord += line[i].ToString();
+
+                        if (isString(sWord))
+                        {
+                            tokenizer(word, LineNo);
+                            tokenizer(dPoint, LineNo);
+                            tokenizer(sWord, LineNo);
+                            word = "";
+                            dPoint = "";
+                            sWord = "";
+                        }
+
+                        continue;
+                    }
+
+                    //this bloack is for character
+                    if (line[i] == '\'' && !comStart)
+                    {
+                        //try to handle index out of bound error
+                        try
+                        {
+                            //for length of 3 char. i.e. 's'
+                            if (line[i + 2] == '\'')
+                            {
+                                if (word != "")
+                                {
+                                    tokenizer(word, LineNo);
+                                    word = "";
+                                }
+
+                                for (int j = 0; j < 3; j++)
+                                {
+                                    word += line[i + j].ToString();
+                                }
+
+                                if (word != "")
+                                {
+                                    tokenizer(word, LineNo);
+                                    word = "";
+                                }
+
+                                i += 2;
+                                continue;
+                            }
+                            else if (line[i + 1] == '\\' && line[i + 3] == '\'')
+                            {
+                                //for length of 4 char. i.e. '\n'
+
+                                //for only /n, /b, /r, /t chars
+                                if (line[i + 2] == 'n' || line[i + 2] == 'b' || line[i + 2] == 'r' || line[i + 2] == 't')
+                                {
+                                    if (word != "")
+                                    {
+                                        tokenizer(word, LineNo);
+                                        word = "";
+                                    }
+
+                                    for (int j = 0; j < 4; j++)
+                                    {
+                                        word += line[i + j].ToString();
+                                    }
+
+                                    if (word != "")
+                                    {
+                                        tokenizer(word, LineNo);
+                                        word = "";
+                                    }
+
+                                    i += 3;
+                                    continue;
+                                }
+                                else
+                                {
+                                    //for other than /n, /b, /r, /t chars
+
+                                    if (word != "")
+                                    {
+                                        tokenizer(word, LineNo);
+                                        word = "";
+                                    }
+
+                                    for (int j = 0; j < 3; j++)
+                                    {
+                                        word += line[i + j].ToString();
+                                    }
+
+                                    if (word != "")
+                                    {
+                                        tokenizer(word, LineNo);
+                                        word = "";
+                                    }
+
+                                    i += 2;
+                                    continue;
+                                }
+
+                            }
+                            else
+                            {
+                                //for invalid tocken
+
+                                if (word != "")
+                                {
+                                    tokenizer(word, LineNo);
+                                    word = "";
+                                }
+
+                                word += line[i].ToString();
+
+                                continue;
+                            }
+
+                        }
+                        catch (Exception)
+                        {
+                            if (word != "")
+                            {
+                                tokenizer(word, LineNo);
+                                word = "";
+                            }
+
+                            word += line[i].ToString();
+
+                            continue;
+                        }
+                    }
+                    
                     //this bloack is for single line comment
                     if (line[i] == '@' && line[i + 1] != '@')
                     {
@@ -154,135 +285,7 @@ namespace Orion.Classes.LexicalAnalyzer
                             continue;
                         }
                     }
-
-                    //this bloack is for string
-                    if (line[i].ToString() == "\"" || sWord.Contains("\""))
-                    {
-                        sWord += line[i].ToString();
-
-                        if (isString(sWord))
-                        {
-                            Console.WriteLine(word);
-                            Console.WriteLine(sWord);
-                            word = "";
-                            sWord = "";
-                        }
-
-                        continue;
-                    }
-
-                    //this bloack is for character
-                    if (line[i] == '\'')
-                    {
-                        //try to handle index out of bound error
-                        try
-                        {
-                            //for length of 3 char. i.e. 's'
-                            if (line[i + 2] == '\'')
-                            {
-                                if (word != "")
-                                {
-                                    Console.WriteLine(word);
-                                    word = "";
-                                }
-
-                                for (int j = 0; j < 3; j++)
-                                {
-                                    word += line[i + j].ToString();
-                                }
-
-                                if (word != "")
-                                {
-                                    Console.WriteLine(word);
-                                    word = "";
-                                }
-
-                                i += 2;
-                                continue;
-                            }
-                            else if (line[i + 1] == '\\' && line[i + 3] == '\'')
-                            {
-                                //for length of 4 char. i.e. '\n'
-
-                                //for only /n, /b, /r, /t chars
-                                if (line[i + 2] == 'n' || line[i + 2] == 'b' || line[i + 2] == 'r' || line[i + 2] == 't')
-                                {
-                                    if (word != "")
-                                    {
-                                        Console.WriteLine(word);
-                                        word = "";
-                                    }
-
-                                    for (int j = 0; j < 4; j++)
-                                    {
-                                        word += line[i + j].ToString();
-                                    }
-
-                                    if (word != "")
-                                    {
-                                        Console.WriteLine(word);
-                                        word = "";
-                                    }
-
-                                    i += 3;
-                                    continue;
-                                }
-                                else
-                                {
-                                    //for other than /n, /b, /r, /t chars
-
-                                    if (word != "")
-                                    {
-                                        Console.WriteLine(word);
-                                        word = "";
-                                    }
-
-                                    for (int j = 0; j < 3; j++)
-                                    {
-                                        word += line[i + j].ToString();
-                                    }
-
-                                    if (word != "")
-                                    {
-                                        Console.WriteLine(word);
-                                        word = "";
-                                    }
-
-                                    i += 2;
-                                    continue;
-                                }
-
-                            }
-                            else
-                            {
-                                //for invalid tocken
-
-                                if (word != "")
-                                {
-                                    Console.WriteLine(word);
-                                    word = "";
-                                }
-
-                                word += line[i].ToString();
-
-                                continue;
-                            }
-
-                        }
-                        catch (Exception)
-                        {
-                            if (word != "")
-                            {
-                                Console.WriteLine(word);
-                                word = "";
-                            }
-
-                            word += line[i].ToString();
-
-                            continue;
-                        }
-                    }
-
+                    
                     //this bloack is for decimal No
                     if (line[i] == '.' || dPoint == ".")
                     {
@@ -297,7 +300,7 @@ namespace Orion.Classes.LexicalAnalyzer
                         {
                             if (!isInt(word))
                             {
-                                Console.WriteLine(word);
+                                tokenizer(word, LineNo);
                                 word = "";
                             }
                         }
@@ -313,11 +316,11 @@ namespace Orion.Classes.LexicalAnalyzer
                             {
                                 if (word != "")
                                 {
-                                    Console.WriteLine(word);
+                                    tokenizer(word, LineNo);
                                     word = "";
                                 }
 
-                                Console.WriteLine(dPoint);
+                                tokenizer(dPoint, LineNo);
                                 dPoint = "";
                                 word += line[i].ToString();
                                 continue;
@@ -327,7 +330,7 @@ namespace Orion.Classes.LexicalAnalyzer
                         {
                             if (isInt(word))
                             {
-                                Console.WriteLine(word + dPoint + dWord);
+                                tokenizer((word + dPoint + dWord), LineNo);
                                 word = "";
                                 dPoint = "";
                                 dWord = "";
@@ -337,7 +340,7 @@ namespace Orion.Classes.LexicalAnalyzer
 
                             if (word == "")
                             {
-                                Console.WriteLine(dPoint + dWord);
+                                tokenizer((dPoint + dWord), LineNo);
                                 dPoint = "";
                                 dWord = "";
                                 dPoint += line[i].ToString();
@@ -348,7 +351,7 @@ namespace Orion.Classes.LexicalAnalyzer
                     }
 
                     //for space, punc, oper and other words
-                    if (line[i].ToString() != " " && !isOperator(line[i].ToString()) && !isPunctuator(line[i].ToString()))
+                    if (line[i].ToString() != " " && line[i].ToString() != "\t" && !isOperator(line[i].ToString()) && !isPunctuator(line[i].ToString()))
                     {
                         //for alphabetic operators. i.e. is, or (length 2)
                         try
@@ -357,7 +360,7 @@ namespace Orion.Classes.LexicalAnalyzer
                             {
                                 if (word != "")
                                 {
-                                    Console.WriteLine(word);
+                                    tokenizer(word, LineNo);
                                     word = "";
                                 }
 
@@ -369,7 +372,7 @@ namespace Orion.Classes.LexicalAnalyzer
                         catch (Exception)
                         {
                             word += line[i].ToString();
-                            Console.WriteLine(word);
+                            tokenizer(word, LineNo);
                             word = "";
                             continue;
                         }
@@ -381,7 +384,7 @@ namespace Orion.Classes.LexicalAnalyzer
                             {
                                 if (word != "")
                                 {
-                                    Console.WriteLine(word);
+                                    tokenizer(word, LineNo);
                                     word = "";
                                 }
 
@@ -402,7 +405,7 @@ namespace Orion.Classes.LexicalAnalyzer
                     {
                         if (word != "")
                         {
-                            Console.WriteLine(word);
+                            tokenizer(word, LineNo);
                             word = "";
                         }
 
@@ -410,20 +413,20 @@ namespace Orion.Classes.LexicalAnalyzer
                         {
                             if ((line[i] == '+' && line[i + 1] == '+') || (line[i] == '-' && line[i + 1] == '-') || (line[i] == '<' && line[i + 1] == '=') || (line[i] == '>' && line[i + 1] == '=') || (line[i] == '+' && line[i + 1] == '=') || (line[i] == '-' && line[i + 1] == '=') || (line[i] == '*' && line[i + 1] == '=') || (line[i] == '/' && line[i + 1] == '='))
                             {
-                                Console.WriteLine(line[i].ToString() + line[i + 1].ToString());
+                                tokenizer((line[i].ToString() + line[i + 1].ToString()), LineNo);
                                 i++;
                                 continue;
                             }
                         }
                         catch (Exception)
                         {
-                            Console.WriteLine(line[i].ToString());
+                            tokenizer(line[i].ToString(), LineNo);
                             continue;
                         }
 
-                        if (line[i].ToString() != " ")
+                        if (line[i].ToString() != " " && line[i].ToString() != "\t")
                         {
-                            Console.WriteLine(line[i].ToString());
+                            tokenizer(line[i].ToString(), LineNo);
                             continue;
                         }
                     }
@@ -433,24 +436,22 @@ namespace Orion.Classes.LexicalAnalyzer
 
                 if (dPoint == ".")
                 {
-                    Console.WriteLine(word + dPoint + dWord);
+                    tokenizer((word + dPoint + dWord), LineNo);
                     word = "";
                     dWord = "";
                     dPoint = "";
-
-                    continue;
                 }
                 
 
                 if (word != "")
                 {
-                    Console.WriteLine(word);
+                    tokenizer(word, LineNo);
                     word = "";
                 }
 
                 if (sWord != "")
                 {
-                    Console.WriteLine(sWord);
+                    tokenizer(sWord, LineNo);
                     sWord = "";
                 }
 
@@ -483,15 +484,15 @@ namespace Orion.Classes.LexicalAnalyzer
             }
             else if (isKW(word))
             {
-                Console.WriteLine($"(KW, {word}, {line})");
+                Console.WriteLine($"({word}, , {line}) \t > KW");
             }
             else if (isOperator(word))
             {
-                Console.WriteLine($"(Oper, {word}, {line})");
+                Console.WriteLine($"({word}, , {line}) \t > Oper");
             }
             else if (isPunctuator(word))
             {
-                Console.WriteLine($"(Punct, {word}, {line})");
+                Console.WriteLine($"({word}, , {line}) \t > Punct");
             }
             else if (isID(word))
             {

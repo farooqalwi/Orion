@@ -7,6 +7,7 @@ namespace Orion
         static void Main(string[] args)
         {
             Lexical_Analyzer.wordBreaker();
+            string name = "iseg/\\@@878hl\t";
         }
     }
 }
