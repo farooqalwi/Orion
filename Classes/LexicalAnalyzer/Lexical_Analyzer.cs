@@ -110,12 +110,12 @@ namespace Orion.Classes.LexicalAnalyzer
             string dWord = "";      //for decimal No
             string dPoint = "";    //decimal point
 
-            // Read the file line by line
-            System.IO.StreamReader file = new System.IO.StreamReader(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\TokenFiles\input.txt");
+            // to read the file line by line
+            System.IO.StreamReader file = new System.IO.StreamReader(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\TokenFiles\words.txt");
             Console.WriteLine("(classPart, valuePart, lineNo)\n------------------------------------------");
             while ((line = file.ReadLine()) != null)
             {
-                System.Console.WriteLine($"Line No {LineNo} > {line}");
+                System.Console.WriteLine($"\nLine No {LineNo} > {line}");
 
                 //char by char checking
                 for (int i = 0; i < line.Length; i++)
@@ -364,7 +364,7 @@ namespace Orion.Classes.LexicalAnalyzer
                                     word = "";
                                 }
 
-                                Console.WriteLine(line[i].ToString() + line[i + 1].ToString());
+                                tokenizer((line[i].ToString() + line[i + 1].ToString()), LineNo);
                                 i++;
                                 continue;
                             }
@@ -388,7 +388,7 @@ namespace Orion.Classes.LexicalAnalyzer
                                     word = "";
                                 }
 
-                                Console.WriteLine(line[i].ToString() + line[i + 1].ToString() + line[i + 2].ToString());
+                                tokenizer((line[i].ToString() + line[i + 1].ToString() + line[i + 2].ToString()), LineNo);
                                 i += 2;
                                 continue;
                             }
@@ -461,51 +461,63 @@ namespace Orion.Classes.LexicalAnalyzer
             file.Close();
         }
 
-
         public static void tokenizer(string word, int line)
         {
+            // to write output in a text file
+            System.IO.StreamWriter file = new System.IO.StreamWriter(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\TokenFiles\tokens.txt", true);
+            
             //(classPart, valuePart, lineNo)
 
             if (isInt(word))
             {
                 Console.WriteLine($"(int_const, {word}, {line})");
+                file.WriteLine($"(int_const, {word}, {line})");
             }
             else if (isFloat(word))
             {
                 Console.WriteLine($"(float_const, {word}, {line})");
+                file.WriteLine($"(float_const, {word}, {line})");
             }
             else if (isChar(word))
             {
                 Console.WriteLine($"(char_const, {word}, {line})");
+                file.WriteLine($"(char_const, {word}, {line})");
             }
             else if (isString(word))
             {
                 Console.WriteLine($"(str_const, {word}, {line})");
+                file.WriteLine($"(str_const, {word}, {line})");
             }
             else if (isKW(word))
             {
                 Console.WriteLine($"({word}, , {line}) \t > KW");
+                file.WriteLine($"({word}, , {line}) \t > KW");
             }
             else if (isOperator(word))
             {
                 Console.WriteLine($"({word}, , {line}) \t > Oper");
+                file.WriteLine($"({word}, , {line}) \t > Oper");
             }
             else if (isPunctuator(word))
             {
                 Console.WriteLine($"({word}, , {line}) \t > Punct");
+                file.WriteLine($"({word}, , {line}) \t > Punct");
             }
             else if (isID(word))
             {
                 Console.WriteLine($"(ID, {word}, {line})");
+                file.WriteLine($"(ID, {word}, {line})");
             }
             else
             {
                 if (word != " ")
                 {
                     Console.WriteLine($"(Invalid, {word}, {line})");
+                    file.WriteLine($"(Invalid, {word}, {line})");
                 }
-
             }
+
+            file.Close();
         }
 
     }
