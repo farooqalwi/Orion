@@ -130,7 +130,7 @@ namespace Orion.Classes.LexicalAnalyzer
                 //char by char checking
                 for (int i = 0; i < line.Length; i++)
                 {
-                    //this bloack is for string
+                    //this block is for string
                     if ((line[i].ToString() == "\"" || sWord.Contains("\"")) && !comStart)
                     {
                         sWord += line[i].ToString();
@@ -159,7 +159,7 @@ namespace Orion.Classes.LexicalAnalyzer
                         continue;
                     }
 
-                    //this bloack is for character
+                    //this block is for character
                     if (line[i] == '\'' && !comStart)
                     {
                         //try to handle index out of bound error
@@ -270,14 +270,14 @@ namespace Orion.Classes.LexicalAnalyzer
                             continue;
                         }
                     }
-                    
-                    //this bloack is for single line comment
+
+                    //this block is for single line comment
                     if (line[i] == '@' && line[i + 1] != '@')
                     {
                         break;
                     }
 
-                    //this bloack is for multi line comments
+                    //this block is for multi line comments
                     if ((line[i] == '@' && line[i + 1] == '@') || comStart)
                     {
                         if (line[i] == '@' && line[i + 1] == '@')
@@ -306,8 +306,8 @@ namespace Orion.Classes.LexicalAnalyzer
                             continue;
                         }
                     }
-                    
-                    //this bloack is for decimal No
+
+                    //this block is for decimal No
                     if (line[i] == '.' || dPoint == ".")
                     {
                         if (line[i] == '.' && dPoint != ".")
