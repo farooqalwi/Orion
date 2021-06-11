@@ -1,16 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Orion.Classes.SyntaxAnalyzer
 {
     class Syntax_Analyzer
     {
+        //to store all tokens in a list for syntax analyzer to parse tokens
+        public static List<string> tokens = new List<string>();
+        public static List<int> lineNo = new List<int>();
+
+        public static void printTokens()
+        {
+            for (int i = 0; i < lineNo.Count; i++)
+            {
+                Console.WriteLine($"{i} > {lineNo[i]}, {tokens[i]}");
+            }
+
+            Console.WriteLine(tokens[tokens.Count - 1]);
+
+        }
+
         public static bool OE(string token)
         {
+           
             return false;
         }
 
         public static bool OE_(string token)
         {
+            
             return false;
         }
 

@@ -1,4 +1,5 @@
 ﻿using Orion.Classes.LexicalAnalyzer;
+using Orion.Classes.SyntaxAnalyzer;
 
 namespace Orion
 {
@@ -13,7 +14,14 @@ namespace Orion
 
             // call word breaker to generate tokens
             Lexical_Analyzer.wordBreaker();
-            
+
+            // it ends the token
+            Syntax_Analyzer.tokens.Add("$");
+
+
+            // for ending tokens with dollar sign
+            Syntax_Analyzer.printTokens();
+
         }
     }
 }

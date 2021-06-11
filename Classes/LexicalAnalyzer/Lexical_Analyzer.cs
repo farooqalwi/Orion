@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Orion.Classes.LexicalAnalyzer
@@ -122,10 +123,10 @@ namespace Orion.Classes.LexicalAnalyzer
 
             // to read the file line by line
             System.IO.StreamReader file = new System.IO.StreamReader(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\TokenFiles\words.txt");
-            Console.WriteLine("(classPart, valuePart, lineNo)\n------------------------------------------");
+            //Console.WriteLine("(classPart, valuePart, lineNo)\n------------------------------------------");
             while ((line = file.ReadLine()) != null)
             {
-                System.Console.WriteLine($"\nLine No {LineNo} > {line}");
+                //System.Console.WriteLine($"\nLine No {LineNo} > {line}");
 
                 //char by char checking
                 for (int i = 0; i < line.Length; i++)
@@ -484,6 +485,12 @@ namespace Orion.Classes.LexicalAnalyzer
 
         public static void tokenizer(string word, int line)
         {
+            //to store all tokens in a list for syntax analyzer to parse tokens
+            SyntaxAnalyzer.Syntax_Analyzer.tokens.Add(word);
+            SyntaxAnalyzer.Syntax_Analyzer.lineNo.Add(line);
+
+            // commenting lexical analyzer for syntax checking
+            /*
             // to write output in a text file
             System.IO.StreamWriter file = new System.IO.StreamWriter(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\TokenFiles\tokens.txt", true);
             
@@ -539,7 +546,7 @@ namespace Orion.Classes.LexicalAnalyzer
             }
 
             file.Close();
+            */
         }
-
     }
 }
