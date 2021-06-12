@@ -1,3 +1,202 @@
 (classPart, valuePart, lineNo)
 ------------------------------------------
 
+(class, , 1) 	 > KW
+(ID, abc, 1)
+(#, , 1) 	 > Punct
+(ID, b, 1)
+(,, , 1) 	 > Punct
+(ID, csSA, 1)
+(none, , 1) 	 > KW
+(ID, dfs, 1)
+(until, , 2) 	 > KW
+((, , 2) 	 > Punct
+(ID, a, 2)
+(!, , 2) 	 > Oper
+(!, , 2) 	 > Oper
+(!, , 2) 	 > Oper
+(=, , 2) 	 > Oper
+(=, , 2) 	 > Oper
+(int_const, 54, 2)
+(++, , 2) 	 > Oper
+(+=, , 2) 	 > Oper
+(ID, if_else, 2)
+(ID, String, 3)
+(string, , 4) 	 > KW
+(ID, abc, 4)
+(str_const, "ab6-7t\n", 4)
+(ID, gr, 4)
+(-, , 4) 	 > Oper
+(int_const, 9, 4)
+(), , 4) 	 > Punct
+(Invalid, 76n, 4)
+(), , 4) 	 > Punct
+(int_const, 98, 4)
+(Invalid, "dfgd, 4)
+(ID, C, 5)
+(=, , 5) 	 > Oper
+(=, , 5) 	 > Oper
+(Invalid, "a\r6+7gt\34tyr", 5)
+(-, , 5) 	 > Oper
+(int_const, 9, 5)
+(), , 5) 	 > Punct
+(-, , 5) 	 > Oper
+(ID, h, 5)
+(char, , 6) 	 > KW
+(ID, ch, 6)
+(=, , 6) 	 > Oper
+(char_const, 'n', 6)
+(+, , 6) 	 > Oper
+(char_const, '\n', 6)
+(-, , 6) 	 > Oper
+(Invalid, '\\r, 6)
+(char_const, '+', 6)
+(++, , 6) 	 > Oper
+(Invalid, 'abc, 6)
+(Invalid, '87y, 6)
+(ID, comments, 8)
+(ID, start, 8)
+(ID, comments, 11)
+(ID, ended, 11)
+(ID, A, 13)
+(., , 13) 	 > Punct
+(ID, b, 13)
+(., , 13) 	 > Punct
+(ID, c, 13)
+(., , 13) 	 > Punct
+(ID, t76t8, 13)
+(float_const, .99, 13)
+(float_const, 9.99, 14)
+(float_const, .999, 14)
+(Invalid, .976tf3, 14)
+(ID, Abc89, 15)
+(Invalid, .98bc, 15)
+(float_const, .99, 15)
+(., , 15) 	 > Punct
+(ID, abc, 15)
+(Invalid, 9.99b89, 16)
+(., , 16) 	 > Punct
+(ID, abc89, 16)
+(float_const, .890, 16)
+(float_const, .765, 17)
+(., , 17) 	 > Punct
+(ID, ytr, 17)
+(Invalid, 0.7644tfd, 18)
+(float_const, .8778, 18)
+(general, , 21) 	 > KW
+(class, , 21) 	 > KW
+(ID, alwi, 21)
+({, , 22) 	 > Punct
+(num, , 23) 	 > KW
+(=, , 23) 	 > Oper
+(int_const, 10, 23)
+(#, , 23) 	 > Punct
+(}, , 24) 	 > Punct
+(general, , 25) 	 > KW
+(class, , 25) 	 > KW
+(ID, farooq, 25)
+(inherits, , 25) 	 > KW
+(ID, alwi, 25)
+({, , 26) 	 > Punct
+(general, , 27) 	 > KW
+(void, , 27) 	 > KW
+(ID, method, 27)
+((, , 27) 	 > Punct
+(), , 27) 	 > Punct
+({, , 28) 	 > Punct
+(base, , 29) 	 > KW
+(., , 29) 	 > Punct
+(ID, method, 29)
+((, , 29) 	 > Punct
+(), , 29) 	 > Punct
+(#, , 29) 	 > Punct
+(}, , 30) 	 > Punct
+(}, , 31) 	 > Punct
+(ID, float, 33)
+(ID, myNum, 33)
+(!, , 33) 	 > Oper
+(=, , 33) 	 > Oper
+(float_const, 537.73, 33)
+(ID, String, 34)
+(ID, str, 34)
+(=, , 34) 	 > Oper
+(str_const, "sgkj764+++-!== or 98--!+", 34)
+((, , 34) 	 > Punct
+(int_const, 97, 34)
+(), , 34) 	 > Punct
+(str_const, "\n", 34)
+(char, , 35) 	 > KW
+(ID, ch, 35)
+(=, , 35) 	 > Oper
+(char_const, '\t', 35)
+(++, , 35) 	 > Oper
+(Invalid, \, 35)
+(Invalid, 'n\, 35)
+(char_const, '*', 35)
+(Invalid, \\, 35)
+(char_const, '+', 35)
+(+, , 35) 	 > Oper
+(char_const, '*', 35)
+(Invalid, \n, 35)
+(Invalid, ', 35)
+(loop, , 36) 	 > KW
+((, , 36) 	 > Punct
+(ID, a, 36)
+(=, , 36) 	 > Oper
+(int_const, 24, 36)
+(or, , 36) 	 > Oper
+(ID, b, 36)
+(=, , 36) 	 > Oper
+(int_const, 43, 36)
+(and, , 36) 	 > Oper
+(ID, c, 36)
+(=, , 36) 	 > Oper
+(int_const, 76, 36)
+(), , 36) 	 > Punct
+(ID, if, 37)
+((, , 37) 	 > Punct
+(ID, a, 37)
+(=, , 37) 	 > Oper
+(int_const, 24, 37)
+(or, , 37) 	 > Oper
+(ID, b, 37)
+(=, , 37) 	 > Oper
+(int_const, 43, 37)
+(and, , 37) 	 > Oper
+(ID, c, 37)
+(=, , 37) 	 > Oper
+(int_const, 76, 37)
+(), , 37) 	 > Punct
+(#, , 37) 	 > Punct
+(lest, , 38) 	 > KW
+([, , 38) 	 > Punct
+(ID, go, 38)
+(], , 38) 	 > Punct
+(series, , 40) 	 > KW
+(ID, mySeries, 40)
+(=, , 40) 	 > Oper
+([, , 40) 	 > Punct
+(int_const, 1, 40)
+(,, , 40) 	 > Punct
+(int_const, 2, 40)
+(], , 40) 	 > Punct
+(ID, l, 41)
+(is, , 41) 	 > Oper
+(ID, t, 41)
+(ID, my1dL, 41)
+(is, , 41) 	 > Oper
+(ID, t, 41)
+(=, , 41) 	 > Oper
+([, , 41) 	 > Punct
+(int_const, 2, 41)
+(,, , 41) 	 > Punct
+(int_const, 3, 41)
+(], , 41) 	 > Punct
+(#, , 41) 	 > Punct
+(ID, Ahdg, 42)
+(float_const, .9978, 42)
+(., , 42) 	 > Punct
+(ID, A8799, 43)
+(., , 43) 	 > Punct
+(str_const, "iseg/\\878hl\twq", 43)
+(ID, ooug, 43)

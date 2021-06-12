@@ -19,8 +19,10 @@ namespace Orion
             Syntax_Analyzer.tokens.Add("$");
 
 
-            // for ending tokens with dollar sign
+            // print tokens received from lexical analyzer
             Syntax_Analyzer.printTokens();
+
+            //System.Console.WriteLine(Syntax_Analyzer.tokens[5]);
 
         }
     }

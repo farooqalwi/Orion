@@ -5,10 +5,20 @@ namespace Orion.Classes.SyntaxAnalyzer
 {
     class Syntax_Analyzer
     {
+        // to go forward token
+        static int index = 0;
+
         //to store all tokens in a list for syntax analyzer to parse tokens
         public static List<string> tokens = new List<string>();
         public static List<int> lineNo = new List<int>();
 
+        public static void AddToken(string word, int line)
+        {
+            SyntaxAnalyzer.Syntax_Analyzer.tokens.Add(word);
+            SyntaxAnalyzer.Syntax_Analyzer.lineNo.Add(line);
+        }
+
+        // print tokens received from lexical analyzer
         public static void printTokens()
         {
             for (int i = 0; i < lineNo.Count; i++)
@@ -22,67 +32,298 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         public static bool OE(string token)
         {
-           
+            if (tokens[index] == "ID" || tokens[index] == "!" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "(" || tokens[index] == "int_const" || tokens[index] == "dec_const" || tokens[index] == "str_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none")
+            {
+                if (AE(tokens[index]))
+                {
+                    if (OE_(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
 
         public static bool OE_(string token)
         {
-            
+            if (tokens[index] == "or")
+            {
+                index++;
+                if (AE(tokens[index]))
+                {
+                    if (OE_(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "," || tokens[index] == ")" || tokens[index] == "#")
+            {
+                return true;
+            }
+
             return false;
         }
 
         public static bool AE(string token)
         {
+            if (tokens[index] == "ID" || tokens[index] == "!" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "(" || tokens[index] == "int_const" || tokens[index] == "dec_const" || tokens[index] == "str_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none")
+            {
+                if (RE(tokens[index]))
+                {
+                    if (AE_(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
         public static bool AE_(string token)
         {
+            if (tokens[index] == "and")
+            {
+                index++;
+                if (RE(tokens[index]))
+                {
+                    if (AE_(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "or" || tokens[index] == ")" || tokens[index] == "," || tokens[index] == "#")
+            {
+                return true;
+            }
+
             return false;
         }
 
         public static bool RE(string token)
         {
+            if (tokens[index] == "ID" || tokens[index] == "!" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "(" || tokens[index] == "int_const" || tokens[index] == "dec_const" || tokens[index] == "str_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none")
+            {
+                if (E(tokens[index]))
+                {
+                    if (RE_(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
 
         public static bool RE_(string token)
         {
+            if (tokens[index] == "ROP")
+            {
+                index++;
+                if (E(tokens[index]))
+                {
+                    if (RE_(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "and" || tokens[index] == "or" || tokens[index] == ")" || tokens[index] == "," || tokens[index] == "#")
+            {
+                return true;
+            }
+
             return false;
         }
 
         public static bool E(string token)
         {
+            if (tokens[index] == "ID" || tokens[index] == "!" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "(" || tokens[index] == "int_const" || tokens[index] == "dec_const" || tokens[index] == "str_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none")
+            {
+                if (T(tokens[index]))
+                {
+                    if (E_(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
 
         public static bool E_(string token)
         {
+            if (tokens[index] == "PM")
+            {
+                index++;
+                if (T(tokens[index]))
+                {
+                    if (E_(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "ROP" || tokens[index] == "and" || tokens[index] == "or" || tokens[index] == ")" || tokens[index] == "," || tokens[index] == "#")
+            {
+                return true;
+            }
+
             return false;
         }
 
         public static bool T(string token)
         {
+            if (tokens[index] == "ID" || tokens[index] == "!" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "(" || tokens[index] == "int_const" || tokens[index] == "dec_const" || tokens[index] == "str_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none")
+            {
+                if (F(tokens[index]))
+                {
+                    if (T_(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
 
         public static bool T_(string token)
         {
+            if (tokens[index] == "MDM")
+            {
+                index++;
+                if (F(tokens[index]))
+                {
+                    if (T_(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "PM" || tokens[index] == "ROP" || tokens[index] == "and" || tokens[index] == "or" || tokens[index] == ")" || tokens[index] == "," || tokens[index] == "#")
+            {
+                return true;
+            }
+
             return false;
         }
 
         public static bool F(string token)
         {
+            if (tokens[index] == "ID")
+            {
+                index++;
+                if (F_(tokens[index]))
+                {
+                    return true;
+                }
+            }
+            else if (tokens[index] == "(")
+            {
+                if (OE(tokens[index]))
+                {
+                    return true;
+                }
+            }
+            else if (tokens[index] == "int-const" || tokens[index] == "str-const" || tokens[index] == "dec-const" || tokens[index] == "bool-const" || tokens[index] == "char-const" || tokens[index] == "none")
+            {
+                if (CONST(tokens[index]))
+                {
+                    return true;
+                }
+            }
+            else if (tokens[index] == "!")
+            {
+                index++;
+
+                if (F(tokens[index]))
+                {
+                    return true;
+                }
+            }
+            else if (tokens[index] == "++" || tokens[index] == "--")
+            {                
+                if (inc_dec(tokens[index]))
+                {
+                    if (tokens[index] == "ID")
+                    {
+                        index++;
+                        if (X(tokens[index]))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
             return false;
         }
 
         public static bool F_(string token)
         {
+            if (tokens[index] == ".")
+            {
+                index++;
+                if (tokens[index] == "ID")
+                {
+                    index++;
+                    if (F(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "(")
+            {
+                if (PL(tokens[index]))
+                {
+                    if (F_list(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "++" || tokens[index] == "--")
+            {
+                if (inc_dec(tokens[index]))
+                {
+                    return true;
+                }
+            }
+            else if (tokens[index] == "MDM" || tokens[index] == "PM" || tokens[index] == "ROP" || tokens[index] == "and" || tokens[index] == "or" || tokens[index] == ")" || tokens[index] == "," || tokens[index] == "#")
+            {
+                return true;
+            }
+
             return false;
         }
 
         public static bool F_list(string token)
         {
+            if (tokens[index] == ".")
+            {
+                index++;
+                if (tokens[index] == "ID")
+                {
+                    index++;
+                    if (F_(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+
+            }
+            else if (tokens[index] == "MDM" || tokens[index] == "PM" || tokens[index] == "ROP" || tokens[index] == "and" || tokens[index] == "or" || tokens[index] == ")" || tokens[index] == "," || tokens[index] == "#")
+            {
+                return true;
+            }
+
             return false;
         }
 
@@ -127,7 +368,8 @@ namespace Orion.Classes.SyntaxAnalyzer
             return false;
         }
 
-        public static bool index(string token)
+        //in CFG it is index not Index
+        public static bool Index(string token)
         {
             return false;
         }

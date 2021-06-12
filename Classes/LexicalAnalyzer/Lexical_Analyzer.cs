@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Orion.Classes.LexicalAnalyzer
@@ -485,12 +484,6 @@ namespace Orion.Classes.LexicalAnalyzer
 
         public static void tokenizer(string word, int line)
         {
-            //to store all tokens in a list for syntax analyzer to parse tokens
-            SyntaxAnalyzer.Syntax_Analyzer.tokens.Add(word);
-            SyntaxAnalyzer.Syntax_Analyzer.lineNo.Add(line);
-
-            // commenting lexical analyzer for syntax checking
-            /*
             // to write output in a text file
             System.IO.StreamWriter file = new System.IO.StreamWriter(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\TokenFiles\tokens.txt", true);
             
@@ -498,55 +491,65 @@ namespace Orion.Classes.LexicalAnalyzer
 
             if (isInt(word))
             {
-                Console.WriteLine($"(int_const, {word}, {line})");
+                //Console.WriteLine($"(int_const, {word}, {line})");
                 file.WriteLine($"(int_const, {word}, {line})");
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
             }
             else if (isFloat(word))
             {
-                Console.WriteLine($"(float_const, {word}, {line})");
+                //Console.WriteLine($"(float_const, {word}, {line})");
                 file.WriteLine($"(float_const, {word}, {line})");
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
             }
             else if (isChar(word))
             {
-                Console.WriteLine($"(char_const, {word}, {line})");
+                //Console.WriteLine($"(char_const, {word}, {line})");
                 file.WriteLine($"(char_const, {word}, {line})");
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
             }
             else if (isString(word))
             {
-                Console.WriteLine($"(str_const, {word}, {line})");
+                //Console.WriteLine($"(str_const, {word}, {line})");
                 file.WriteLine($"(str_const, {word}, {line})");
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
             }
             else if (isKW(word))
             {
-                Console.WriteLine($"({word}, , {line}) \t > KW");
+                //Console.WriteLine($"({word}, , {line}) \t > KW");
                 file.WriteLine($"({word}, , {line}) \t > KW");
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
             }
             else if (isOperator(word))
             {
-                Console.WriteLine($"({word}, , {line}) \t > Oper");
+                //Console.WriteLine($"({word}, , {line}) \t > Oper");
                 file.WriteLine($"({word}, , {line}) \t > Oper");
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
             }
             else if (isPunctuator(word))
             {
-                Console.WriteLine($"({word}, , {line}) \t > Punct");
+                //Console.WriteLine($"({word}, , {line}) \t > Punct");
                 file.WriteLine($"({word}, , {line}) \t > Punct");
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
             }
             else if (isID(word))
             {
-                Console.WriteLine($"(ID, {word}, {line})");
+                //Console.WriteLine($"(ID, {word}, {line})");
                 file.WriteLine($"(ID, {word}, {line})");
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
             }
             else
             {
                 if (word != " ")
                 {
-                    Console.WriteLine($"(Invalid, {word}, {line})");
+                    Console.WriteLine($"(Invalid Token, {word}, {line})");
                     file.WriteLine($"(Invalid, {word}, {line})");
                 }
             }
 
             file.Close();
-            */
+            
         }
+
+
     }
 }
