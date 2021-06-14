@@ -7,22 +7,11 @@ namespace Orion
     {
         static void Main(string[] args)
         {
-            // for first line/hedaing in output file
-            System.IO.StreamWriter file = new System.IO.StreamWriter(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\TokenFiles\tokens.txt");
-            file.WriteLine("(classPart, valuePart, lineNo)\n------------------------------------------\n");
-            file.Close();
+            // calling Lexical Analyzer
+            Lexical_Analyzer.LexicalAnalyzer();
 
-            // call word breaker to generate tokens
-            Lexical_Analyzer.wordBreaker();
-
-            // it ends the token
-            Syntax_Analyzer.tokens.Add("$");
-
-
-            // print tokens received from lexical analyzer
-            Syntax_Analyzer.printTokens();
-
-            
+            // calling Syntax Analyzer
+            Syntax_Analyzer.SyntaxAnalyzer();
 
         }
     }

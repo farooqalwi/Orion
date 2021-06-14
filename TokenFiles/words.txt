@@ -3,7 +3,5 @@
 	general inactive void main ()
 	{	
 		num myNumber = 10#
-
-		general symbolic void myMethod()#
 	}
 }

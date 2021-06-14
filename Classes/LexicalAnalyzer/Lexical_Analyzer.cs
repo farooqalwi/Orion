@@ -493,7 +493,7 @@ namespace Orion.Classes.LexicalAnalyzer
             {
                 //Console.WriteLine($"(int_const, {word}, {line})");
                 file.WriteLine($"(int_const, {word}, {line})");
-                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken("int_const", line);
             }
             else if (isFloat(word))
             {
@@ -517,7 +517,17 @@ namespace Orion.Classes.LexicalAnalyzer
             {
                 //Console.WriteLine($"({word}, , {line}) \t > KW");
                 file.WriteLine($"({word}, , {line}) \t > KW");
-                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
+
+                if (word == "num")
+                {
+                    SyntaxAnalyzer.Syntax_Analyzer.AddToken("DT", line);
+                }
+                else
+                {
+                    SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
+                }
+
+                
             }
             else if (isOperator(word))
             {
@@ -535,7 +545,7 @@ namespace Orion.Classes.LexicalAnalyzer
             {
                 //Console.WriteLine($"(ID, {word}, {line})");
                 file.WriteLine($"(ID, {word}, {line})");
-                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken("ID", line);
             }
             else
             {
@@ -550,6 +560,15 @@ namespace Orion.Classes.LexicalAnalyzer
             
         }
 
+        public static void LexicalAnalyzer()
+        {
+            // for first line/hedaing in output file
+            System.IO.StreamWriter file = new System.IO.StreamWriter(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\TokenFiles\tokens.txt");
+            file.WriteLine("(classPart, valuePart, lineNo)\n------------------------------------------\n");
+            file.Close();
 
+            // call word breaker to generate tokens
+            wordBreaker();
+        }
     }
 }

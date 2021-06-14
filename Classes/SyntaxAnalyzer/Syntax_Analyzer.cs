@@ -14,8 +14,8 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         public static void AddToken(string word, int line)
         {
-            SyntaxAnalyzer.Syntax_Analyzer.tokens.Add(word);
-            SyntaxAnalyzer.Syntax_Analyzer.lineNo.Add(line);
+            Syntax_Analyzer.tokens.Add(word);
+            Syntax_Analyzer.lineNo.Add(line);
         }
 
         // print tokens received from lexical analyzer
@@ -30,6 +30,30 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         }
 
+        public static void SyntaxAnalyzer()
+        {
+            // it ends the token
+            tokens.Add("$");
+
+            // print tokens received from lexical analyzer
+            //printTokens();
+
+            
+            if (S(tokens[index]))
+            {
+                if (tokens[index] == "$")
+                {
+                    Console.WriteLine("Congrates!!!!!\nThere is no Syntax Error.");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Oops: Syntax Error occured at line no: {lineNo[index]}");
+            }
+            
+        }
+
+        // CFG mapping starts here ------->>>>>>>
         public static bool OE(string token)
         {
             if (tokens[index] == "ID" || tokens[index] == "!" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "(" || tokens[index] == "int_const" || tokens[index] == "dec_const" || tokens[index] == "str_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none")
@@ -231,7 +255,7 @@ namespace Orion.Classes.SyntaxAnalyzer
                     return true;
                 }
             }
-            else if (tokens[index] == "int-const" || tokens[index] == "str-const" || tokens[index] == "dec-const" || tokens[index] == "bool-const" || tokens[index] == "char-const" || tokens[index] == "none")
+            else if (tokens[index] == "int_const" || tokens[index] == "str_const" || tokens[index] == "dec_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none")
             {
                 if (CONST(tokens[index]))
                 {
@@ -330,7 +354,7 @@ namespace Orion.Classes.SyntaxAnalyzer
         //in CFG it is const not CONST
         public static bool CONST(string token)
         {
-            if (tokens[index] == "int-const" || tokens[index] == "str-const" || tokens[index] == "dec-const" || tokens[index] == "bool-const" || tokens[index] == "char-const" || tokens[index] == "none")
+            if (tokens[index] == "int_const" || tokens[index] == "str_const" || tokens[index] == "dec_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none")
             {
                 index++;
                 return true;
