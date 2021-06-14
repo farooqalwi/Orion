@@ -584,12 +584,48 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         public static bool if_else(string token)
         {
+            if (tokens[index] == "when")
+            {
+                index++;
+                if (tokens[index] == "(")
+                {
+                    index++;
+                    if (OE(tokens[index]))
+                    {
+                        if (tokens[index] == ")")
+                        {
+                            index++;
+                            if (body(tokens[index]))
+                            {
+                                if (_else(tokens[index]))
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             return false;
         }
 
         //in CFG it is else not _else
         public static bool _else(string token)
         {
+            if (tokens[index] == "lest")
+            {
+                index++;
+                if (body(tokens[index]))
+                {
+                    return true;
+                }
+            }
+            else if (tokens[index] == "DT" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || tokens[index] == "ID" || tokens[index] == "this" || tokens[index] == "base" || tokens[index] == "toggle" || tokens[index] == "}")
+            {
+                return true;
+            }
+
             return false;
         }
 
@@ -1523,11 +1559,6 @@ namespace Orion.Classes.SyntaxAnalyzer
             return false;
         }
 
-        private static bool def(string token)
-        {
-            return false;
-        }
-
         public static bool CB(string token)
         {
             if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inactive" || tokens[index] == "void" || tokens[index] == "DT" || tokens[index] == "ID")
@@ -2116,7 +2147,7 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         public static bool call(string token)
         {
-            if (tokens[index] == "." || tokens[index] == "ID")
+            if (tokens[index] == "ID")
             {
                 index++;
                 if (G(tokens[index]))
@@ -2148,18 +2179,311 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         public static bool G(string token)
         {
+            if (tokens[index] == "(")
+            {
+                index++;
+                if (PL(tokens[index]))
+                {
+                    if (tokens[index] == ")")
+                    {
+                        index++;
+                        if (H(tokens[index]))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            else if (tokens[index] == "[")
+            {
+                index++;
+                if (K(tokens[index]))
+                {
+                    return true;
+                }
+            }
+            else if (tokens[index] == ".")
+            {
+                index++;
+                if (tokens[index] == "ID")
+                {
+                    index++;
+                    if (X(tokens[index]))
+                    {
+                        if (J(tokens[index]))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            else if (tokens[index] == "=")
+            {
+                index++;
+                if (OE(tokens[index]))
+                {
+                    if (Q(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "," || tokens[index] == "#")
+            {
+                if (dec_list(tokens[index]))
+                {
+                    return true;
+                }
+            }
+            else if (tokens[index] == "int_const" || tokens[index] == "none")
+            {
+                if (CONST(tokens[index]))
+                {
+                    if (arr3(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "++" || tokens[index] == "-")
+            {
+                if (inc_dec(tokens[index]))
+                {
+                    if (tokens[index] == "#")
+                    {
+                        index++;
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "comp_assign")
+            {
+                index++;
+                if (OE(tokens[index]))
+                {
+                    if (tokens[index] == "#")
+                    {
+                        index++;
+                        return true;
+                    }
+                }
+            }
 
+            return false;
+        }
+
+        public static bool Q(string token)
+        {
+            if (tokens[index] == "#")
+            {
+                index++;
+                return true;
+            }
+            else if (tokens[index] == ",")
+            {
+                index++;
+                if (tokens[index] == "ID")
+                {
+                    index++;
+                    if (init(tokens[index]))
+                    {
+                        if (dec_list(tokens[index]))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public static bool J(string token)
+        {
+            if (tokens[index] == "++" || tokens[index] == "--")
+            {
+                if (inc_dec(tokens[index]))
+                {
+                    if (tokens[index] == "#")
+                    {
+                        index++;
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "=" || tokens[index] == "comp_assign")
+            {
+                if (assign_opr(tokens[index]))
+                {
+                    if (OE(tokens[index]))
+                    {
+                        if (tokens[index] == "#")
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public static bool K(string token)
+        {
+            if (tokens[index] == "int_const")
+            {
+                index++;
+                if (tokens[index] == "]")
+                {
+                    index++;
+                    if (M(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "ID")
+            {
+                index++;
+                if (tokens[index] == "]")
+                {
+                    index++;
+                    if (J(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "dec_const" || tokens[index] == "char_const" || tokens[index] == "str_const" || tokens[index] == "bool_const" || tokens[index] == "none")
+            {
+                index++;
+                if (arr4(tokens[index]))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool M(string token)
+        {
+            if (tokens[index] == "]")
+            {
+                index++;
+                if (N(tokens[index]))
+                {
+                    return true;
+                }
+            }
+            else if (tokens[index] == ",")
+            {
+                index++;
+                if (tokens[index] == "ID")
+                {
+                    index++;
+                    if (CONST(tokens[index]))
+                    {
+                        if (arr5(tokens[index]))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public static bool N(string token)
+        {
+            if (tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "=" || tokens[index] == "comp_assign")
+            {
+                if (J(tokens[index]))
+                {
+                    return true;
+                }
+            }
+            else if (tokens[index] == ",")
+            {
+                index++;
+                if (tokens[index] == "[")
+                {
+                    index++;
+                    if (CONST(tokens[index]))
+                    {
+                        if (arr5(tokens[index]))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public static bool H(string token)
+        {
+            if (tokens[index] == "." || tokens[index] == "[")
+            {
+                if (X2(tokens[index]))
+                {
+                    if (J(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "#")
+            {
+                index++;
+                return true;
+            }
 
             return false;
         }
 
         public static bool body(string token)
         {
+            if (tokens[index] == "#")
+            {
+                index++;
+                return true;
+            }
+            else if (tokens[index] == "{")
+            {
+                index++;
+                if (MST(tokens[index]))
+                {
+                    if (tokens[index] == "}")
+                    {
+                        index++;
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
 
         public static bool MST(string token)
         {
+            if (tokens[index] == "DT" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || tokens[index] == "ID" || tokens[index] == "this" || tokens[index] == "base" || tokens[index] == "toggle")
+            {
+                if (SST(tokens[index]))
+                {
+                    if (MST(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "}")
+            {
+                return true;
+            }
+
             return false;
         }
 
