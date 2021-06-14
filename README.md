@@ -15,4 +15,4 @@ A custom language written in C# from scratch
 [Language Selection Set](https://drive.google.com/file/d/1xTQZyl1Mn658wAj55bnKp7mpY4EPohMa/view?usp=sharing)
 
 ## Non-Terminals list
-[Language Non-terminals](https://drive.google.com/file/d/1TpxMAqTvAArBuDvQWpfqdFBNPvVpRF-f/view?usp=sharing)
+[Language Non-terminals](https://drive.google.com/file/d/1mCb1DkikR-964zlRNLgcaWmDinUY2Tue/view?usp=sharing)
