@@ -1,43 +1,9 @@
-﻿class abc#b,csSA none dfs
-until(a!!!==54+++=if_else
-String @str="abc+=7f5"+=88
-string abc"ab6-7t\n"gr-9)76n)98"dfgd
-C=="a\r6+7gt\34tyr"-9)-h
-char ch='n'+'\n'-'\\r'+'++'abc'87y
-
-comments start@@
-Aggressively looks for all participants in the chat.
-This is useful for channels since 20 July 2018, Telegram added a server-side limit where only the first 200 members can be retrieved. With this flag set, more than 200 will be often be retrieved.
-@@comments ended
-
-A.b.c.t76t8.99
-9.99.999.976tf3
-Abc89.98bc.99.abc
-9.99b89.abc89.890
-.765.ytr
-0.7644tfd.8778
-
-
-general class alwi
+﻿general class MyClass
 {
-	num = 10#
-}
-general class farooq inherits alwi
-{
-	general void method()
-	{
-		base.method()#
+	general inactive void main ()
+	{	
+		num myNumber = 10#
+
+		general symbolic void myMethod()#
 	}
 }
-
-float myNum != 537.73
-String str = "sgkj764+++-!== or 98--!+"(97)"\n"
-char ch = '\t'++\'n\'*'\\'+'+'*'\n'
-loop(a=24 or b=43 and c=76)
-if(a=24 or b=43 and c=76)#
-lest[go]
-
-series mySeries = [1, 2]
-list my1dList = [2, 3]#
-Ahdg.9978.@kkrgri
-A8799."iseg/\\878hl\twq"ooug
