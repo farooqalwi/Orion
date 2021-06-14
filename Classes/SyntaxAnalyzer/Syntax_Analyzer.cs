@@ -43,7 +43,7 @@ namespace Orion.Classes.SyntaxAnalyzer
             {
                 if (tokens[index] == "$")
                 {
-                    Console.WriteLine("Congrates!!!!!\nThere is no Syntax Error.");
+                    Console.WriteLine("*****Congrates!!!!!*****\nThere is no Syntax Error.");
                 }
             }
             else

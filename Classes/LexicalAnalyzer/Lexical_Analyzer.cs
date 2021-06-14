@@ -6,8 +6,22 @@ namespace Orion.Classes.LexicalAnalyzer
     class Lexical_Analyzer
     {
         static string[,] keywords = { { "num", "DT" }, { "decimal", "DT" }, { "char", "DT" }, { "string", "DT" }, { "loop", "loop" }, { "until", "until" }, { "when", "when" }, { "lest", "lest" }, { "refund", "refund" }, { "skip", "skip" }, { "jump", "jump" }, { "toggle", "toggle" }, { "check", "check" }, { "mismatch", "mismatch" }, { "main", "main" }, { "void", "void" }, { "none", "none" }, { "bool", "DT" }, { "true", "bool_const" }, { "false", "bool_const" }, { "general", "AM" }, { "personal", "AM" }, { "protected", "AM" }, { "class", "class" }, { "fresh", "fresh" }, { "inactive", "NAM" }, { "final", "NAM" }, { "symbolic", "NAM" }, { "this", "ref_var" }, { "base", "ref_var" }, { "inherits", "inherits" }, { "implement", "implement" }, { "interface", "interface" }, { "try", "try" }, { "except", "except" }, { "finally", "finally" }, { "series", "DS" }, { "list", "DS" }, { "listD", "DS" }, { "@", "@" }, { "@@", "@@" } };
-        static string[,] operators = { { "!", "!" }, { "++", "inc_dec" }, { "--", "inc_dec" }, { "+", "PM" }, { "-", "PM" }, { "*", "MDM" }, { "/", "MDM" }, { "%", "MDM" }, { "is", "RO" }, { "not", "RO" }, { "<", "RO" }, { ">", "RO" }, { "<=", "RO" }, { ">=", "RO" }, { "and", "and" }, { "or", "or" }, { "=", "Assign_opr" }, { "+=", "CAO" }, { "-=", "CAO" }, { "*=", "CAO" }, { "/=", "CAO" } };
+        static string[,] operators = { { "!", "!" }, { "++", "inc_dec" }, { "--", "inc_dec" }, { "+", "PM" }, { "-", "PM" }, { "*", "MDM" }, { "/", "MDM" }, { "%", "MDM" }, { "is", "RO" }, { "not", "RO" }, { "<", "RO" }, { ">", "RO" }, { "<=", "RO" }, { ">=", "RO" }, { "and", "and" }, { "or", "or" }, { "=", "assign_opr" }, { "+=", "CAO" }, { "-=", "CAO" }, { "*=", "CAO" }, { "/=", "CAO" } };
         static string[,] punctuators = { { ",", "," }, { ":", ":" }, { "(", "(" }, { ")", ")" }, { "{", "{" }, { "}", "}" }, { "[", "[" }, { "]", "]" }, { ".", "." }, { "#", "#" } };
+
+        public static bool isDT(string word)
+        {
+            bool result = false;
+            for (int i = 0; i < 41; i++)
+            {
+                if (word == keywords[i, 0] && keywords[i, 1] == "DT")
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
 
         public static bool isInt(string word)
         {
@@ -19,7 +33,7 @@ namespace Orion.Classes.LexicalAnalyzer
             return result;
         }
 
-        public static bool isFloat(string word)
+        public static bool isDecimal(string word)
         {
 
             string pattern = "^[+-]?[0-9]*[.][0-9]+$";
@@ -121,7 +135,7 @@ namespace Orion.Classes.LexicalAnalyzer
             string dPoint = "";    //decimal point
 
             // to read the file line by line
-            System.IO.StreamReader file = new System.IO.StreamReader(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\TokenFiles\words.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(@"TokenFiles\words.txt");
             //Console.WriteLine("(classPart, valuePart, lineNo)\n------------------------------------------");
             while ((line = file.ReadLine()) != null)
             {
@@ -485,7 +499,7 @@ namespace Orion.Classes.LexicalAnalyzer
         public static void tokenizer(string word, int line)
         {
             // to write output in a text file
-            System.IO.StreamWriter file = new System.IO.StreamWriter(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\TokenFiles\tokens.txt", true);
+            System.IO.StreamWriter file = new System.IO.StreamWriter(@"TokenFiles\tokens.txt", true);
             
             //(classPart, valuePart, lineNo)
 
@@ -495,30 +509,30 @@ namespace Orion.Classes.LexicalAnalyzer
                 file.WriteLine($"(int_const, {word}, {line})");
                 SyntaxAnalyzer.Syntax_Analyzer.AddToken("int_const", line);
             }
-            else if (isFloat(word))
+            else if (isDecimal(word))
             {
-                //Console.WriteLine($"(float_const, {word}, {line})");
-                file.WriteLine($"(float_const, {word}, {line})");
-                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
+                //Console.WriteLine($"(dec_constant, {word}, {line})");
+                file.WriteLine($"(dec_const, {word}, {line})");
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken("dec_const", line);
             }
             else if (isChar(word))
             {
                 //Console.WriteLine($"(char_const, {word}, {line})");
                 file.WriteLine($"(char_const, {word}, {line})");
-                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken("char_const", line);
             }
             else if (isString(word))
             {
                 //Console.WriteLine($"(str_const, {word}, {line})");
                 file.WriteLine($"(str_const, {word}, {line})");
-                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken("str_const", line);
             }
             else if (isKW(word))
             {
                 //Console.WriteLine($"({word}, , {line}) \t > KW");
                 file.WriteLine($"({word}, , {line}) \t > KW");
 
-                if (word == "num")
+                if (isDT(word))
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken("DT", line);
                 }
@@ -551,7 +565,7 @@ namespace Orion.Classes.LexicalAnalyzer
             {
                 if (word != " ")
                 {
-                    Console.WriteLine($"(Invalid Token, {word}, {line})");
+                    //Console.WriteLine($"(Invalid Token, {word}, {line})");
                     file.WriteLine($"(Invalid, {word}, {line})");
                 }
             }
@@ -563,7 +577,7 @@ namespace Orion.Classes.LexicalAnalyzer
         public static void LexicalAnalyzer()
         {
             // for first line/hedaing in output file
-            System.IO.StreamWriter file = new System.IO.StreamWriter(@"D:\UoK\CSSE\CSSE-V\CC\Lab\Projects\Orion\TokenFiles\tokens.txt");
+            System.IO.StreamWriter file = new System.IO.StreamWriter(@"TokenFiles\tokens.txt");
             file.WriteLine("(classPart, valuePart, lineNo)\n------------------------------------------\n");
             file.Close();
 
