@@ -2014,11 +2014,142 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         public static bool COM(string token)
         {
+            if (tokens[index] == "=")
+            {
+                index++;
+                if (COM1(tokens[index]))
+                {
+                    return true;
+                }
+
+            }
+            else if (tokens[index] == "comp_assign")
+            {
+                index++;
+                if (OE(tokens[index]))
+                {
+                    if (tokens[index] == "#")
+                    {
+                        index++;
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "++" || tokens[index] == "--")
+            {
+                if (inc_dec(tokens[index]))
+                {
+                    if (tokens[index] == "#")
+                    {
+                        index++;
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "." || tokens[index] == "(")
+            {
+                if (Y(tokens[index]))
+                {
+                    if (tokens[index] == "(")
+                    {
+                        index++;
+                        if (PL(tokens[index]))
+                        {
+                            if (tokens[index] == ")")
+                            {
+                                index++;
+                                if (tokens[index] == "#")
+                                {
+                                    index++;
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (tokens[index] == ",")
+            {
+                index++;
+                if (tokens[index] == "ID")
+                {
+                    index++;
+                    if (obj_dec_list1(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public static bool COM1(string token)
+        {
+            if (tokens[index] == "ID" || tokens[index] == "!" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "(" || tokens[index] == "int_const" || tokens[index] == "dec_const" || tokens[index] == "str_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none")
+            {
+                if (OE(tokens[index]))
+                {
+                    if (tokens[index] == "#")
+                    {
+                        index++;
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "fresh")
+            {
+                index++;
+                if (tokens[index] == "ID")
+                {
+                    index++;
+                    if (tokens[index] == "#")
+                    {
+                        index++;
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
 
         public static bool call(string token)
         {
+            if (tokens[index] == "." || tokens[index] == "ID")
+            {
+                index++;
+                if (G(tokens[index]))
+                {
+                    return true;
+                }
+            }
+            else if (tokens[index] == "++" || tokens[index] == "--")
+            {
+                if (inc_dec(tokens[index]))
+                {
+                    if (tokens[index] == "ID")
+                    {
+                        index++;
+                        if (X(tokens[index]))
+                        {
+                            if (tokens[index] == "#")
+                            {
+                                index++;
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public static bool G(string token)
+        {
+
+
             return false;
         }
 
