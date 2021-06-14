@@ -1533,7 +1533,7 @@ namespace Orion.Classes.SyntaxAnalyzer
                                                                                 if (tokens[index] == "}")
                                                                                 {
                                                                                     index++;
-                                                                                    if (def(tokens[index]))
+                                                                                    if (defs(tokens[index]))
                                                                                     {
                                                                                         return true;
                                                                                     }

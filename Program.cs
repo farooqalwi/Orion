@@ -22,7 +22,7 @@ namespace Orion
             // print tokens received from lexical analyzer
             Syntax_Analyzer.printTokens();
 
-            //System.Console.WriteLine(Syntax_Analyzer.tokens[5]);
+            
 
         }
     }
