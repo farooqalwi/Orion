@@ -1234,7 +1234,7 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         public static bool arr2(string token)
         {
-            if (tokens[index] == "int-const" || tokens[index] == "str-const" || tokens[index] == "dec-const" || tokens[index] == "bool-const" || tokens[index] == "char-const" || tokens[index] == "none")
+            if (tokens[index] == "int_const" || tokens[index] == "str_const" || tokens[index] == "dec_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none")
             {
                 if (CONST(tokens[index]))
                 {
@@ -2048,7 +2048,7 @@ namespace Orion.Classes.SyntaxAnalyzer
                     }
                 }
             }
-            else if (tokens[index] == "int-const" || tokens[index] == "str-const" || tokens[index] == "dec-const" || tokens[index] == "bool-const" || tokens[index] == "char-const" || tokens[index] == "none" || tokens[index] == "[")
+            else if (tokens[index] == "int_const" || tokens[index] == "str_const" || tokens[index] == "dec_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none" || tokens[index] == "[")
             {
                 if (arr2(tokens[index]))
                 {

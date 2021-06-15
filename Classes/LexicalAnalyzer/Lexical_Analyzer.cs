@@ -5,8 +5,8 @@ namespace Orion.Classes.LexicalAnalyzer
 {
     class Lexical_Analyzer
     {
-        static string[,] keywords = { { "num", "DT" }, { "decimal", "DT" }, { "char", "DT" }, { "string", "DT" }, { "loop", "loop" }, { "until", "until" }, { "when", "when" }, { "lest", "lest" }, { "refund", "refund" }, { "skip", "skip" }, { "jump", "jump" }, { "toggle", "toggle" }, { "check", "check" }, { "mismatch", "mismatch" }, { "main", "main" }, { "void", "void" }, { "none", "none" }, { "bool", "DT" }, { "true", "bool_const" }, { "false", "bool_const" }, { "general", "AM" }, { "personal", "AM" }, { "protected", "AM" }, { "class", "class" }, { "fresh", "fresh" }, { "inactive", "NAM" }, { "final", "NAM" }, { "symbolic", "NAM" }, { "this", "ref_var" }, { "base", "ref_var" }, { "inherits", "inherits" }, { "implement", "implement" }, { "interface", "interface" }, { "try", "try" }, { "except", "except" }, { "finally", "finally" }, { "series", "DS" }, { "list", "DS" }, { "listD", "DS" }, { "@", "@" }, { "@@", "@@" } };
-        static string[,] operators = { { "!", "!" }, { "++", "inc_dec" }, { "--", "inc_dec" }, { "+", "PM" }, { "-", "PM" }, { "*", "MDM" }, { "/", "MDM" }, { "%", "MDM" }, { "is", "RO" }, { "not", "RO" }, { "<", "RO" }, { ">", "RO" }, { "<=", "RO" }, { ">=", "RO" }, { "and", "and" }, { "or", "or" }, { "=", "assign_opr" }, { "+=", "CAO" }, { "-=", "CAO" }, { "*=", "CAO" }, { "/=", "CAO" } };
+        static string[,] keywords = { { "num", "DT" }, { "decimal", "DT" }, { "char", "DT" }, { "string", "DT" }, { "loop", "loop" }, { "until", "until" }, { "when", "when" }, { "lest", "lest" }, { "refund", "refund" }, { "skip", "skip" }, { "jump", "jump" }, { "toggle", "toggle" }, { "check", "check" }, { "mismatch", "mismatch" }, { "main", "main" }, { "void", "void" }, { "none", "none" }, { "bool", "DT" }, { "true", "bool_const" }, { "false", "bool_const" }, { "general", "AM" }, { "personal", "AM" }, { "protected", "AM" }, { "class", "class" }, { "fresh", "fresh" }, { "inactive", "Non_AM" }, { "final", "Non_AM" }, { "symbolic", "Non_AM" }, { "this", "ref_var" }, { "base", "ref_var" }, { "inherits", "inherits" }, { "implement", "implement" }, { "interface", "interface" }, { "try", "try" }, { "except", "except" }, { "finally", "finally" }, { "series", "DS" }, { "list", "DS" }, { "listD", "DS" }, { "@", "@" }, { "@@", "@@" } };
+        static string[,] operators = { { "!", "!" }, { "++", "inc_dec" }, { "--", "inc_dec" }, { "+", "PM" }, { "-", "PM" }, { "*", "MDM" }, { "/", "MDM" }, { "%", "MDM" }, { "is", "ROP" }, { "not", "ROP" }, { "<", "ROP" }, { ">", "ROP" }, { "<=", "ROP" }, { ">=", "ROP" }, { "and", "and" }, { "or", "or" }, { "=", "assign_opr" }, { "+=", "comp_assign" }, { "-=", "comp_assign" }, { "*=", "comp_assign" }, { "/=", "comp_assign" } };
         static string[,] punctuators = { { ",", "," }, { ":", ":" }, { "(", "(" }, { ")", ")" }, { "{", "{" }, { "}", "}" }, { "[", "[" }, { "]", "]" }, { ".", "." }, { "#", "#" } };
 
         public static bool isDT(string word)
@@ -23,6 +23,20 @@ namespace Orion.Classes.LexicalAnalyzer
             return result;
         }
 
+        public static bool isBool(string word)
+        {
+            bool result = false;
+            for (int i = 0; i < 41; i++)
+            {
+                if (word == keywords[i, 0] && keywords[i, 1] == "bool_const")
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
+                
         public static bool isInt(string word)
         {
 
@@ -102,6 +116,62 @@ namespace Orion.Classes.LexicalAnalyzer
             for (int i = 0; i < 21; i++)
             {
                 if (word == operators[i, 0])
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
+
+        public static bool isPM(string word)
+        {
+            bool result = false;
+            for (int i = 0; i < 21; i++)
+            {
+                if (word == operators[i, 0] && operators[i, 1] == "PM")
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
+
+        public static bool isMDM(string word)
+        {
+            bool result = false;
+            for (int i = 0; i < 21; i++)
+            {
+                if (word == operators[i, 0] && operators[i, 1] == "MDM")
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
+
+        public static bool isROP(string word)
+        {
+            bool result = false;
+            for (int i = 0; i < 21; i++)
+            {
+                if (word == operators[i, 0] && operators[i, 1] == "ROP")
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
+
+        public static bool isComp_assign(string word)
+        {
+            bool result = false;
+            for (int i = 0; i < 21; i++)
+            {
+                if (word == operators[i, 0] && operators[i, 1] == "comp_assign")
                 {
                     result = true;
                 }
@@ -527,6 +597,12 @@ namespace Orion.Classes.LexicalAnalyzer
                 file.WriteLine($"(str_const, {word}, {line})");
                 SyntaxAnalyzer.Syntax_Analyzer.AddToken("str_const", line);
             }
+            else if (isBool(word))
+            {
+                //Console.WriteLine($"(str_const, {word}, {line})");
+                file.WriteLine($"(bool_const, {word}, {line})");
+                SyntaxAnalyzer.Syntax_Analyzer.AddToken("bool_const", line);
+            }
             else if (isKW(word))
             {
                 //Console.WriteLine($"({word}, , {line}) \t > KW");
@@ -536,18 +612,40 @@ namespace Orion.Classes.LexicalAnalyzer
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken("DT", line);
                 }
+                else if (isBool(word))
+                {
+                    SyntaxAnalyzer.Syntax_Analyzer.AddToken("bool_const", line);
+                }
                 else
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
                 }
-
-                
             }
             else if (isOperator(word))
             {
                 //Console.WriteLine($"({word}, , {line}) \t > Oper");
                 file.WriteLine($"({word}, , {line}) \t > Oper");
-                SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
+
+                if (isPM(word))
+                {
+                    SyntaxAnalyzer.Syntax_Analyzer.AddToken("PM", line);
+                }
+                else if (isROP(word))
+                {
+                    SyntaxAnalyzer.Syntax_Analyzer.AddToken("ROP", line);
+                }
+                else if (isMDM(word))
+                {
+                    SyntaxAnalyzer.Syntax_Analyzer.AddToken("MDM", line);
+                }
+                else if (isComp_assign(word))
+                {
+                    SyntaxAnalyzer.Syntax_Analyzer.AddToken("comp_assign", line);
+                }
+                else
+                {
+                    SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
+                }
             }
             else if (isPunctuator(word))
             {
@@ -565,7 +663,7 @@ namespace Orion.Classes.LexicalAnalyzer
             {
                 if (word != " ")
                 {
-                    //Console.WriteLine($"(Invalid Token, {word}, {line})");
+                    Console.WriteLine($"(Invalid Token, {word}, {line})");
                     file.WriteLine($"(Invalid, {word}, {line})");
                 }
             }
