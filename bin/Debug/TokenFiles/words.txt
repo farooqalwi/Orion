@@ -2,6 +2,77 @@
 {
 	general inactive void main ()
 	{	
-		num myNumber = 10#
+		num myNumber = 10# @value should be any integer
+		decimal myDecimalNumber = 10.5# @value should be any decimal number
+		char MyCharacter = 'a'# @any ascii character
+		bool myBool = true#
+		bool myBool = false#
+		bool myBool = !true#
+		
+
+		when (true)
+		{
+			myNum ++#
+			myNum --#
+			jump# @it will jump to the next iteration
+		}
+		lest
+		{
+			myNumber = fisrtNum - secondNum#
+			skip# @it will skip the hole loop iteration
+		}
+
+		until (number is 10)
+		{
+			myfunction()#
+		}
+
+		when (myNum is 10 or myNum is 20)
+		{
+			myfunction()#
+			print(fisrtVar, secondVar)#
+		}
+
+
+
+
+	}
+
+	general inactive void myMethod ()
+	{
+		string myName = "Alwi"#
+
+		when (myNum <= 10)
+		{
+			@if myNum is less than or equal to 10 then this block is executed
+		}
+
 	}
 }
+
+
+general class ParentClass
+{
+	@this is parent class
+}
+
+general class SubClass inherits ParentClass
+{
+	@this is child class inheriting parent class
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

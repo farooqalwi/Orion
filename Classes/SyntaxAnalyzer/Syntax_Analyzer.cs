@@ -43,12 +43,12 @@ namespace Orion.Classes.SyntaxAnalyzer
             {
                 if (tokens[index] == "$")
                 {
-                    Console.WriteLine("*****Congrates!!!!!*****\nThere is no Syntax Error.");
+                    Console.WriteLine("\n*****Congrates!!!!!*****\n\nThere is no Syntax Error.\n");
                 }
             }
             else
             {
-                Console.WriteLine($"Oops: Syntax Error occured at line no: {lineNo[index]}");
+                Console.WriteLine($"\nOops: Syntax Error occured at line no: {lineNo[index]}\n");
             }
             
         }

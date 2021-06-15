@@ -17,5 +17,128 @@
 (=, , 5) 	 > Oper
 (int_const, 10, 5)
 (#, , 5) 	 > Punct
-(}, , 6) 	 > Punct
-(}, , 7) 	 > Punct
+(decimal, , 6) 	 > KW
+(ID, myDecimalNumber, 6)
+(=, , 6) 	 > Oper
+(dec_const, 10.5, 6)
+(#, , 6) 	 > Punct
+(char, , 7) 	 > KW
+(ID, MyCharacter, 7)
+(=, , 7) 	 > Oper
+(char_const, 'a', 7)
+(#, , 7) 	 > Punct
+(bool, , 8) 	 > KW
+(ID, myBool, 8)
+(=, , 8) 	 > Oper
+(bool_const, true, 8)
+(#, , 8) 	 > Punct
+(bool, , 9) 	 > KW
+(ID, myBool, 9)
+(=, , 9) 	 > Oper
+(bool_const, false, 9)
+(#, , 9) 	 > Punct
+(bool, , 10) 	 > KW
+(ID, myBool, 10)
+(=, , 10) 	 > Oper
+(!, , 10) 	 > Oper
+(bool_const, true, 10)
+(#, , 10) 	 > Punct
+(when, , 13) 	 > KW
+((, , 13) 	 > Punct
+(bool_const, true, 13)
+(), , 13) 	 > Punct
+({, , 14) 	 > Punct
+(ID, myNum, 15)
+(++, , 15) 	 > Oper
+(#, , 15) 	 > Punct
+(ID, myNum, 16)
+(--, , 16) 	 > Oper
+(#, , 16) 	 > Punct
+(jump, , 17) 	 > KW
+(#, , 17) 	 > Punct
+(}, , 18) 	 > Punct
+(lest, , 19) 	 > KW
+({, , 20) 	 > Punct
+(ID, myNumber, 21)
+(=, , 21) 	 > Oper
+(ID, f, 21)
+(is, , 21) 	 > Oper
+(ID, rtNum, 21)
+(-, , 21) 	 > Oper
+(ID, secondNum, 21)
+(#, , 21) 	 > Punct
+(skip, , 22) 	 > KW
+(#, , 22) 	 > Punct
+(}, , 23) 	 > Punct
+(until, , 25) 	 > KW
+((, , 25) 	 > Punct
+(ID, number, 25)
+(is, , 25) 	 > Oper
+(int_const, 10, 25)
+(), , 25) 	 > Punct
+({, , 26) 	 > Punct
+(ID, myfunction, 27)
+((, , 27) 	 > Punct
+(), , 27) 	 > Punct
+(#, , 27) 	 > Punct
+(}, , 28) 	 > Punct
+(when, , 30) 	 > KW
+((, , 30) 	 > Punct
+(ID, myNum, 30)
+(is, , 30) 	 > Oper
+(int_const, 10, 30)
+(or, , 30) 	 > Oper
+(ID, myNum, 30)
+(is, , 30) 	 > Oper
+(int_const, 20, 30)
+(), , 30) 	 > Punct
+({, , 31) 	 > Punct
+(ID, myfunction, 32)
+((, , 32) 	 > Punct
+(), , 32) 	 > Punct
+(#, , 32) 	 > Punct
+(ID, print, 33)
+((, , 33) 	 > Punct
+(ID, f, 33)
+(is, , 33) 	 > Oper
+(ID, rtVar, 33)
+(,, , 33) 	 > Punct
+(ID, secondVar, 33)
+(), , 33) 	 > Punct
+(#, , 33) 	 > Punct
+(}, , 34) 	 > Punct
+(}, , 39) 	 > Punct
+(general, , 41) 	 > KW
+(inactive, , 41) 	 > KW
+(void, , 41) 	 > KW
+(ID, myMethod, 41)
+((, , 41) 	 > Punct
+(), , 41) 	 > Punct
+({, , 42) 	 > Punct
+(string, , 43) 	 > KW
+(ID, myName, 43)
+(=, , 43) 	 > Oper
+(str_const, "Alwi", 43)
+(#, , 43) 	 > Punct
+(when, , 45) 	 > KW
+((, , 45) 	 > Punct
+(ID, myNum, 45)
+(<=, , 45) 	 > Oper
+(int_const, 10, 45)
+(), , 45) 	 > Punct
+({, , 46) 	 > Punct
+(}, , 48) 	 > Punct
+(}, , 50) 	 > Punct
+(}, , 51) 	 > Punct
+(general, , 54) 	 > KW
+(class, , 54) 	 > KW
+(ID, ParentClass, 54)
+({, , 55) 	 > Punct
+(}, , 57) 	 > Punct
+(general, , 59) 	 > KW
+(class, , 59) 	 > KW
+(ID, SubClass, 59)
+(inherits, , 59) 	 > KW
+(ID, ParentClass, 59)
+({, , 60) 	 > Punct
+(}, , 62) 	 > Punct
