@@ -394,6 +394,18 @@ namespace Orion.Classes.LexicalAnalyzer
                     //this block is for decimal No
                     if (line[i] == '.' || dPoint == ".")
                     {
+                        // for terminator
+                        if (line[i] == '#')
+                        {
+                            tokenizer((word + dPoint + dWord), LineNo);
+                            word = "";
+                            dPoint = "";
+                            dWord = "";
+                            tokenizer(line[i].ToString(), LineNo);
+                            continue;
+                        }
+                        
+
                         if (line[i] == '.' && dPoint != ".")
                         {
                             dPoint = line[i].ToString();     //for first decimal point
