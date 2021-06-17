@@ -953,7 +953,7 @@ namespace Orion.Classes.SyntaxAnalyzer
             if (tokens[index] == ",")
             {
                 index++;
-                if (define1(tokens[index]))
+                if (define(tokens[index]))
                 {
                     return true;
                 }
