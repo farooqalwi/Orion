@@ -1894,7 +1894,7 @@ namespace Orion.Classes.SyntaxAnalyzer
                             if (tokens[index] == "ID")
                             {
                                 index++;
-                                if (tokens[index] == "implement")
+                                if (tokens[index] == "implements")
                                 {
                                     index++;
                                     if (tokens[index] == "ID")
