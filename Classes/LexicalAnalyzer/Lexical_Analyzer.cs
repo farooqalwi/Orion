@@ -5,7 +5,7 @@ namespace Orion.Classes.LexicalAnalyzer
 {
     class Lexical_Analyzer
     {
-        static string[,] keywords = { { "num", "DT" }, { "decimal", "DT" }, { "char", "DT" }, { "string", "DT" }, { "loop", "loop" }, { "until", "until" }, { "when", "when" }, { "lest", "lest" }, { "refund", "refund" }, { "skip", "skip" }, { "jump", "jump" }, { "toggle", "toggle" }, { "check", "check" }, { "mismatch", "mismatch" }, { "main", "main" }, { "void", "void" }, { "none", "none" }, { "bool", "DT" }, { "true", "bool_const" }, { "false", "bool_const" }, { "general", "AM" }, { "personal", "AM" }, { "protected", "AM" }, { "class", "class" }, { "fresh", "fresh" }, { "inactive", "Non_AM" }, { "final", "Non_AM" }, { "symbolic", "Non_AM" }, { "this", "ref_var" }, { "base", "ref_var" }, { "inherits", "inherits" }, { "implements", "implements" }, { "interface", "interface" }, { "try", "try" }, { "except", "except" }, { "finally", "finally" }, { "series", "DS" }, { "list", "DS" }, { "listD", "DS" }, { "@", "@" }, { "@@", "@@" } };
+        static string[,] keywords = { { "num", "DT" }, { "decimal", "DT" }, { "char", "DT" }, { "string", "DT" }, { "loop", "loop" }, { "until", "until" }, { "when", "when" }, { "lest", "lest" }, { "refund", "refund" }, { "skip", "skip" }, { "jump", "jump" }, { "toggle", "toggle" }, { "check", "check" }, { "mismatch", "mismatch" }, { "main", "main" }, { "void", "void" }, { "none", "none" }, { "bool", "DT" }, { "true", "bool_const" }, { "false", "bool_const" }, { "general", "AM" }, { "personal", "AM" }, { "protected", "AM" }, { "class", "class" }, { "fresh", "fresh" }, { "inactive", "Non_AM" }, { "final", "Non_AM" }, { "symbolic", "Non_AM" }, { "THIS", "ref_var" }, { "BASE", "ref_var" }, { "inherits", "inherits" }, { "implements", "implements" }, { "interface", "interface" }, { "try", "try" }, { "except", "except" }, { "finally", "finally" }, { "series", "DS" }, { "table", "DS" }, { "tableD", "DS" }, { "@", "@" }, { "@@", "@@" } };
         static string[,] operators = { { "!", "!" }, { "++", "inc_dec" }, { "--", "inc_dec" }, { "+", "PM" }, { "-", "PM" }, { "*", "MDM" }, { "/", "MDM" }, { "%", "MDM" }, { "is", "ROP" }, { "not", "ROP" }, { "<", "ROP" }, { ">", "ROP" }, { "<=", "ROP" }, { ">=", "ROP" }, { "and", "and" }, { "or", "or" }, { "=", "assign_opr" }, { "+=", "comp_assign" }, { "-=", "comp_assign" }, { "*=", "comp_assign" }, { "/=", "comp_assign" } };
         static string[,] punctuators = { { ",", "," }, { ":", ":" }, { "(", "(" }, { ")", ")" }, { "{", "{" }, { "}", "}" }, { "[", "[" }, { "]", "]" }, { ".", "." }, { "#", "#" } };
 
@@ -15,6 +15,20 @@ namespace Orion.Classes.LexicalAnalyzer
             for (int i = 0; i < 41; i++)
             {
                 if (word == keywords[i, 0] && keywords[i, 1] == "DT")
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
+
+        public static bool isDS(string word)
+        {
+            bool result = false;
+            for (int i = 0; i < 41; i++)
+            {
+                if (word == keywords[i, 0] && keywords[i, 1] == "DS")
                 {
                     result = true;
                 }
@@ -36,7 +50,21 @@ namespace Orion.Classes.LexicalAnalyzer
 
             return result;
         }
-                
+
+        public static bool isRef_Var(string word)
+        {
+            bool result = false;
+            for (int i = 0; i < 41; i++)
+            {
+                if (word == keywords[i, 0] && keywords[i, 1] == "ref_var")
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
+
         public static bool isInt(string word)
         {
 
@@ -624,9 +652,17 @@ namespace Orion.Classes.LexicalAnalyzer
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken("DT", line);
                 }
+                else if (isDS(word))
+                {
+                    SyntaxAnalyzer.Syntax_Analyzer.AddToken("DS", line);
+                }
                 else if (isBool(word))
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken("bool_const", line);
+                }
+                else if (isRef_Var(word))
+                {
+                    SyntaxAnalyzer.Syntax_Analyzer.AddToken("ref_var", line);
                 }
                 else
                 {

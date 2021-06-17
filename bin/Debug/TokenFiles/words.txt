@@ -12,7 +12,11 @@
 		final num myNumber = 10#
 		general num myNumber = 10#
 		
+		MyClass myObj = fresh MyClass# @object creation with fresh keywords
 		
+		series mySeries = [1, 2, 3]# @it is not fixed data structure
+		table my1dArray = [1, 2, 3]# @fixed data structure
+		tableD my2dArray = [[1, 2, 3], [4,5,6]]# @fixed data structure
 
 		when (true)
 		{
@@ -54,7 +58,8 @@
 		{
 			@always runs
 		}
-	}	
+	}
+	
 }
 
 
@@ -79,7 +84,7 @@ general class ParentClass
 {
 	general void myMethod(num myNum)
 	{
-		base.number = myNum#
+		THIS.number = myNum#
 	}
 }
 
@@ -88,9 +93,11 @@ general class SubClass inherits ParentClass
 {
 	general void myFunction(num myNum)
 	{
-		base.myMethod(myNum)# @call parent class method
+		BASE.myMethod(myNum)# @call parent class method
 	}
 }
+
+
 
 
 

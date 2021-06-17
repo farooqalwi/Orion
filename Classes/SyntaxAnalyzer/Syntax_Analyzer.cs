@@ -645,7 +645,7 @@ namespace Orion.Classes.SyntaxAnalyzer
                     return true;
                 }
             }
-            else if (tokens[index] == "DT" || tokens[index] == "DS" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || tokens[index] == "ID" || tokens[index] == "this" || tokens[index] == "base" || tokens[index] == "toggle" || tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "refund" || tokens[index] == "}")
+            else if (tokens[index] == "DT" || tokens[index] == "DS" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || tokens[index] == "ID" || tokens[index] == "ref_var" || tokens[index] == "toggle" || tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "refund" || tokens[index] == "}")
             {
                 return true;
             }
@@ -1536,10 +1536,7 @@ namespace Orion.Classes.SyntaxAnalyzer
                     }
                 }
             }
-            else if (tokens[index] == "interface")
-            {
-
-            }
+            
 
             return false;
         }
@@ -1573,6 +1570,7 @@ namespace Orion.Classes.SyntaxAnalyzer
             {
                 return true;
             }
+            
 
             return false;
         }
@@ -2027,12 +2025,12 @@ namespace Orion.Classes.SyntaxAnalyzer
             else if (tokens[index] == "ID")
             {
                 index++;
-                if (COM(tokens[index]))
+                if (COM(tokens[index]) || obj_dec(tokens[index]))
                 {
                     return true;
                 }
             }
-            else if (tokens[index] == "this" || tokens[index] == "base")
+            else if (tokens[index] == "ref_var")
             {
                 index++;
                 if (tokens[index] == ".")
@@ -2481,7 +2479,7 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         public static bool MST(string token)
         {
-            if (tokens[index] == "DT" || tokens[index] == "DS" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || tokens[index] == "ID" || tokens[index] == "this" || tokens[index] == "base" || tokens[index] == "toggle" || tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "refund" || tokens[index] == "try")
+            if (tokens[index] == "DT" || tokens[index] == "DS" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || tokens[index] == "ID" || tokens[index] == "ref_var" || tokens[index] == "toggle" || tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "refund" || tokens[index] == "try")
             {
                 if (SST(tokens[index]))
                 {
