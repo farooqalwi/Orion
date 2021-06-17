@@ -89,17 +89,6 @@ general class ParentClass
 }
 
 
-general class SubClass inherits ParentClass
-{
-	general void myFunction(num myNum)
-	{
-		BASE.myMethod(myNum)# @call parent class method
-	}
-}
-
-
-
-
 
 
 

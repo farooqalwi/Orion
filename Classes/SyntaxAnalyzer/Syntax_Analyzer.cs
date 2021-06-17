@@ -38,7 +38,7 @@ namespace Orion.Classes.SyntaxAnalyzer
             // print tokens received from lexical analyzer
             //printTokens();
 
-            
+
             if (S(tokens[index]))
             {
                 if (tokens[index] == "$")
@@ -1520,6 +1520,7 @@ namespace Orion.Classes.SyntaxAnalyzer
                                                                                     }
                                                                                 }
                                                                             }
+                                                                            
                                                                         }
                                                                     }
                                                                 }
@@ -2493,6 +2494,7 @@ namespace Orion.Classes.SyntaxAnalyzer
             {
                 return true;
             }
+            
 
             return false;
         }

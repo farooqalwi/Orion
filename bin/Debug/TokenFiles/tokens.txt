@@ -236,26 +236,3 @@
 (#, , 87) 	 > Punct
 (}, , 88) 	 > Punct
 (}, , 89) 	 > Punct
-(general, , 92) 	 > KW
-(class, , 92) 	 > KW
-(ID, SubClass, 92)
-(inherits, , 92) 	 > KW
-(ID, ParentClass, 92)
-({, , 93) 	 > Punct
-(general, , 94) 	 > KW
-(void, , 94) 	 > KW
-(ID, myFunction, 94)
-((, , 94) 	 > Punct
-(num, , 94) 	 > KW
-(ID, myNum, 94)
-(), , 94) 	 > Punct
-({, , 95) 	 > Punct
-(BASE, , 96) 	 > KW
-(., , 96) 	 > Punct
-(ID, myMethod, 96)
-((, , 96) 	 > Punct
-(ID, myNum, 96)
-(), , 96) 	 > Punct
-(#, , 96) 	 > Punct
-(}, , 97) 	 > Punct
-(}, , 98) 	 > Punct
