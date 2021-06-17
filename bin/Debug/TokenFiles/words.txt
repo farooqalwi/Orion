@@ -8,6 +8,10 @@
 		bool myBool = true#
 		bool myBool = false#
 		bool myBool = !true#
+
+		final num myNumber = 10#
+		general num myNumber = 10#
+		
 		
 
 		when (true)
@@ -33,21 +37,24 @@
 			print(fisrtVar, secondVar)#
 		}
 
-
-
-
-	}
-
-	general inactive void myMethod ()
-	{
-		string myName = "Alwi"#
-
-		when (myNum <= 10)
+		loop (1, 10)
 		{
-			@if myNum is less than or equal to 10 then this block is executed
+			print("ALWI")#
 		}
 
-	}
+		try
+		{
+			@something has to be tried
+		}
+		except
+		{
+			@errors have to be handled
+		}
+		finally
+		{
+			@always runs
+		}
+	}	
 }
 
 
@@ -61,14 +68,29 @@ general class SubClass inherits ParentClass
 	@this is child class inheriting parent class
 }
 
+symbolic class TestClass
+{
+	general symbolic void myMethod()#
+}
 
 
 
+general class ParentClass
+{
+	general void myMethod(num myNum)
+	{
+		base.number = myNum#
+	}
+}
 
 
-
-
-
+general class SubClass inherits ParentClass
+{
+	general void myFunction(num myNum)
+	{
+		base.myMethod(myNum)# @call parent class method
+	}
+}
 
 
 

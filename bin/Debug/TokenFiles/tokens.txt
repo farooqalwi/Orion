@@ -43,102 +43,170 @@
 (!, , 10) 	 > Oper
 (bool_const, true, 10)
 (#, , 10) 	 > Punct
-(when, , 13) 	 > KW
-((, , 13) 	 > Punct
-(bool_const, true, 13)
-(), , 13) 	 > Punct
-({, , 14) 	 > Punct
-(ID, myNum, 15)
-(++, , 15) 	 > Oper
-(#, , 15) 	 > Punct
-(ID, myNum, 16)
-(--, , 16) 	 > Oper
-(#, , 16) 	 > Punct
-(jump, , 17) 	 > KW
-(#, , 17) 	 > Punct
-(}, , 18) 	 > Punct
-(lest, , 19) 	 > KW
-({, , 20) 	 > Punct
-(ID, myNumber, 21)
-(=, , 21) 	 > Oper
-(ID, f, 21)
-(is, , 21) 	 > Oper
-(ID, rtNum, 21)
-(-, , 21) 	 > Oper
-(ID, secondNum, 21)
+(final, , 12) 	 > KW
+(num, , 12) 	 > KW
+(ID, myNumber, 12)
+(=, , 12) 	 > Oper
+(int_const, 10, 12)
+(#, , 12) 	 > Punct
+(general, , 13) 	 > KW
+(num, , 13) 	 > KW
+(ID, myNumber, 13)
+(=, , 13) 	 > Oper
+(int_const, 10, 13)
+(#, , 13) 	 > Punct
+(when, , 17) 	 > KW
+((, , 17) 	 > Punct
+(bool_const, true, 17)
+(), , 17) 	 > Punct
+({, , 18) 	 > Punct
+(ID, myNum, 19)
+(++, , 19) 	 > Oper
+(#, , 19) 	 > Punct
+(ID, myNum, 20)
+(--, , 20) 	 > Oper
+(#, , 20) 	 > Punct
+(jump, , 21) 	 > KW
 (#, , 21) 	 > Punct
-(skip, , 22) 	 > KW
-(#, , 22) 	 > Punct
-(}, , 23) 	 > Punct
-(until, , 25) 	 > KW
-((, , 25) 	 > Punct
-(ID, number, 25)
+(}, , 22) 	 > Punct
+(lest, , 23) 	 > KW
+({, , 24) 	 > Punct
+(ID, myNumber, 25)
+(=, , 25) 	 > Oper
+(ID, f, 25)
 (is, , 25) 	 > Oper
-(int_const, 10, 25)
-(), , 25) 	 > Punct
-({, , 26) 	 > Punct
-(ID, myfunction, 27)
-((, , 27) 	 > Punct
-(), , 27) 	 > Punct
-(#, , 27) 	 > Punct
-(}, , 28) 	 > Punct
-(when, , 30) 	 > KW
-((, , 30) 	 > Punct
-(ID, myNum, 30)
-(is, , 30) 	 > Oper
-(int_const, 10, 30)
-(or, , 30) 	 > Oper
-(ID, myNum, 30)
-(is, , 30) 	 > Oper
-(int_const, 20, 30)
-(), , 30) 	 > Punct
-({, , 31) 	 > Punct
-(ID, myfunction, 32)
-((, , 32) 	 > Punct
-(), , 32) 	 > Punct
-(#, , 32) 	 > Punct
-(ID, print, 33)
-((, , 33) 	 > Punct
-(ID, f, 33)
-(is, , 33) 	 > Oper
-(ID, rtVar, 33)
-(,, , 33) 	 > Punct
-(ID, secondVar, 33)
-(), , 33) 	 > Punct
-(#, , 33) 	 > Punct
-(}, , 34) 	 > Punct
-(}, , 39) 	 > Punct
-(general, , 41) 	 > KW
-(inactive, , 41) 	 > KW
-(void, , 41) 	 > KW
-(ID, myMethod, 41)
-((, , 41) 	 > Punct
-(), , 41) 	 > Punct
-({, , 42) 	 > Punct
-(string, , 43) 	 > KW
-(ID, myName, 43)
-(=, , 43) 	 > Oper
-(str_const, "Alwi", 43)
-(#, , 43) 	 > Punct
-(when, , 45) 	 > KW
-((, , 45) 	 > Punct
-(ID, myNum, 45)
-(<=, , 45) 	 > Oper
-(int_const, 10, 45)
-(), , 45) 	 > Punct
+(ID, rtNum, 25)
+(-, , 25) 	 > Oper
+(ID, secondNum, 25)
+(#, , 25) 	 > Punct
+(skip, , 26) 	 > KW
+(#, , 26) 	 > Punct
+(}, , 27) 	 > Punct
+(until, , 29) 	 > KW
+((, , 29) 	 > Punct
+(ID, number, 29)
+(is, , 29) 	 > Oper
+(int_const, 10, 29)
+(), , 29) 	 > Punct
+({, , 30) 	 > Punct
+(ID, myfunction, 31)
+((, , 31) 	 > Punct
+(), , 31) 	 > Punct
+(#, , 31) 	 > Punct
+(}, , 32) 	 > Punct
+(when, , 34) 	 > KW
+((, , 34) 	 > Punct
+(ID, myNum, 34)
+(is, , 34) 	 > Oper
+(int_const, 10, 34)
+(or, , 34) 	 > Oper
+(ID, myNum, 34)
+(is, , 34) 	 > Oper
+(int_const, 20, 34)
+(), , 34) 	 > Punct
+({, , 35) 	 > Punct
+(ID, myfunction, 36)
+((, , 36) 	 > Punct
+(), , 36) 	 > Punct
+(#, , 36) 	 > Punct
+(ID, print, 37)
+((, , 37) 	 > Punct
+(ID, f, 37)
+(is, , 37) 	 > Oper
+(ID, rtVar, 37)
+(,, , 37) 	 > Punct
+(ID, secondVar, 37)
+(), , 37) 	 > Punct
+(#, , 37) 	 > Punct
+(}, , 38) 	 > Punct
+(loop, , 40) 	 > KW
+((, , 40) 	 > Punct
+(int_const, 1, 40)
+(,, , 40) 	 > Punct
+(int_const, 10, 40)
+(), , 40) 	 > Punct
+({, , 41) 	 > Punct
+(ID, print, 42)
+((, , 42) 	 > Punct
+(str_const, "ALWI", 42)
+(), , 42) 	 > Punct
+(#, , 42) 	 > Punct
+(}, , 43) 	 > Punct
+(try, , 45) 	 > KW
 ({, , 46) 	 > Punct
 (}, , 48) 	 > Punct
-(}, , 50) 	 > Punct
-(}, , 51) 	 > Punct
-(general, , 54) 	 > KW
-(class, , 54) 	 > KW
-(ID, ParentClass, 54)
-({, , 55) 	 > Punct
+(except, , 49) 	 > KW
+({, , 50) 	 > Punct
+(}, , 52) 	 > Punct
+(finally, , 53) 	 > KW
+({, , 54) 	 > Punct
+(}, , 56) 	 > Punct
 (}, , 57) 	 > Punct
-(general, , 59) 	 > KW
-(class, , 59) 	 > KW
-(ID, SubClass, 59)
-(inherits, , 59) 	 > KW
-(ID, ParentClass, 59)
-({, , 60) 	 > Punct
-(}, , 62) 	 > Punct
+(}, , 58) 	 > Punct
+(general, , 61) 	 > KW
+(class, , 61) 	 > KW
+(ID, ParentClass, 61)
+({, , 62) 	 > Punct
+(}, , 64) 	 > Punct
+(general, , 66) 	 > KW
+(class, , 66) 	 > KW
+(ID, SubClass, 66)
+(inherits, , 66) 	 > KW
+(ID, ParentClass, 66)
+({, , 67) 	 > Punct
+(}, , 69) 	 > Punct
+(symbolic, , 71) 	 > KW
+(class, , 71) 	 > KW
+(ID, TestClass, 71)
+({, , 72) 	 > Punct
+(general, , 73) 	 > KW
+(symbolic, , 73) 	 > KW
+(void, , 73) 	 > KW
+(ID, myMethod, 73)
+((, , 73) 	 > Punct
+(), , 73) 	 > Punct
+(#, , 73) 	 > Punct
+(}, , 74) 	 > Punct
+(general, , 78) 	 > KW
+(class, , 78) 	 > KW
+(ID, ParentClass, 78)
+({, , 79) 	 > Punct
+(general, , 80) 	 > KW
+(void, , 80) 	 > KW
+(ID, myMethod, 80)
+((, , 80) 	 > Punct
+(num, , 80) 	 > KW
+(ID, myNum, 80)
+(), , 80) 	 > Punct
+({, , 81) 	 > Punct
+(base, , 82) 	 > KW
+(., , 82) 	 > Punct
+(ID, number, 82)
+(=, , 82) 	 > Oper
+(ID, myNum, 82)
+(#, , 82) 	 > Punct
+(}, , 83) 	 > Punct
+(}, , 84) 	 > Punct
+(general, , 87) 	 > KW
+(class, , 87) 	 > KW
+(ID, SubClass, 87)
+(inherits, , 87) 	 > KW
+(ID, ParentClass, 87)
+({, , 88) 	 > Punct
+(general, , 89) 	 > KW
+(void, , 89) 	 > KW
+(ID, myFunction, 89)
+((, , 89) 	 > Punct
+(num, , 89) 	 > KW
+(ID, myNum, 89)
+(), , 89) 	 > Punct
+({, , 90) 	 > Punct
+(base, , 91) 	 > KW
+(., , 91) 	 > Punct
+(ID, myMethod, 91)
+((, , 91) 	 > Punct
+(ID, myNum, 91)
+(), , 91) 	 > Punct
+(#, , 91) 	 > Punct
+(}, , 92) 	 > Punct
+(}, , 93) 	 > Punct

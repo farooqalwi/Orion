@@ -645,7 +645,7 @@ namespace Orion.Classes.SyntaxAnalyzer
                     return true;
                 }
             }
-            else if (tokens[index] == "DT" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || tokens[index] == "ID" || tokens[index] == "this" || tokens[index] == "base" || tokens[index] == "toggle" || tokens[index] == "}")
+            else if (tokens[index] == "DT" || tokens[index] == "DS" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || tokens[index] == "ID" || tokens[index] == "this" || tokens[index] == "base" || tokens[index] == "toggle" || tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "refund" || tokens[index] == "}")
             {
                 return true;
             }
@@ -705,7 +705,11 @@ namespace Orion.Classes.SyntaxAnalyzer
                 index++;
                 if (obj_dec_list2(tokens[index]))
                 {
-                    return true;
+                    if (tokens[index] == "#")
+                    {
+                        index++;
+                        return true;
+                    }
                 }
             }
             else if (tokens[index] == ",")
@@ -818,17 +822,26 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         public static bool dec(string token)
         {
-            if (tokens[index] == "DT")
+            if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "DT")
             {
-                index++;
-                if (tokens[index] == "ID")
+                if (AM(tokens[index]))
                 {
-                    index++;
-                    if (init(tokens[index]))
+                    if (Non_AM(tokens[index]))
                     {
-                        if (dec_list(tokens[index]))
+                        if (tokens[index] == "DT")
                         {
-                            return true;
+                            index++;
+                            if (tokens[index] == "ID")
+                            {
+                                index++;
+                                if (init(tokens[index]))
+                                {
+                                    if (dec_list(tokens[index]))
+                                    {
+                                        return true;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -1095,7 +1108,7 @@ namespace Orion.Classes.SyntaxAnalyzer
                         if (tokens[index] == ",")
                         {
                             index++;
-                            if (c2(tokens[index]))
+                            if (c1(tokens[index]))
                             {
                                 if (tokens[index] == ")")
                                 {
@@ -1116,70 +1129,16 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         public static bool c1(string token)
         {
-            if (tokens[index] == "ID" || tokens[index] == "!" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "(" || tokens[index] == "int_const" || tokens[index] == "dec_const" || tokens[index] == "str_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none")
-            {
-                if (OE(tokens[index]))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public static bool c2(string token)
-        {
-            if (tokens[index] == "ID")
+            if ( tokens[index] == "int_const")
             {
                 index++;
-                if (X(tokens[index]))
-                {
-                    if (c3(tokens[index]))
-                    {
-                        return true;
-                    }
-                }
-            }
-            else if (tokens[index] == "++" || tokens[index] == "--")
-            {
-                if (inc_dec(tokens[index]))
-                {
-                    if (tokens[index] == "ID")
-                    {
-                        index++;
-                        if (X(tokens[index]))
-                        {
-                            return true;
-                        }
-                    }
-                }
+                return true;
             }
 
             return false;
         }
 
-        private static bool c3(string token)
-        {
-            if (tokens[index] == "=" || tokens[index] == "comp_assign")
-            {
-                if (assign_opr(tokens[index]))
-                {
-                    if (OE(tokens[index]))
-                    {
-                        return true;
-                    }
-                }
-            }
-            else if (tokens[index] == "++" || tokens[index] == "--")
-            {
-                if (inc_dec(tokens[index]))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
+        
 
         public static bool While_st(string token)
         {
@@ -1208,20 +1167,20 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         public static bool arr1(string token)
         {
-            if (tokens[index] == "DT")
+            if (tokens[index] == "DS")
             {
                 index++;
                 if (tokens[index] == "ID")
                 {
                     index++;
-                    if (arr2(tokens[index]))
+                    if (tokens[index] == "=")
                     {
-                        if (tokens[index] == "=")
+                        index++;
+                        if (tokens[index] == "[")
                         {
                             index++;
-                            if (tokens[index] == "[")
-                            {
-                                index++;
+                            if (arr2(tokens[index]))
+                            {                                
                                 return true;
                             }
                         }
@@ -1386,8 +1345,9 @@ namespace Orion.Classes.SyntaxAnalyzer
             if (tokens[index] == "check")
             {
                 index++;
-                if (CONST(tokens[index]))
+                if (tokens[index] == "int_const")
                 {
+                    index++;
                     if (tokens[index] == ":")
                     {
                         index++;
@@ -1425,8 +1385,9 @@ namespace Orion.Classes.SyntaxAnalyzer
             if (tokens[index] == "check")
             {
                 index++;
-                if (CONST(tokens[index]))
+                if (tokens[index] == "int_const")
                 {
+                    index++;
                     if (tokens[index] == ":")
                     {
                         index++;
@@ -1447,10 +1408,6 @@ namespace Orion.Classes.SyntaxAnalyzer
                         }
                     }
                 }
-            }
-            else if (tokens[index] == "mismatch" || tokens[index] == "}")
-            {
-                return true;
             }
 
             return false;
@@ -1579,6 +1536,10 @@ namespace Orion.Classes.SyntaxAnalyzer
                     }
                 }
             }
+            else if (tokens[index] == "interface")
+            {
+
+            }
 
             return false;
         }
@@ -1641,24 +1602,9 @@ namespace Orion.Classes.SyntaxAnalyzer
             if (tokens[index] == "(")
             {
                 index++;
-                if (PL(tokens[index]))
+                if (fn0(tokens[index]))
                 {
-                    if (tokens[index] == ")")
-                    {
-                        index++;
-                        if (tokens[index] == "{")
-                        {
-                            index++;
-                            if (MST(tokens[index]))
-                            {
-                                if (tokens[index] == "}")
-                                {
-                                    index++;
-                                    return true;
-                                }
-                            }
-                        }
-                    }
+                    return true;
                 }
             }
             else if (tokens[index] == ",")
@@ -1700,6 +1646,70 @@ namespace Orion.Classes.SyntaxAnalyzer
             else if (tokens[index] == "#")
             {
                 return true;
+            }
+
+            return false;
+        }
+
+        public static bool fn0(string token)
+        {
+            if (tokens[index] == "ID" || tokens[index] == "!" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "(" || tokens[index] == "int_const" || tokens[index] == "dec_const" || tokens[index] == "str_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none")
+            {
+                if (OE(tokens[index]))
+                {
+                    if (tokens[index] == ")")
+                    {
+                        index++;
+                        if (tokens[index] == "{")
+                        {
+                            index++;
+                            if (MST(tokens[index]))
+                            {
+                                if (tokens[index] == "}")
+                                {
+                                    index++;
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (tokens[index] == "DT")
+            {
+                index++;
+                if (tokens[index] == "ID")
+                {
+                    index++;
+                    if (define1(tokens[index]))
+                    {
+                        if (tokens[index] == ")")
+                        {
+                            index++;
+                            if (tokens[index] == "{")
+                            {
+                                index++;
+                                if (MST(tokens[index]))
+                                {
+                                    if (tokens[index] == "}")
+                                    {
+                                        index++;
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (tokens[index] == ")")
+            {
+                index++;
+                if (tokens[index] == "#")
+                {
+                    index++;
+                    return true;
+                }
             }
 
             return false;
@@ -1945,16 +1955,25 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         public static bool SST(string token)
         {
-            if (tokens[index] == "DT")
-            {
-                index++;
-                if (tokens[index] == "ID")
+            if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "DT")
+            {                
+                if (dec(tokens[index]))
                 {
-                    index++;
-                    if (C(tokens[index]))
-                    {
-                        return true;
-                    }
+                    return true;
+                }
+            }
+            else if (tokens[index] == "DS")
+            {
+                if (arr1(tokens[index]))
+                {
+                    return true;
+                }
+            }
+            else if (tokens[index] == "refund")
+            {
+                if (ret_line(tokens[index]))
+                {
+                    return true;
                 }
             }
             else if (tokens[index] == "loop")
@@ -2032,37 +2051,14 @@ namespace Orion.Classes.SyntaxAnalyzer
                     return true;
                 }
             }
-
-            return false;
-        }
-
-        public static bool C(string token)
-        {
-            if (tokens[index] == "=" || tokens[index] == "#" || tokens[index] == ",")
+            else if (tokens[index] == "try")
             {
-                if (init(tokens[index]))
+                if (try_catch(tokens[index]))
                 {
-                    if (dec_list(tokens[index]))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
-            else if (tokens[index] == "int_const" || tokens[index] == "str_const" || tokens[index] == "dec_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none" || tokens[index] == "[")
-            {
-                if (arr2(tokens[index]))
-                {
-                    if (tokens[index] == "=")
-                    {
-                        index++;
-                        if (tokens[index] == "[")
-                        {
-                            index++;
-                            return true;
-                        }
-                    }
-                }
-            }
+
 
             return false;
         }
@@ -2357,13 +2353,9 @@ namespace Orion.Classes.SyntaxAnalyzer
             if (tokens[index] == "int_const")
             {
                 index++;
-                if (tokens[index] == "]")
+                if (M(tokens[index]))
                 {
-                    index++;
-                    if (M(tokens[index]))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
             else if (tokens[index] == "ID")
@@ -2403,15 +2395,11 @@ namespace Orion.Classes.SyntaxAnalyzer
             else if (tokens[index] == ",")
             {
                 index++;
-                if (tokens[index] == "ID")
+                if (CONST(tokens[index]))
                 {
-                    index++;
-                    if (CONST(tokens[index]))
+                    if (arr5(tokens[index]))
                     {
-                        if (arr5(tokens[index]))
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                 }
             }
@@ -2493,7 +2481,7 @@ namespace Orion.Classes.SyntaxAnalyzer
 
         public static bool MST(string token)
         {
-            if (tokens[index] == "DT" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || tokens[index] == "ID" || tokens[index] == "this" || tokens[index] == "base" || tokens[index] == "toggle")
+            if (tokens[index] == "DT" || tokens[index] == "DS" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || tokens[index] == "ID" || tokens[index] == "this" || tokens[index] == "base" || tokens[index] == "toggle" || tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "refund" || tokens[index] == "try")
             {
                 if (SST(tokens[index]))
                 {
