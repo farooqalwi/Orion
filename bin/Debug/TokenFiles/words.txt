@@ -89,6 +89,22 @@ general class ParentClass
 }
 
 
+interface myInterface
+{
+	general void myMethod()#
+}
+
+
+class SubClass implements myInterface
+{
+	general void myMethod()
+	{
+		@ something has to be occurred
+	}
+}
+
+
+
 
 
 

@@ -236,3 +236,26 @@
 (#, , 87) 	 > Punct
 (}, , 88) 	 > Punct
 (}, , 89) 	 > Punct
+(interface, , 92) 	 > KW
+(ID, myInterface, 92)
+({, , 93) 	 > Punct
+(general, , 94) 	 > KW
+(void, , 94) 	 > KW
+(ID, myMethod, 94)
+((, , 94) 	 > Punct
+(), , 94) 	 > Punct
+(#, , 94) 	 > Punct
+(}, , 95) 	 > Punct
+(class, , 98) 	 > KW
+(ID, SubClass, 98)
+(implements, , 98) 	 > KW
+(ID, myInterface, 98)
+({, , 99) 	 > Punct
+(general, , 100) 	 > KW
+(void, , 100) 	 > KW
+(ID, myMethod, 100)
+((, , 100) 	 > Punct
+(), , 100) 	 > Punct
+({, , 101) 	 > Punct
+(}, , 103) 	 > Punct
+(}, , 104) 	 > Punct

@@ -752,7 +752,14 @@ namespace Orion.Classes.SyntaxAnalyzer
         {
             if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "class")
             {
-                if (AM(tokens[index]))
+                if (tokens[index] == "class")
+                {
+                    if (implem_dec(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+                else if (AM(tokens[index]))
                 {
                     if (Non_AM(tokens[index]))
                     {
@@ -781,6 +788,7 @@ namespace Orion.Classes.SyntaxAnalyzer
                         }
                     }
                 }
+                
             }
 
             return false;
@@ -1581,6 +1589,16 @@ namespace Orion.Classes.SyntaxAnalyzer
             if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inactive" || tokens[index] == "class")
             {
                 if (Class_dec(tokens[index]))
+                {
+                    if (defs(tokens[index]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (tokens[index] == "interface")
+            {
+                if (interface_dec(tokens[index]))
                 {
                     if (defs(tokens[index]))
                     {
