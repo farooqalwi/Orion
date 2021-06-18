@@ -1727,6 +1727,18 @@ namespace Orion.Classes.SyntaxAnalyzer
                     index++;
                     return true;
                 }
+                else if (tokens[index] == "{")
+                {
+                    index++;
+                    if (MST(tokens[index]))
+                    {
+                        if (tokens[index] == "}")
+                        {
+                            index++;
+                            return true;
+                        }
+                    }
+                }
             }
 
             return false;

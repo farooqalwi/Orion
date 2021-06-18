@@ -59,13 +59,30 @@
 			@always runs
 		}
 	}
-	
 }
 
 
 general class ParentClass
 {
 	@this is parent class
+	
+	general inactive void myMethod ()
+	{
+		string myName = "Alwi"#
+		when (myNum <= 10)
+		{
+			@if myNum is less than or equal to 10 then this block is executed
+		}
+
+	}
+
+
+	general inactive string myMethod ()
+	{
+		string myName = "Alwi"#
+		
+		refund myName#
+	}
 }
 
 general class SubClass inherits ParentClass
