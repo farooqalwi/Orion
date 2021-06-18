@@ -1,7 +1,7 @@
 ﻿general class MyClass
 {
 	general inactive void main ()
-	{	
+	{
 		num myNumber = 10# @value should be any integer
 		decimal myDecimalNumber = 10.5# @value should be any decimal number
 		char MyCharacter = 'a'# @any ascii character
@@ -18,6 +18,7 @@
 		table my1dArray = [1, 2, 3]# @fixed data structure
 		tableD my2dArray = [[1, 2, 3], [4,5,6]]# @fixed data structure
 
+
 		when (true)
 		{
 			myNum ++#
@@ -30,10 +31,12 @@
 			skip# @it will skip the hole loop iteration
 		}
 
+
 		until (number is 10)
 		{
 			myfunction()#
 		}
+
 
 		when (myNum is 10 or myNum is 20)
 		{
@@ -41,10 +44,12 @@
 			print(fisrtVar, secondVar)#
 		}
 
+
 		loop (1, 10)
 		{
 			print("ALWI")#
 		}
+
 
 		try
 		{
@@ -58,6 +63,28 @@
 		{
 			@always runs
 		}
+
+		
+		@ expression must be integer after evaluation
+		toggle (expression)
+		{
+			check 1:
+			{
+				@something has to be occurred
+				skip#
+			} 
+			check 2:
+			{
+				@something has to be occurred
+				skip#
+			}
+			nonmatch:
+			{
+				@something has to be occurred
+				skip#
+			}
+		}
+
 	}
 }
 

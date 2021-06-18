@@ -1359,23 +1359,27 @@ namespace Orion.Classes.SyntaxAnalyzer
                     if (tokens[index] == ":")
                     {
                         index++;
-                        if (body(tokens[index]))
+                        if (tokens[index] == "{")
                         {
+                            index++;
+
+                            if (tokens[index] != "skip")
+                            {
+
+                            }
+
                             if (tokens[index] == "skip")
                             {
                                 index++;
                                 if (tokens[index] == "#")
                                 {
                                     index++;
-                                    if (case1(tokens[index]))
+                                    if (tokens[index] == "}")
                                     {
-                                        if (_default(tokens[index]))
+                                        index++;
+                                        if (_case(tokens[index]))
                                         {
-                                            if (tokens[index] == "}")
-                                            {
-                                                index++;
-                                                return true;
-                                            }
+                                            return true;
                                         }
                                     }
                                 }
@@ -1384,31 +1388,41 @@ namespace Orion.Classes.SyntaxAnalyzer
                     }
                 }
             }
+            else if (tokens[index] == "nonmatch")
+            {
+                if (_default(tokens[index]))
+                {
+                    return true;
+                }
+            }
 
-            return false;
+                return false;
         }
-
-        public static bool case1(string token)
+        
+        //in CFG it is default not _default
+        public static bool _default(string token)
         {
-            if (tokens[index] == "check")
+            if (tokens[index] == "nonmatch")
             {
                 index++;
-                if (tokens[index] == "int_const")
+                if (tokens[index] == ":")
                 {
                     index++;
-                    if (tokens[index] == ":")
+                    if (tokens[index] == "{")
                     {
                         index++;
-                        if (body(tokens[index]))
+                        if (tokens[index] == "skip")
                         {
-                            if (tokens[index] == "skip")
+                            index++;
+                            if (tokens[index] == "#")
                             {
                                 index++;
-                                if (tokens[index] == "#")
+                                if (tokens[index] == "}")
                                 {
                                     index++;
-                                    if (case1(tokens[index]))
+                                    if (tokens[index] == "}")
                                     {
+                                        index++;
                                         return true;
                                     }
                                 }
@@ -1416,29 +1430,6 @@ namespace Orion.Classes.SyntaxAnalyzer
                         }
                     }
                 }
-            }
-
-            return false;
-        }
-
-        //in CFG it is default not _default
-        public static bool _default(string token)
-        {
-            if (tokens[index] == "mismatch")
-            {
-                index++;
-                if (tokens[index] == ":")
-                {
-                    index++;
-                    if (body(tokens[index]))
-                    {
-                        return true;
-                    }
-                }
-            }
-            else if (tokens[index] == "}")
-            {
-                return true;
             }
 
             return false;
