@@ -5,6 +5,7 @@ namespace Orion.Classes.SyntaxAnalyzer
 {
     class Syntax_Analyzer
     {
+        
         // to go forward token
         static int index = 0;
 

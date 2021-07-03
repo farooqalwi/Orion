@@ -147,10 +147,3 @@ class SubClass implements myInterface
 	}
 }
 
-
-
-
-
-
-
-
