@@ -2,126 +2,14 @@
 {
 	general inactive void main ()
 	{
-		num myNumber = 10# @value should be any integer
-		decimal myDecimalNumber = 10.5# @value should be any decimal number
-		char MyCharacter = 'a'# @any ascii character
-		bool myBool = true#
-		bool myBool = false#
-		bool myBool = !true#
-
 		final num myNumber = 10#
 		general num myNumber = 10#
 		
-		MyClass myObj = fresh MyClass# @object creation with fresh keywords
-		
-		series mySeries = [1, 2, 3]# @it is not fixed data structure
-		table my1dArray = [1, 2, 3]# @fixed data structure
-		tableD my2dArray = [[1, 2, 3], [4,5,6]]# @fixed data structure
-
-
-		when (true)
-		{
-			myNum ++#
-			myNum --#
-			jump# @it will jump to the next iteration
-		}
-		lest
-		{
-			myNumber = fisrtNum - secondNum#
-			skip# @it will skip the hole loop iteration
-		}
-
-
-		until (number is 10)
-		{
-			myfunction()#
-		}
-
-
-		when (myNum is 10 or myNum is 20)
-		{
-			myfunction()#
-			print(fisrtVar, secondVar)#
-		}
-
-
-		loop (1, 10)
-		{
-			print("ALWI")#
-		}
-
-
-		try
-		{
-			@something has to be tried
-		}
-		except
-		{
-			@errors have to be handled
-		}
-		finally
-		{
-			@always runs
-		}
-
-		
-		@ expression must be integer after evaluation
-		toggle (expression)
-		{
-			check 1:
-			{
-				@something has to be occurred
-				skip#
-			} 
-			check 2:
-			{
-				@something has to be occurred
-				skip#
-			}
-			nonmatch:
-			{
-				@something has to be occurred
-				skip#
-			}
-		}
-
+		series mySeries = [1, 2, 3]# 			@it is not fixed data structure
+		table my1dArray = [1, 2, 3]# 			@fixed data structure
+		tableD my2dArray = [[1, 2, 3], [4,5,6]]# 	@fixed data structure
 	}
 }
-
-
-general class ParentClass
-{
-	@this is parent class
-	
-	general inactive void myMethod ()
-	{
-		string myName = "Alwi"#
-		when (myNum <= 10)
-		{
-			@if myNum is less than or equal to 10 then this block is executed
-		}
-
-	}
-
-
-	general inactive string myMethod ()
-	{
-		string myName = "Alwi"#
-		
-		refund myName#
-	}
-}
-
-general class SubClass inherits ParentClass
-{
-	@this is child class inheriting parent class
-}
-
-symbolic class TestClass
-{
-	general symbolic void myMethod()#
-}
-
 
 
 general class ParentClass
@@ -132,18 +20,13 @@ general class ParentClass
 	}
 }
 
-
-interface myInterface
+general class SubClass inherits ParentClass
 {
-	general void myMethod()#
+	@this is child class inheriting parent class
+	
+	num myNumber = 10# 			@value should be any integer
+	decimal myDecimalNumber = 10.5# 	@value should be any decimal number
+	char MyCharacter = 'a'# 		@any ascii character
 }
 
-
-class SubClass implements myInterface
-{
-	general void myMethod()
-	{
-		@ something has to be occurred
-	}
-}
 

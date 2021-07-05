@@ -618,30 +618,35 @@ namespace Orion.Classes.LexicalAnalyzer
                 //Console.WriteLine($"(int_const, {word}, {line})");
                 file.WriteLine($"(int_const, {word}, {line})");
                 SyntaxAnalyzer.Syntax_Analyzer.AddToken("int_const", line);
+                SemanticAnalyzer.Semantic_Analyzer.AddToken("int_const", line);
             }
             else if (isDecimal(word))
             {
                 //Console.WriteLine($"(dec_constant, {word}, {line})");
                 file.WriteLine($"(dec_const, {word}, {line})");
                 SyntaxAnalyzer.Syntax_Analyzer.AddToken("dec_const", line);
+                SemanticAnalyzer.Semantic_Analyzer.AddToken("dec_const", line);
             }
             else if (isChar(word))
             {
                 //Console.WriteLine($"(char_const, {word}, {line})");
                 file.WriteLine($"(char_const, {word}, {line})");
                 SyntaxAnalyzer.Syntax_Analyzer.AddToken("char_const", line);
+                SemanticAnalyzer.Semantic_Analyzer.AddToken("char_const", line);
             }
             else if (isString(word))
             {
                 //Console.WriteLine($"(str_const, {word}, {line})");
                 file.WriteLine($"(str_const, {word}, {line})");
                 SyntaxAnalyzer.Syntax_Analyzer.AddToken("str_const", line);
+                SemanticAnalyzer.Semantic_Analyzer.AddToken("str_const", line);
             }
             else if (isBool(word))
             {
                 //Console.WriteLine($"(str_const, {word}, {line})");
                 file.WriteLine($"(bool_const, {word}, {line})");
                 SyntaxAnalyzer.Syntax_Analyzer.AddToken("bool_const", line);
+                SemanticAnalyzer.Semantic_Analyzer.AddToken("bool_const", line);
             }
             else if (isKW(word))
             {
@@ -651,22 +656,27 @@ namespace Orion.Classes.LexicalAnalyzer
                 if (isDT(word))
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken("DT", line);
+                    SemanticAnalyzer.Semantic_Analyzer.AddToken("DT", line);
                 }
                 else if (isDS(word))
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken("DS", line);
+                    SemanticAnalyzer.Semantic_Analyzer.AddToken("DS", line);
                 }
                 else if (isBool(word))
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken("bool_const", line);
+                    SemanticAnalyzer.Semantic_Analyzer.AddToken("bool_const", line);
                 }
                 else if (isRef_Var(word))
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken("ref_var", line);
+                    SemanticAnalyzer.Semantic_Analyzer.AddToken("ref_var", line);
                 }
                 else
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
+                    SemanticAnalyzer.Semantic_Analyzer.AddToken(word, line);
                 }
             }
             else if (isOperator(word))
@@ -677,22 +687,27 @@ namespace Orion.Classes.LexicalAnalyzer
                 if (isPM(word))
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken("PM", line);
+                    SemanticAnalyzer.Semantic_Analyzer.AddToken("PM", line);
                 }
                 else if (isROP(word))
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken("ROP", line);
+                    SemanticAnalyzer.Semantic_Analyzer.AddToken("ROP", line);
                 }
                 else if (isMDM(word))
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken("MDM", line);
+                    SemanticAnalyzer.Semantic_Analyzer.AddToken("MDM", line);
                 }
                 else if (isComp_assign(word))
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken("comp_assign", line);
+                    SemanticAnalyzer.Semantic_Analyzer.AddToken("comp_assign", line);
                 }
                 else
                 {
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
+                    SemanticAnalyzer.Semantic_Analyzer.AddToken(word, line);
                 }
             }
             else if (isPunctuator(word))
@@ -700,12 +715,14 @@ namespace Orion.Classes.LexicalAnalyzer
                 //Console.WriteLine($"({word}, , {line}) \t > Punct");
                 file.WriteLine($"({word}, , {line}) \t > Punct");
                 SyntaxAnalyzer.Syntax_Analyzer.AddToken(word, line);
+                SemanticAnalyzer.Semantic_Analyzer.AddToken(word, line);
             }
             else if (isID(word))
             {
                 //Console.WriteLine($"(ID, {word}, {line})");
                 file.WriteLine($"(ID, {word}, {line})");
                 SyntaxAnalyzer.Syntax_Analyzer.AddToken("ID", line);
+                SemanticAnalyzer.Semantic_Analyzer.AddToken("ID", line);
             }
             else
             {

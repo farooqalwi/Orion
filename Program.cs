@@ -1,4 +1,5 @@
 ﻿using Orion.Classes.LexicalAnalyzer;
+using Orion.Classes.SemanticAnalyzer;
 using Orion.Classes.SyntaxAnalyzer;
 
 namespace Orion
@@ -12,6 +13,9 @@ namespace Orion
 
             // calling Syntax Analyzer
             Syntax_Analyzer.SyntaxAnalyzer();
+
+            // calling Semantic Analyzer
+            Semantic_Analyzer.SemanticAnalyzer();
 
         }
     }
