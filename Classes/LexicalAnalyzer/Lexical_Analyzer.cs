@@ -117,9 +117,15 @@ namespace Orion.Classes.LexicalAnalyzer
 
         public static bool isID(string word)
         {
-            string pattern = "^[a-zA-Z_][\\w]*$";
-            Regex regex = new Regex(pattern);
-            bool result = regex.IsMatch(word);
+            // first check ID may not any reserved words
+
+            bool result = false;
+            if (!isKW(word))
+            {
+                string pattern = "^[a-zA-Z_][\\w]*$";
+                Regex regex = new Regex(pattern);
+                result = regex.IsMatch(word);
+            }
 
             return result;
         }
@@ -129,7 +135,7 @@ namespace Orion.Classes.LexicalAnalyzer
             bool result = false;
             for (int i = 0; i < 41; i++)
             {
-                if (word == keywords[i, 0])
+                if (word == keywords[i, 0] || word == keywords[i, 1])
                 {
                     result = true;
                 }
@@ -722,7 +728,7 @@ namespace Orion.Classes.LexicalAnalyzer
                 //Console.WriteLine($"(ID, {word}, {line})");
                 file.WriteLine($"(ID, {word}, {line})");
                 SyntaxAnalyzer.Syntax_Analyzer.AddToken("ID", line);
-                SemanticAnalyzer.Semantic_Analyzer.AddToken("ID", line);
+                SemanticAnalyzer.Semantic_Analyzer.AddToken(word, line);
             }
             else
             {

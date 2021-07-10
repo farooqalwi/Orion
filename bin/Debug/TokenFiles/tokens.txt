@@ -111,3 +111,45 @@
 (char_const, 'a', 29)
 (#, , 29) 	 > Punct
 (}, , 30) 	 > Punct
+(general, , 33) 	 > KW
+(class, , 33) 	 > KW
+(ID, ABC, 33)
+({, , 34) 	 > Punct
+(general, , 35) 	 > KW
+(void, , 35) 	 > KW
+(ID, myMethod, 35)
+((, , 35) 	 > Punct
+(num, , 35) 	 > KW
+(ID, myNum, 35)
+(), , 35) 	 > Punct
+({, , 36) 	 > Punct
+(THIS, , 37) 	 > KW
+(., , 37) 	 > Punct
+(ID, number, 37)
+(=, , 37) 	 > Oper
+(ID, myNum, 37)
+(#, , 37) 	 > Punct
+(}, , 38) 	 > Punct
+(}, , 39) 	 > Punct
+(symbolic, , 42) 	 > KW
+(class, , 42) 	 > KW
+(ID, abstractClass, 42)
+({, , 43) 	 > Punct
+(general, , 44) 	 > KW
+(symbolic, , 44) 	 > KW
+(void, , 44) 	 > KW
+(ID, myMethod, 44)
+((, , 44) 	 > Punct
+(), , 44) 	 > Punct
+(#, , 44) 	 > Punct
+(}, , 45) 	 > Punct
+(interface, , 48) 	 > KW
+(ID, myInterface, 48)
+({, , 49) 	 > Punct
+(general, , 50) 	 > KW
+(void, , 50) 	 > KW
+(ID, myMethod, 50)
+((, , 50) 	 > Punct
+(), , 50) 	 > Punct
+(#, , 50) 	 > Punct
+(}, , 51) 	 > Punct

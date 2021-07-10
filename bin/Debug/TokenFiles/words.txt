@@ -30,3 +30,52 @@ general class SubClass inherits ParentClass
 }
 
 
+general class ABC
+{
+	general void myMethod(num myNum)
+	{
+		THIS.number = myNum#
+	}
+}
+
+
+symbolic class abstractClass
+{
+general symbolic void myMethod()#
+}
+
+
+interface myInterface
+{
+general void myMethod()#
+}
+
+
+@@general class ABC
+{
+	general void myMethod(num myNum)
+	{
+		THIS.number = myNum#
+	}
+}@@
+
+
+@@symbolic class abstractClass
+{
+general symbolic void myMethod()#
+}@@
+
+
+@@interface myInterface
+{
+general void myMethod()#
+}@@
+
+
+
+
+
+
+
+
+
