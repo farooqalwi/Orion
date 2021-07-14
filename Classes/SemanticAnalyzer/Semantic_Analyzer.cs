@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Orion.Classes.SemanticAnalyzer.SymbolTable;
+using System;
 using System.Collections.Generic;
 
 namespace Orion.Classes.SemanticAnalyzer
@@ -16,6 +17,12 @@ namespace Orion.Classes.SemanticAnalyzer
         //to store all class names to check duplicate
         public static List<string> className = new List<string>();
 
+        // main table object
+        //MainTable mainTable = new MainTable();
+
+        // list to maintain main table objects
+        public static List<MainTable> mainTables = new List<MainTable>(); 
+
         public static void AddToken(string word, int line)
         {
             Semantic_Analyzer.tokens.Add(word);
@@ -25,9 +32,9 @@ namespace Orion.Classes.SemanticAnalyzer
         // to check duplicate class name, if exists it return true
         public static bool isClassExist(string word)
         {
-            for (int i = 0; i < className.Count; i++)
+            for (int i = 0; i < mainTables.Count; i++)
             {
-                if (word == className[i])
+                if (word == mainTables[i].Name)
                 {
                     return true;
                 }
@@ -775,7 +782,9 @@ namespace Orion.Classes.SemanticAnalyzer
                                 }
                                 else
                                 {
-                                    className.Add(tokens[index]);
+                                    MainTable mainTable = new MainTable();
+                                    mainTable.Name = tokens[index];
+                                    mainTables.Add(mainTable);
                                 }
 
                                 index++;
@@ -1486,7 +1495,9 @@ namespace Orion.Classes.SemanticAnalyzer
                             index++;
                             if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
                             {
-                                className.Add(tokens[index]);
+                                MainTable mainTable = new MainTable();
+                                mainTable.Name = tokens[index];
+                                mainTables.Add(mainTable);
 
                                 index++;
                                 if (extends(tokens[index]))
@@ -1871,7 +1882,9 @@ namespace Orion.Classes.SemanticAnalyzer
                     }
                     else
                     {
-                        className.Add(tokens[index]);
+                        MainTable mainTable = new MainTable();
+                        mainTable.Name = tokens[index];
+                        mainTables.Add(mainTable);
                     }
 
                     index++;

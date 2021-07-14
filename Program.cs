@@ -1,6 +1,7 @@
 ﻿using Orion.Classes.LexicalAnalyzer;
-using Orion.Classes.SemanticAnalyzer;
 using Orion.Classes.SyntaxAnalyzer;
+using Orion.Classes.SemanticAnalyzer;
+using Orion.Classes.SemanticAnalyzer.SymbolTable;
 
 namespace Orion
 {

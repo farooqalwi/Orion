@@ -49,6 +49,9 @@
     <Compile Include="Classes\REs\RE_for_email_validation.cs" />
     <Compile Include="Classes\REs\RE_for_url.cs" />
     <Compile Include="Classes\SemanticAnalyzer\Semantic_Analyzer.cs" />
+    <Compile Include="Classes\SemanticAnalyzer\SymbolTable\DataTable.cs" />
+    <Compile Include="Classes\SemanticAnalyzer\SymbolTable\FunctionTable.cs" />
+    <Compile Include="Classes\SemanticAnalyzer\SymbolTable\MainTable.cs" />
     <Compile Include="Classes\SyntaxAnalyzer\Syntax_Analyzer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
