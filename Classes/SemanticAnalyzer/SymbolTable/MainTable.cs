@@ -10,8 +10,8 @@ namespace Orion.Classes.SemanticAnalyzer.SymbolTable
     {
         public string Name { get; set; }
         public string Type { get; set; }
-        public string AM { get; set; }
-        public string NAM { get; set; }
+        public string AM { get; set; }      // Access modifier
+        public string NAM { get; set; }     // Non Access modifier
 
     }
 }
