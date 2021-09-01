@@ -14,14 +14,27 @@ namespace Orion.Classes.SemanticAnalyzer
         public static List<string> tokens = new List<string>();
         public static List<int> lineNo = new List<int>();
 
+
+        // to iterate all tokens
+        public static void iterate()
+        {
+            foreach (var item in tokens)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
         //to store all class names to check duplicate
         public static List<string> className = new List<string>();
 
         // main table object
         //MainTable mainTable = new MainTable();
 
-        // list to maintain main table objects
-        public static List<MainTable> mainTables = new List<MainTable>(); 
+        // list to maintain main table/class objects
+        public static List<MainTable> mainTables = new List<MainTable>();
+
+        // list to maintain function table objects
+        public static List<FunctionTable> functionTables = new List<FunctionTable>();
 
         public static void AddToken(string word, int line)
         {
@@ -36,6 +49,20 @@ namespace Orion.Classes.SemanticAnalyzer
             {
                 if (word == mainTables[i].Name)
                 {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        // to check duplicate function name, if exists it return true
+        public static bool isFuncExist(string word, string className, string funcReturnType)
+        {
+            for (int i = 0; i < functionTables.Count; i++)
+            {
+                if (word == functionTables[i].Name && className == functionTables[i].Scope && functionTables[i].Type == funcReturnType)
+                {                    
                     return true;
                 }
             }
@@ -651,7 +678,7 @@ namespace Orion.Classes.SemanticAnalyzer
                     return true;
                 }
             }
-            else if (tokens[index] == "DT" || tokens[index] == "DS" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]) || tokens[index] == "ref_var" || tokens[index] == "toggle" || tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "refund" || tokens[index] == "}")
+            else if (LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]) || tokens[index] == "DS" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]) || tokens[index] == "ref_var" || tokens[index] == "toggle" || tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "refund" || tokens[index] == "}")
             {
                 return true;
             }
@@ -771,6 +798,8 @@ namespace Orion.Classes.SemanticAnalyzer
                     {
                         if (tokens[index] == "class")
                         {
+                            MainTable mainTable = new MainTable();
+
                             index++;
                             if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
                             {
@@ -781,8 +810,7 @@ namespace Orion.Classes.SemanticAnalyzer
                                     return false;
                                 }
                                 else
-                                {
-                                    MainTable mainTable = new MainTable();
+                                {                                    
                                     mainTable.Name = tokens[index];
                                     mainTables.Add(mainTable);
                                 }
@@ -793,7 +821,7 @@ namespace Orion.Classes.SemanticAnalyzer
                                     if (tokens[index] == "{")
                                     {
                                         index++;
-                                        if (CB(tokens[index]))
+                                        if (CB(tokens[index], mainTable.Name))
                                         {
                                             if (tokens[index] == "}")
                                             {
@@ -820,7 +848,7 @@ namespace Orion.Classes.SemanticAnalyzer
                 index++;
                 return true;
             }
-            else if (tokens[index] == "class" || tokens[index] == "void" || tokens[index] == "DT" || LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
+            else if (tokens[index] == "class" || tokens[index] == "void" || LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]) || LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
             {
                 return true;
             }
@@ -849,13 +877,13 @@ namespace Orion.Classes.SemanticAnalyzer
 
         public static bool dec(string token)
         {
-            if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "DT")
+            if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]))
             {
                 if (AM(tokens[index]))
                 {
                     if (Non_AM(tokens[index]))
                     {
-                        if (tokens[index] == "DT")
+                        if (LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]))
                         {
                             index++;
                             if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
@@ -923,7 +951,7 @@ namespace Orion.Classes.SemanticAnalyzer
 
         public static bool func_def(string token)
         {
-            if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "void" || tokens[index] == "DT" || LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
+            if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "void" || LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]) || LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
             {
                 if (AM(tokens[index]))
                 {
@@ -932,7 +960,7 @@ namespace Orion.Classes.SemanticAnalyzer
                         if (func_ret_type(tokens[index]))
                         {
                             if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
-                            {
+                            {                            
                                 index++;
                                 if (tokens[index] == "(")
                                 {
@@ -968,7 +996,7 @@ namespace Orion.Classes.SemanticAnalyzer
 
         private static bool define(string token)
         {
-            if (tokens[index] == "DT")
+            if (LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]))
             {
                 index++;
                 if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
@@ -1013,7 +1041,7 @@ namespace Orion.Classes.SemanticAnalyzer
                 index++;
                 return true;
             }
-            else if (tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inactive" || tokens[index] == "class" || tokens[index] == "void" || tokens[index] == "DT" || LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
+            else if (tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inactive" || tokens[index] == "class" || tokens[index] == "void" || LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]) || LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
             {
                 return true;
             }
@@ -1023,7 +1051,7 @@ namespace Orion.Classes.SemanticAnalyzer
 
         public static bool func_ret_type(string token)
         {
-            if (tokens[index] == "void" || tokens[index] == "DT")
+            if (token == "void" || LexicalAnalyzer.Lexical_Analyzer.isDT(token))
             {
                 index++;
                 return true;
@@ -1531,7 +1559,7 @@ namespace Orion.Classes.SemanticAnalyzer
                                                                         if (tokens[index] == "}")
                                                                         {
                                                                             index++;
-                                                                            if (CB(tokens[index]))
+                                                                            if (CB(tokens[index], mainTable.Name))
                                                                             {
                                                                                 if (tokens[index] == "}")
                                                                                 {
@@ -1564,22 +1592,39 @@ namespace Orion.Classes.SemanticAnalyzer
             return false;
         }
 
-        public static bool CB(string token)
+        public static bool CB(string token, string className)
         {
-            if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inactive" || tokens[index] == "void" || tokens[index] == "DT" || LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
+            if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inactive" || tokens[index] == "void" || LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]) || LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
             {
                 if (AM(tokens[index]))
                 {
                     if (Non_AM(tokens[index]))
                     {
+                        string funcReturnType = tokens[index];
+
                         if (func_ret_type(tokens[index]))
-                        {
+                        {                            
                             if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
                             {
+                                if (isFuncExist(tokens[index], className, funcReturnType))
+                                {
+                                    Console.WriteLine($"Oops: Semantic Error occured at line no: {lineNo[index]}");
+                                    Console.WriteLine($"The Function \"{tokens[index]}\" is already exist.\n");
+                                    return false;
+                                }
+                                else
+                                {
+                                    FunctionTable functionTable = new FunctionTable();
+                                    functionTable.Name = tokens[index];
+                                    functionTable.Type = funcReturnType;
+                                    functionTable.Scope = className;
+                                    functionTables.Add(functionTable);
+                                }
+
                                 index++;
                                 if (fn(tokens[index]))
                                 {
-                                    if (CB(tokens[index]))
+                                    if (CB(tokens[index], className))
                                     {
                                         return true;
                                     }
@@ -1706,7 +1751,7 @@ namespace Orion.Classes.SemanticAnalyzer
                     }
                 }
             }
-            else if (tokens[index] == "DT")
+            else if (LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]))
             {
                 index++;
                 if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
@@ -1992,7 +2037,7 @@ namespace Orion.Classes.SemanticAnalyzer
 
         public static bool method_implem(string token)
         {
-            if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inactive" || tokens[index] == "void" || tokens[index] == "DT" || LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
+            if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inactive" || tokens[index] == "void" || LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]) || LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
             {
                 if (func_def(tokens[index]))
                 {
@@ -2012,7 +2057,7 @@ namespace Orion.Classes.SemanticAnalyzer
 
         public static bool SST(string token)
         {
-            if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "DT")
+            if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]))
             {
                 if (dec(tokens[index]))
                 {
@@ -2538,7 +2583,7 @@ namespace Orion.Classes.SemanticAnalyzer
 
         public static bool MST(string token)
         {
-            if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]) || tokens[index] == "DT" || tokens[index] == "DS" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || tokens[index] == "ref_var" || tokens[index] == "toggle" || tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "refund" || tokens[index] == "try")
+            if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]) || LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]) || tokens[index] == "DS" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || tokens[index] == "ref_var" || tokens[index] == "toggle" || tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "refund" || tokens[index] == "try")
             {
                 if (SST(tokens[index]))
                 {

@@ -18,7 +18,7 @@ namespace Orion
             // calling Semantic Analyzer
             Semantic_Analyzer.SemanticAnalyzer();
 
-            
+            //Semantic_Analyzer.iterate();
 
         }
     }

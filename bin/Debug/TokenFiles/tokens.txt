@@ -119,37 +119,49 @@
 (void, , 35) 	 > KW
 (ID, myMethod, 35)
 ((, , 35) 	 > Punct
-(num, , 35) 	 > KW
-(ID, myNum, 35)
 (), , 35) 	 > Punct
 ({, , 36) 	 > Punct
-(THIS, , 37) 	 > KW
-(., , 37) 	 > Punct
-(ID, number, 37)
+(num, , 37) 	 > KW
+(ID, age, 37)
 (=, , 37) 	 > Oper
-(ID, myNum, 37)
+(int_const, 10, 37)
 (#, , 37) 	 > Punct
 (}, , 38) 	 > Punct
-(}, , 39) 	 > Punct
-(symbolic, , 42) 	 > KW
-(class, , 42) 	 > KW
-(ID, abstractClass, 42)
-({, , 43) 	 > Punct
-(general, , 44) 	 > KW
-(symbolic, , 44) 	 > KW
-(void, , 44) 	 > KW
-(ID, myMethod, 44)
-((, , 44) 	 > Punct
-(), , 44) 	 > Punct
+(general, , 40) 	 > KW
+(num, , 40) 	 > KW
+(ID, myMethod, 40)
+((, , 40) 	 > Punct
+(), , 40) 	 > Punct
+({, , 41) 	 > Punct
+(num, , 42) 	 > KW
+(ID, age, 42)
+(=, , 42) 	 > Oper
+(int_const, 10, 42)
+(#, , 42) 	 > Punct
+(refund, , 44) 	 > KW
+(ID, age, 44)
 (#, , 44) 	 > Punct
 (}, , 45) 	 > Punct
-(interface, , 48) 	 > KW
-(ID, myInterface, 48)
-({, , 49) 	 > Punct
-(general, , 50) 	 > KW
-(void, , 50) 	 > KW
-(ID, myMethod, 50)
-((, , 50) 	 > Punct
-(), , 50) 	 > Punct
-(#, , 50) 	 > Punct
-(}, , 51) 	 > Punct
+(}, , 52) 	 > Punct
+(symbolic, , 55) 	 > KW
+(class, , 55) 	 > KW
+(ID, abstractClass, 55)
+({, , 56) 	 > Punct
+(general, , 57) 	 > KW
+(symbolic, , 57) 	 > KW
+(void, , 57) 	 > KW
+(ID, myMethod, 57)
+((, , 57) 	 > Punct
+(), , 57) 	 > Punct
+(#, , 57) 	 > Punct
+(}, , 58) 	 > Punct
+(interface, , 61) 	 > KW
+(ID, myInterface, 61)
+({, , 62) 	 > Punct
+(general, , 63) 	 > KW
+(void, , 63) 	 > KW
+(ID, myMethod, 63)
+((, , 63) 	 > Punct
+(), , 63) 	 > Punct
+(#, , 63) 	 > Punct
+(}, , 64) 	 > Punct

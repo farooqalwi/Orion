@@ -32,10 +32,23 @@ general class SubClass inherits ParentClass
 
 general class ABC
 {
-	general void myMethod(num myNum)
+	general void myMethod()
 	{
-		THIS.number = myNum#
+		num age = 10#
 	}
+
+	general num myMethod()
+	{
+		num age = 10#
+
+		refund age#
+	}
+
+	@ to cehck function redeclaration error
+	@@general void myMethod()
+	{
+		num myNumber = 10#
+	}@@
 }
 
 

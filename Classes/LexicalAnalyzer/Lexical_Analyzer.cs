@@ -660,9 +660,9 @@ namespace Orion.Classes.LexicalAnalyzer
                 file.WriteLine($"({word}, , {line}) \t > KW");
 
                 if (isDT(word))
-                {
+                {                    
                     SyntaxAnalyzer.Syntax_Analyzer.AddToken("DT", line);
-                    SemanticAnalyzer.Semantic_Analyzer.AddToken("DT", line);
+                    SemanticAnalyzer.Semantic_Analyzer.AddToken(word, line);
                 }
                 else if (isDS(word))
                 {
