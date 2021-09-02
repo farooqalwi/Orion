@@ -1252,13 +1252,27 @@ namespace Orion.Classes.SemanticAnalyzer
             return false;
         }
 
-        public static bool arr1(string token)
+        public static bool arr1(string token, string scope)
         {
             if (tokens[index] == "DS")
             {
                 index++;
                 if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
                 {
+                    if (isFieldExist(tokens[index], scope))
+                    {
+                        Console.WriteLine($"Oops: Semantic Error occured at line no: {lineNo[index]}");
+                        Console.WriteLine($"The Field \"{tokens[index]}\" is already exist.\n");
+                        return false;
+                    }
+                    else
+                    {
+                        FieldsTable fieldsTable = new FieldsTable();
+                        fieldsTable.Name = tokens[index];
+                        fieldsTable.Scope = scope;
+                        FieldsTables.Add(fieldsTable);
+                    }
+
                     index++;
                     if (tokens[index] == "=")
                     {
@@ -2100,7 +2114,7 @@ namespace Orion.Classes.SemanticAnalyzer
             }
             else if (tokens[index] == "DS")
             {
-                if (arr1(tokens[index]))
+                if (arr1(tokens[index], scope))
                 {
                     return true;
                 }
