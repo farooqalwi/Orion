@@ -901,7 +901,7 @@ namespace Orion.Classes.SemanticAnalyzer
                     if (!isClassExist(tokens[index]))
                     {
                         Console.WriteLine($"Oops: Semantic Error occured at line no: {lineNo[index]}");
-                        Console.WriteLine($"The class \"{tokens[index]}\" could not be found.\n");
+                        Console.WriteLine($"The class/interface name \"{tokens[index]}\" could not be found.\n");
                         return false;
                     }
 

@@ -175,3 +175,47 @@
 (), , 71) 	 > Punct
 (#, , 71) 	 > Punct
 (}, , 72) 	 > Punct
+(general, , 74) 	 > KW
+(class, , 74) 	 > KW
+(ID, XYZ, 74)
+(inherits, , 74) 	 > KW
+(ID, abstractClass, 74)
+({, , 75) 	 > Punct
+(general, , 76) 	 > KW
+(void, , 76) 	 > KW
+(ID, myMethod, 76)
+((, , 76) 	 > Punct
+(num, , 76) 	 > KW
+(ID, myNum, 76)
+(), , 76) 	 > Punct
+({, , 77) 	 > Punct
+(THIS, , 78) 	 > KW
+(., , 78) 	 > Punct
+(ID, number, 78)
+(=, , 78) 	 > Oper
+(ID, myNum, 78)
+(#, , 78) 	 > Punct
+(}, , 79) 	 > Punct
+(}, , 80) 	 > Punct
+(general, , 82) 	 > KW
+(class, , 82) 	 > KW
+(ID, ABCXYZ, 82)
+(inherits, , 82) 	 > KW
+(ID, myInterface, 82)
+({, , 83) 	 > Punct
+(general, , 84) 	 > KW
+(void, , 84) 	 > KW
+(ID, myMethod, 84)
+((, , 84) 	 > Punct
+(num, , 84) 	 > KW
+(ID, myNum, 84)
+(), , 84) 	 > Punct
+({, , 85) 	 > Punct
+(THIS, , 86) 	 > KW
+(., , 86) 	 > Punct
+(ID, number, 86)
+(=, , 86) 	 > Oper
+(ID, myNum, 86)
+(#, , 86) 	 > Punct
+(}, , 87) 	 > Punct
+(}, , 88) 	 > Punct

@@ -62,14 +62,31 @@ final class ABC
 
 symbolic class abstractClass
 {
-general symbolic void myMethod()#
+	general symbolic void myMethod()#
 }
 
 
 interface myInterface
 {
-general void myMethod()#
+	general void myMethod()#
 }
+
+general class XYZ inherits abstractClass
+{
+	general void myMethod(num myNum)
+	{
+		THIS.number = myNum#
+	}
+}
+
+general class ABCXYZ inherits myInterface
+{
+	general void myMethod(num myNum)
+	{
+		THIS.number = myNum#
+	}
+}
+
 
 
 @to check class redeclaration
@@ -84,13 +101,13 @@ general void myMethod()#
 
 @@symbolic class abstractClass
 {
-general symbolic void myMethod()#
+	general symbolic void myMethod()#
 }@@
 
 
 @@interface myInterface
 {
-general void myMethod()#
+	general void myMethod()#
 }@@
 
 
