@@ -39,7 +39,7 @@ general class SubClass inherits ParentClass
 }
 
 
-general class ABC
+final class ABC
 {
 	general void myMethod()
 	{
@@ -48,8 +48,8 @@ general class ABC
 
 	general num myMethod()
 	{
-		num age = 10#
-		refund age#
+		num agee = 10#
+		refund agee#
 	}
 
 	@ to cehck function redeclaration error
@@ -72,6 +72,7 @@ general void myMethod()#
 }
 
 
+@to check class redeclaration
 @@general class ABC
 {
 	general void myMethod(num myNum)
@@ -91,6 +92,24 @@ general symbolic void myMethod()#
 {
 general void myMethod()#
 }@@
+
+
+@to check final class 'ABC' inheritance
+@@general class XYZ inherits ABC
+{
+	general void myMethod(num myNum)
+	{
+		THIS.number = myNum#
+	}
+}@@
+
+
+
+
+
+
+
+
 
 
 

@@ -39,6 +39,7 @@ namespace Orion.Classes.SemanticAnalyzer
         // list to maintain fields table objects
         public static List<FieldsTable> FieldsTables = new List<FieldsTable>();
 
+
         public static void AddToken(string word, int line)
         {
             Semantic_Analyzer.tokens.Add(word);
@@ -79,6 +80,20 @@ namespace Orion.Classes.SemanticAnalyzer
             for (int i = 0; i < FieldsTables.Count; i++)
             {
                 if (word == FieldsTables[i].Name && scope == FieldsTables[i].Scope)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        // to throw error incase final class inheritance
+        public static bool isClassFinal(string className, string modifier)
+        {
+            for (int i = 0; i < mainTables.Count; i++)
+            {
+                if (className == mainTables[i].Name && mainTables[i].NAM == "final")
                 {
                     return true;
                 }
@@ -811,8 +826,10 @@ namespace Orion.Classes.SemanticAnalyzer
                 }
                 else if (AM(tokens[index]))
                 {
+                    string NonAM = tokens[index];
+
                     if (Non_AM(tokens[index]))
-                    {
+                    {                        
                         if (tokens[index] == "class")
                         {
                             MainTable mainTable = new MainTable();
@@ -829,11 +846,12 @@ namespace Orion.Classes.SemanticAnalyzer
                                 else
                                 {                                    
                                     mainTable.Name = tokens[index];
+                                    mainTable.NAM = NonAM;
                                     mainTables.Add(mainTable);
                                 }
 
                                 index++;
-                                if (extends(tokens[index]))
+                                if (extends(tokens[index], NonAM))
                                 {
                                     if (tokens[index] == "{")
                                     {
@@ -873,13 +891,27 @@ namespace Orion.Classes.SemanticAnalyzer
             return false;
         }
 
-        public static bool extends(string token)
+        public static bool extends(string token, string modifier)
         {
             if (tokens[index] == "inherits")
             {
                 index++;
                 if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
                 {
+                    if (!isClassExist(tokens[index]))
+                    {
+                        Console.WriteLine($"Oops: Semantic Error occured at line no: {lineNo[index]}");
+                        Console.WriteLine($"The class \"{tokens[index]}\" could not be found.\n");
+                        return false;
+                    }
+
+                    if (isClassFinal(tokens[index], modifier))
+                    {
+                        Console.WriteLine($"Oops: Semantic Error occured at line no: {lineNo[index]}");
+                        Console.WriteLine($"cannot inherit from final \"{tokens[index]}\" \n");
+                        return false;
+                    }
+
                     index++;
                     return true;
                 }
@@ -1562,6 +1594,8 @@ namespace Orion.Classes.SemanticAnalyzer
             {
                 if (AM(tokens[index]))
                 {
+                    string NonAM = tokens[index];
+
                     if (Non_AM(tokens[index]))
                     {
                         if (tokens[index] == "class")
@@ -1574,7 +1608,7 @@ namespace Orion.Classes.SemanticAnalyzer
                                 mainTables.Add(mainTable);
 
                                 index++;
-                                if (extends(tokens[index]))
+                                if (extends(tokens[index], NonAM))
                                 {
                                     if (tokens[index] == "{")
                                     {

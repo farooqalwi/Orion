@@ -121,7 +121,7 @@
 (char_const, 'a', 38)
 (#, , 38) 	 > Punct
 (}, , 39) 	 > Punct
-(general, , 42) 	 > KW
+(final, , 42) 	 > KW
 (class, , 42) 	 > KW
 (ID, ABC, 42)
 ({, , 43) 	 > Punct
@@ -144,12 +144,12 @@
 (), , 49) 	 > Punct
 ({, , 50) 	 > Punct
 (num, , 51) 	 > KW
-(ID, age, 51)
+(ID, agee, 51)
 (=, , 51) 	 > Oper
 (int_const, 10, 51)
 (#, , 51) 	 > Punct
 (refund, , 52) 	 > KW
-(ID, age, 52)
+(ID, agee, 52)
 (#, , 52) 	 > Punct
 (}, , 53) 	 > Punct
 (}, , 60) 	 > Punct
