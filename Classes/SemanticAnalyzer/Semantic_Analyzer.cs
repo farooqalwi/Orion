@@ -36,6 +36,9 @@ namespace Orion.Classes.SemanticAnalyzer
         // list to maintain function table objects
         public static List<FunctionTable> functionTables = new List<FunctionTable>();
 
+        // list to maintain fields table objects
+        public static List<FieldsTable> FieldsTables = new List<FieldsTable>();
+
         public static void AddToken(string word, int line)
         {
             Semantic_Analyzer.tokens.Add(word);
@@ -63,6 +66,20 @@ namespace Orion.Classes.SemanticAnalyzer
             {
                 if (word == functionTables[i].Name && className == functionTables[i].Scope && functionTables[i].Type == funcReturnType)
                 {                    
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        // to check duplicate field name, scop may be class/function reference if exists it return true
+        public static bool isFieldExist(string word, string scope)
+        {
+            for (int i = 0; i < FieldsTables.Count; i++)
+            {
+                if (word == FieldsTables[i].Name && scope == FieldsTables[i].Scope)
+                {
                     return true;
                 }
             }
@@ -639,7 +656,7 @@ namespace Orion.Classes.SemanticAnalyzer
             return false;
         }
 
-        public static bool if_else(string token)
+        public static bool if_else(string token, string scope)
         {
             if (tokens[index] == "when")
             {
@@ -652,9 +669,9 @@ namespace Orion.Classes.SemanticAnalyzer
                         if (tokens[index] == ")")
                         {
                             index++;
-                            if (body(tokens[index]))
+                            if (body(tokens[index], scope))
                             {
-                                if (_else(tokens[index]))
+                                if (_else(tokens[index], scope))
                                 {
                                     return true;
                                 }
@@ -668,12 +685,12 @@ namespace Orion.Classes.SemanticAnalyzer
         }
 
         //in CFG it is else not _else
-        public static bool _else(string token)
+        public static bool _else(string token, string scope)
         {
             if (tokens[index] == "lest")
             {
                 index++;
-                if (body(tokens[index]))
+                if (body(tokens[index], scope))
                 {
                     return true;
                 }
@@ -875,7 +892,7 @@ namespace Orion.Classes.SemanticAnalyzer
             return false;
         }
 
-        public static bool dec(string token)
+        public static bool dec(string token, string scope)
         {
             if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]))
             {
@@ -888,6 +905,20 @@ namespace Orion.Classes.SemanticAnalyzer
                             index++;
                             if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
                             {
+                                if (isFieldExist(tokens[index], scope))
+                                {
+                                    Console.WriteLine($"Oops: Semantic Error occured at line no: {lineNo[index]}");
+                                    Console.WriteLine($"The Field \"{tokens[index]}\" is already exist.\n");
+                                    return false;
+                                }
+                                else
+                                {
+                                    FieldsTable fieldsTable = new FieldsTable();
+                                    fieldsTable.Name = tokens[index];
+                                    fieldsTable.Scope = scope;
+                                    FieldsTables.Add(fieldsTable);
+                                }
+
                                 index++;
                                 if (init(tokens[index]))
                                 {
@@ -960,7 +991,8 @@ namespace Orion.Classes.SemanticAnalyzer
                         if (func_ret_type(tokens[index]))
                         {
                             if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]))
-                            {                            
+                            {
+                                string scope = tokens[index];
                                 index++;
                                 if (tokens[index] == "(")
                                 {
@@ -973,7 +1005,7 @@ namespace Orion.Classes.SemanticAnalyzer
                                             if (tokens[index] == "{")
                                             {
                                                 index++;
-                                                if (MST(tokens[index]))
+                                                if (MST(tokens[index], scope))
                                                 {
                                                     if (tokens[index] == "}")
                                                     {
@@ -1150,7 +1182,7 @@ namespace Orion.Classes.SemanticAnalyzer
             return false;
         }
 
-        public static bool for_st(string token)
+        public static bool for_st(string token, string scope)
         {
             if (tokens[index] == "loop")
             {
@@ -1168,7 +1200,7 @@ namespace Orion.Classes.SemanticAnalyzer
                                 if (tokens[index] == ")")
                                 {
                                     index++;
-                                    if (body(tokens[index]))
+                                    if (body(tokens[index], scope))
                                     {
                                         return true;
                                     }
@@ -1195,7 +1227,7 @@ namespace Orion.Classes.SemanticAnalyzer
 
 
 
-        public static bool While_st(string token)
+        public static bool While_st(string token, string scope)
         {
             if (tokens[index] == "until")
             {
@@ -1208,7 +1240,7 @@ namespace Orion.Classes.SemanticAnalyzer
                         if (tokens[index] == ")")
                         {
                             index++;
-                            if (body(tokens[index]))
+                            if (body(tokens[index], scope))
                             {
                                 return true;
                             }
@@ -1482,22 +1514,22 @@ namespace Orion.Classes.SemanticAnalyzer
             return false;
         }
 
-        public static bool try_catch(string token)
+        public static bool try_catch(string token, string scope)
         {
             if (tokens[index] == "try")
             {
                 index++;
-                if (body(tokens[index]))
+                if (body(tokens[index], scope))
                 {
                     if (tokens[index] == "except")
                     {
                         index++;
-                        if (body(tokens[index]))
+                        if (body(tokens[index], scope))
                         {
                             if (tokens[index] == "finally")
                             {
                                 index++;
-                                if (body(tokens[index]))
+                                if (body(tokens[index], scope))
                                 {
                                     return true;
                                 }
@@ -1544,6 +1576,8 @@ namespace Orion.Classes.SemanticAnalyzer
                                                     index++;
                                                     if (tokens[index] == "main")
                                                     {
+                                                        string scope = tokens[index];
+
                                                         index++;
                                                         if (tokens[index] == "(")
                                                         {
@@ -1554,7 +1588,7 @@ namespace Orion.Classes.SemanticAnalyzer
                                                                 if (tokens[index] == "{")
                                                                 {
                                                                     index++;
-                                                                    if (MST(tokens[index]))
+                                                                    if (MST(tokens[index], scope))
                                                                     {
                                                                         if (tokens[index] == "}")
                                                                         {
@@ -1622,7 +1656,7 @@ namespace Orion.Classes.SemanticAnalyzer
                                 }
 
                                 index++;
-                                if (fn(tokens[index]))
+                                if (fn(tokens[index], className))
                                 {
                                     if (CB(tokens[index], className))
                                     {
@@ -1673,12 +1707,12 @@ namespace Orion.Classes.SemanticAnalyzer
             return false;
         }
 
-        public static bool fn(string token)
+        public static bool fn(string token, string scope)
         {
             if (tokens[index] == "(")
             {
                 index++;
-                if (fn0(tokens[index]))
+                if (fn0(tokens[index], scope))
                 {
                     return true;
                 }
@@ -1727,7 +1761,7 @@ namespace Orion.Classes.SemanticAnalyzer
             return false;
         }
 
-        public static bool fn0(string token)
+        public static bool fn0(string token, string scope)
         {
             if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]) || tokens[index] == "!" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "(" || tokens[index] == "int_const" || tokens[index] == "dec_const" || tokens[index] == "str_const" || tokens[index] == "bool_const" || tokens[index] == "char_const" || tokens[index] == "none")
             {
@@ -1739,7 +1773,7 @@ namespace Orion.Classes.SemanticAnalyzer
                         if (tokens[index] == "{")
                         {
                             index++;
-                            if (MST(tokens[index]))
+                            if (MST(tokens[index], scope))
                             {
                                 if (tokens[index] == "}")
                                 {
@@ -1765,7 +1799,7 @@ namespace Orion.Classes.SemanticAnalyzer
                             if (tokens[index] == "{")
                             {
                                 index++;
-                                if (MST(tokens[index]))
+                                if (MST(tokens[index], scope))
                                 {
                                     if (tokens[index] == "}")
                                     {
@@ -1789,7 +1823,7 @@ namespace Orion.Classes.SemanticAnalyzer
                 else if (tokens[index] == "{")
                 {
                     index++;
-                    if (MST(tokens[index]))
+                    if (MST(tokens[index], scope))
                     {
                         if (tokens[index] == "}")
                         {
@@ -2055,11 +2089,11 @@ namespace Orion.Classes.SemanticAnalyzer
             return false;
         }
 
-        public static bool SST(string token)
+        public static bool SST(string token, string scope)
         {
             if (tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]))
             {
-                if (dec(tokens[index]))
+                if (dec(tokens[index], scope))
                 {
                     return true;
                 }
@@ -2080,21 +2114,21 @@ namespace Orion.Classes.SemanticAnalyzer
             }
             else if (tokens[index] == "loop")
             {
-                if (for_st(tokens[index]))
+                if (for_st(tokens[index], scope))
                 {
                     return true;
                 }
             }
             else if (tokens[index] == "when")
             {
-                if (if_else(tokens[index]))
+                if (if_else(tokens[index], scope))
                 {
                     return true;
                 }
             }
             else if (tokens[index] == "until")
             {
-                if (While_st(tokens[index]))
+                if (While_st(tokens[index], scope))
                 {
                     return true;
                 }
@@ -2155,7 +2189,7 @@ namespace Orion.Classes.SemanticAnalyzer
             }
             else if (tokens[index] == "try")
             {
-                if (try_catch(tokens[index]))
+                if (try_catch(tokens[index], scope))
                 {
                     return true;
                 }
@@ -2558,7 +2592,7 @@ namespace Orion.Classes.SemanticAnalyzer
             return false;
         }
 
-        public static bool body(string token)
+        public static bool body(string token, string scope)
         {
             if (tokens[index] == "#")
             {
@@ -2568,7 +2602,7 @@ namespace Orion.Classes.SemanticAnalyzer
             else if (tokens[index] == "{")
             {
                 index++;
-                if (MST(tokens[index]))
+                if (MST(tokens[index], scope))
                 {
                     if (tokens[index] == "}")
                     {
@@ -2581,13 +2615,13 @@ namespace Orion.Classes.SemanticAnalyzer
             return false;
         }
 
-        public static bool MST(string token)
+        public static bool MST(string token, string scope)
         {
             if (LexicalAnalyzer.Lexical_Analyzer.isID(tokens[index]) || LexicalAnalyzer.Lexical_Analyzer.isDT(tokens[index]) || tokens[index] == "DS" || tokens[index] == "loop" || tokens[index] == "when" || tokens[index] == "until" || tokens[index] == "++" || tokens[index] == "--" || tokens[index] == "jump" || tokens[index] == "skip" || tokens[index] == "ref_var" || tokens[index] == "toggle" || tokens[index] == "general" || tokens[index] == "personal" || tokens[index] == "protected" || tokens[index] == "symbolic" || tokens[index] == "final" || tokens[index] == "inacive" || tokens[index] == "refund" || tokens[index] == "try")
             {
-                if (SST(tokens[index]))
+                if (SST(tokens[index], scope))
                 {
-                    if (MST(tokens[index]))
+                    if (MST(tokens[index], scope))
                     {
                         return true;
                     }

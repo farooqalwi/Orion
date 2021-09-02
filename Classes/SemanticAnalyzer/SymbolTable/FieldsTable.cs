@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Orion.Classes.SemanticAnalyzer.SymbolTable
 {
-    class DataTable
+    class FieldsTable
     {
         public string Name { get; set; }
-        public string Type { get; set; }
-        public string AM { get; set; }      // Access modifier
-        public string NAM { get; set; }     // Non Access modifier
+
+        // Scope means class name reference
+        public string Scope { get; set; }
     }
 }

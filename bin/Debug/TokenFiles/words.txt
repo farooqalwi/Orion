@@ -2,8 +2,15 @@
 {
 	general inactive void main ()
 	{
-		final num myNumber = 10#
-		general num myNumber = 10#
+		
+		num myNumber = 10#
+
+		@num myNumber = 123#
+
+		decimal weight = 45.5#
+
+		final num anyNumber = 10#
+		general decimal anyDec = 10.3#
 		
 		series mySeries = [1, 2, 3]# 			@it is not fixed data structure
 		table my1dArray = [1, 2, 3]# 			@fixed data structure
