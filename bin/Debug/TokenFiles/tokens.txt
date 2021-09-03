@@ -77,145 +77,157 @@
 (], , 17) 	 > Punct
 (], , 17) 	 > Punct
 (#, , 17) 	 > Punct
-(}, , 20) 	 > Punct
-(}, , 21) 	 > Punct
-(general, , 24) 	 > KW
-(class, , 24) 	 > KW
-(ID, ParentClass, 24)
-({, , 25) 	 > Punct
+(ID, MyClass, 21)
+(ID, myObj, 21)
+(=, , 21) 	 > Oper
+(fresh, , 21) 	 > KW
+(ID, MyClass, 21)
+(#, , 21) 	 > Punct
+(ID, myObj, 22)
+(., , 22) 	 > Punct
+(ID, myFunction, 22)
+((, , 22) 	 > Punct
+(), , 22) 	 > Punct
+(#, , 22) 	 > Punct
+(}, , 23) 	 > Punct
+(}, , 24) 	 > Punct
 (general, , 26) 	 > KW
-(void, , 26) 	 > KW
-(ID, myMethod, 26)
-((, , 26) 	 > Punct
-(num, , 26) 	 > KW
-(ID, myNum, 26)
-(), , 26) 	 > Punct
+(class, , 26) 	 > KW
+(ID, ParentClass, 26)
 ({, , 27) 	 > Punct
-(THIS, , 28) 	 > KW
-(., , 28) 	 > Punct
-(ID, number, 28)
-(=, , 28) 	 > Oper
+(general, , 28) 	 > KW
+(void, , 28) 	 > KW
+(ID, myMethod, 28)
+((, , 28) 	 > Punct
+(num, , 28) 	 > KW
 (ID, myNum, 28)
-(#, , 28) 	 > Punct
-(}, , 29) 	 > Punct
-(}, , 30) 	 > Punct
-(general, , 32) 	 > KW
-(class, , 32) 	 > KW
-(ID, SubClass, 32)
-(inherits, , 32) 	 > KW
-(ID, ParentClass, 32)
-({, , 33) 	 > Punct
-(num, , 36) 	 > KW
-(ID, myNumber, 36)
-(=, , 36) 	 > Oper
-(int_const, 10, 36)
-(#, , 36) 	 > Punct
-(decimal, , 37) 	 > KW
-(ID, myDecimalNumber, 37)
-(=, , 37) 	 > Oper
-(dec_const, 10.5, 37)
-(#, , 37) 	 > Punct
-(char, , 38) 	 > KW
-(ID, MyCharacter, 38)
-(=, , 38) 	 > Oper
-(char_const, 'a', 38)
-(#, , 38) 	 > Punct
-(}, , 39) 	 > Punct
-(final, , 42) 	 > KW
-(class, , 42) 	 > KW
-(ID, ABC, 42)
-({, , 43) 	 > Punct
-(general, , 44) 	 > KW
-(void, , 44) 	 > KW
-(ID, myMethod, 44)
-((, , 44) 	 > Punct
-(), , 44) 	 > Punct
-({, , 45) 	 > Punct
-(num, , 46) 	 > KW
-(ID, age, 46)
-(=, , 46) 	 > Oper
-(int_const, 10, 46)
-(#, , 46) 	 > Punct
-(}, , 47) 	 > Punct
-(general, , 49) 	 > KW
+(), , 28) 	 > Punct
+({, , 29) 	 > Punct
+(THIS, , 30) 	 > KW
+(., , 30) 	 > Punct
+(ID, number, 30)
+(=, , 30) 	 > Oper
+(ID, myNum, 30)
+(#, , 30) 	 > Punct
+(}, , 31) 	 > Punct
+(}, , 32) 	 > Punct
+(general, , 35) 	 > KW
+(class, , 35) 	 > KW
+(ID, SubClass, 35)
+(inherits, , 35) 	 > KW
+(ID, ParentClass, 35)
+({, , 36) 	 > Punct
+(num, , 39) 	 > KW
+(ID, myNumber, 39)
+(=, , 39) 	 > Oper
+(int_const, 10, 39)
+(#, , 39) 	 > Punct
+(decimal, , 40) 	 > KW
+(ID, myDecimalNumber, 40)
+(=, , 40) 	 > Oper
+(dec_const, 10.5, 40)
+(#, , 40) 	 > Punct
+(char, , 41) 	 > KW
+(ID, MyCharacter, 41)
+(=, , 41) 	 > Oper
+(char_const, 'a', 41)
+(#, , 41) 	 > Punct
+(}, , 42) 	 > Punct
+(final, , 45) 	 > KW
+(class, , 45) 	 > KW
+(ID, ABC, 45)
+({, , 46) 	 > Punct
+(general, , 47) 	 > KW
+(void, , 47) 	 > KW
+(ID, myMethod, 47)
+((, , 47) 	 > Punct
+(), , 47) 	 > Punct
+({, , 48) 	 > Punct
 (num, , 49) 	 > KW
-(ID, myMethod, 49)
-((, , 49) 	 > Punct
-(), , 49) 	 > Punct
-({, , 50) 	 > Punct
-(num, , 51) 	 > KW
-(ID, agee, 51)
-(=, , 51) 	 > Oper
-(int_const, 10, 51)
-(#, , 51) 	 > Punct
-(refund, , 52) 	 > KW
-(ID, agee, 52)
-(#, , 52) 	 > Punct
-(}, , 53) 	 > Punct
-(}, , 60) 	 > Punct
-(symbolic, , 63) 	 > KW
-(class, , 63) 	 > KW
-(ID, abstractClass, 63)
-({, , 64) 	 > Punct
-(general, , 65) 	 > KW
-(symbolic, , 65) 	 > KW
-(void, , 65) 	 > KW
-(ID, myMethod, 65)
-((, , 65) 	 > Punct
-(), , 65) 	 > Punct
-(#, , 65) 	 > Punct
-(}, , 66) 	 > Punct
-(interface, , 69) 	 > KW
-(ID, myInterface, 69)
-({, , 70) 	 > Punct
-(general, , 71) 	 > KW
-(void, , 71) 	 > KW
-(ID, myMethod, 71)
-((, , 71) 	 > Punct
-(), , 71) 	 > Punct
-(#, , 71) 	 > Punct
-(}, , 72) 	 > Punct
+(ID, age, 49)
+(=, , 49) 	 > Oper
+(int_const, 10, 49)
+(#, , 49) 	 > Punct
+(}, , 50) 	 > Punct
+(general, , 52) 	 > KW
+(num, , 52) 	 > KW
+(ID, myMethod, 52)
+((, , 52) 	 > Punct
+(), , 52) 	 > Punct
+({, , 53) 	 > Punct
+(num, , 54) 	 > KW
+(ID, age, 54)
+(=, , 54) 	 > Oper
+(int_const, 10, 54)
+(#, , 54) 	 > Punct
+(refund, , 55) 	 > KW
+(ID, age, 55)
+(#, , 55) 	 > Punct
+(}, , 56) 	 > Punct
+(}, , 63) 	 > Punct
+(symbolic, , 66) 	 > KW
+(class, , 66) 	 > KW
+(ID, abstractClass, 66)
+({, , 67) 	 > Punct
+(general, , 68) 	 > KW
+(symbolic, , 68) 	 > KW
+(void, , 68) 	 > KW
+(ID, myMethod, 68)
+((, , 68) 	 > Punct
+(), , 68) 	 > Punct
+(#, , 68) 	 > Punct
+(}, , 69) 	 > Punct
+(interface, , 72) 	 > KW
+(ID, myInterface, 72)
+({, , 73) 	 > Punct
 (general, , 74) 	 > KW
-(class, , 74) 	 > KW
-(ID, XYZ, 74)
-(inherits, , 74) 	 > KW
-(ID, abstractClass, 74)
-({, , 75) 	 > Punct
-(general, , 76) 	 > KW
-(void, , 76) 	 > KW
-(ID, myMethod, 76)
-((, , 76) 	 > Punct
-(num, , 76) 	 > KW
-(ID, myNum, 76)
-(), , 76) 	 > Punct
-({, , 77) 	 > Punct
-(THIS, , 78) 	 > KW
-(., , 78) 	 > Punct
-(ID, number, 78)
-(=, , 78) 	 > Oper
-(ID, myNum, 78)
-(#, , 78) 	 > Punct
-(}, , 79) 	 > Punct
-(}, , 80) 	 > Punct
-(general, , 82) 	 > KW
-(class, , 82) 	 > KW
-(ID, ABCXYZ, 82)
-(inherits, , 82) 	 > KW
-(ID, myInterface, 82)
-({, , 83) 	 > Punct
-(general, , 84) 	 > KW
-(void, , 84) 	 > KW
-(ID, myMethod, 84)
-((, , 84) 	 > Punct
-(num, , 84) 	 > KW
-(ID, myNum, 84)
-(), , 84) 	 > Punct
-({, , 85) 	 > Punct
-(THIS, , 86) 	 > KW
-(., , 86) 	 > Punct
-(ID, number, 86)
-(=, , 86) 	 > Oper
-(ID, myNum, 86)
-(#, , 86) 	 > Punct
-(}, , 87) 	 > Punct
-(}, , 88) 	 > Punct
+(void, , 74) 	 > KW
+(ID, myMethod, 74)
+((, , 74) 	 > Punct
+(), , 74) 	 > Punct
+(#, , 74) 	 > Punct
+(}, , 75) 	 > Punct
+(general, , 77) 	 > KW
+(class, , 77) 	 > KW
+(ID, XYZ, 77)
+(inherits, , 77) 	 > KW
+(ID, abstractClass, 77)
+({, , 78) 	 > Punct
+(general, , 79) 	 > KW
+(void, , 79) 	 > KW
+(ID, myMethod, 79)
+((, , 79) 	 > Punct
+(num, , 79) 	 > KW
+(ID, myNum, 79)
+(), , 79) 	 > Punct
+({, , 80) 	 > Punct
+(THIS, , 81) 	 > KW
+(., , 81) 	 > Punct
+(ID, number, 81)
+(=, , 81) 	 > Oper
+(ID, myNum, 81)
+(#, , 81) 	 > Punct
+(}, , 82) 	 > Punct
+(}, , 83) 	 > Punct
+(general, , 85) 	 > KW
+(class, , 85) 	 > KW
+(ID, ABCXYZ, 85)
+(inherits, , 85) 	 > KW
+(ID, myInterface, 85)
+({, , 86) 	 > Punct
+(general, , 87) 	 > KW
+(void, , 87) 	 > KW
+(ID, myMethod, 87)
+((, , 87) 	 > Punct
+(num, , 87) 	 > KW
+(ID, myNum, 87)
+(), , 87) 	 > Punct
+({, , 88) 	 > Punct
+(THIS, , 89) 	 > KW
+(., , 89) 	 > Punct
+(ID, number, 89)
+(=, , 89) 	 > Oper
+(ID, myNum, 89)
+(#, , 89) 	 > Punct
+(}, , 90) 	 > Punct
+(}, , 91) 	 > Punct

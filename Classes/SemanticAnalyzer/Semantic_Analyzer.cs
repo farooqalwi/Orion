@@ -1717,7 +1717,7 @@ namespace Orion.Classes.SemanticAnalyzer
                 }
             }
             else if (tokens[index] == "}")
-            {
+            {                
                 return true;
             }
 
@@ -2677,6 +2677,9 @@ namespace Orion.Classes.SemanticAnalyzer
             }
             else if (tokens[index] == "}")
             {
+                // to removel all elements from fields table
+                FieldsTables.Clear();
+
                 return true;
             }
 

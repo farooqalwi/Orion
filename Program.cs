@@ -21,6 +21,13 @@ namespace Orion
 
             //Semantic_Analyzer.iterate();
 
+            FunctionTable functionTable = new FunctionTable();
+            functionTable.Name = "Alwi";
+
+            if (functionTable.Name == null)
+            {
+                Console.WriteLine("yes");
+            }
         }
 
     }

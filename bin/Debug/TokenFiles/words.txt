@@ -17,9 +17,11 @@
 		tableD my2dArray = [[1, 2, 3], [4,5,6]]# 	@fixed data structure
 
 		@series mySeries = [11, 22, 33]#
+
+		MyClass myObj = fresh MyClass# 			@object creation with fresh keywords
+		myObj.myFunction()#
 	}
 }
-
 
 general class ParentClass
 {
@@ -28,6 +30,7 @@ general class ParentClass
 		THIS.number = myNum#
 	}
 }
+
 
 general class SubClass inherits ParentClass
 {
@@ -48,8 +51,8 @@ final class ABC
 
 	general num myMethod()
 	{
-		num agee = 10#
-		refund agee#
+		num age = 10#
+		refund age#
 	}
 
 	@ to cehck function redeclaration error
