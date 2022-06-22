@@ -2,7 +2,7 @@
 A custom language written in C# from scratch
 
 ## Language Specification is here
-[Language Specification](https://drive.google.com/file/d/1YzN3kZz2qtRAHHW8P-nHJWL88qD7HsNP/view?usp=sharing)
+[Language Specification](https://drive.google.com/file/d/1UOdcW7oonOonxd8Q-c2l-t1kCuds5eeM/view?usp=sharing)
 
 ## Language CFG (Context Free Grammar) is here
 (In detail with syntax tree)
